@@ -26,6 +26,7 @@ LUNA_VERSION = "1.1.2"
 
 if ENV:
     TOKEN = os.environ.get("TOKEN", None)
+    OWNER_ID = int(os.environ.get("OWNER_ID", None))
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
     DB_URI = os.environ.get("DATABASE_URL", None)
