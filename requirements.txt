@@ -5,3 +5,6 @@ pymongo
 sqlalchemy
 psycopg2-binary
 dnspython
+better_profanity
+google_trans_new
+nudepy
