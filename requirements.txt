@@ -2,3 +2,5 @@ TgCrypto
 pyrogram==1.0.1
 telethon
 pymongo
+sqlalchemy
+psycopg2-binary
