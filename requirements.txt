@@ -7,3 +7,4 @@ better_profanity
 google_trans_new
 nudepy
 requests
+tldextract
