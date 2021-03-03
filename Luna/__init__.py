@@ -18,6 +18,12 @@ logging.basicConfig(
 LOGGER = logging.getLogger(__name__)
 ENV = bool(os.environ.get("ENV", True))
 
+StartTime = time.time()
+CMD_LIST = {}
+CMD_HELP = {}
+LOAD_PLUG = {}
+LUNA_VERSION = "1.1.2"
+
 if ENV:
     TOKEN = os.environ.get("TOKEN", None)
     API_KEY = os.environ.get("API_KEY", None)
