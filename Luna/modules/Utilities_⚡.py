@@ -266,11 +266,12 @@ async def detail(replied_user, event):
     username = "@{}".format(username) if username else ("This User has no Username")
 
     caption = "<b>User Info:</b> \n"
-    caption += f"ID: <code>{user_id}</code> \n \n"
+    caption += f"ID: <code>{user_id}</code> \n"
     caption += f"First Name: {first_name} \n"
-    caption += f"Last Name: {last_name} \n"
+    if last_name:
+      caption += f"Last Name: {last_name} \n"
     caption += f"Username: {username} \n"
-    caption += f'User link:<a href="tg://user?id={user_id}">link</a>'
+    caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
     return caption
  except Exception as e:
         print (e)
