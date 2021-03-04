@@ -75,10 +75,7 @@ async def _(event):
     if exc:
         evaluation = exc
     elif stderr:
-        result = stderr
-        x = open(result)
-        bc = x.readlines(2)
-        evaluation = bc
+        evaluation = stderr
     elif stdout:
         evaluation = stdout
     else:
