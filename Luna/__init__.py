@@ -29,10 +29,14 @@ if ENV:
     OWNER_ID = int(os.environ.get("OWNER_ID", None))
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
+    SUDO_USERS = {int(x) for x in os.environ.get("SUDO_USERS", "").split()}
+    DEV_USERS = {int(x) for x in os.environ.get("DEV_USERS", "").split()}
     DB_URI = os.environ.get("DATABASE_URL", None)
     tbot = TelegramClient(None, API_KEY, API_HASH)
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
+    SUDO_USERS = list(SUDO_USERS)
+    DEV_USERS = list(DEV_USERS)
     CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")
     BOT_ID = int(os.environ.get("BOT_ID", None))
     if CONSOLE_LOGGER_VERBOSE:
