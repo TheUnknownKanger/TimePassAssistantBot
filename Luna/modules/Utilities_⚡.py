@@ -46,6 +46,7 @@ def get_reason(id):
 
 
 TMP_DOWNLOAD_DIRECTORY = "./"
+TEMP_DOWNLOAD_DIRECTORY = TMP_DOWNLOAD_DIRECTORY
 
 
 @register(pattern="^/who(?: |$)(.*)")
