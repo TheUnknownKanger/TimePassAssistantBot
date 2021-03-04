@@ -79,7 +79,7 @@ async def _(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "<b>Success<\b>"
+        evaluation = "Success"
 
     final_output = "`{}`".format(evaluation)
     MAX_MESSAGE_SIZE_LIMIT = 4095
@@ -97,7 +97,9 @@ async def _(event):
 
     else:
         await event.reply(final_output)
-    await event.reply(stdout)
+    await event.reply(stderr)
+    f = open(stderr.text, "r")
+    await event.reply(f.readline(5))
 
 
 async def aexec(code, smessatatus):
