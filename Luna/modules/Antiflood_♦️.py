@@ -135,7 +135,7 @@ async def _(event):
     if event.is_private:
        return   
     if event.is_group:
-        if not await is_register_admin(message=event):
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
             await event.reply("only admins can execute this command")
             return
         if not await can_change_info(message=event):
