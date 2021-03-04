@@ -111,7 +111,7 @@ async def who(event):
             return
     replied_user = await get_user(event)
     try:
-        caption = await get_det(replied_user, event)
+        caption = await detail(replied_user, event)
     except AttributeError:
         event.edit("`Could not fetch info of that user.`")
         return
@@ -248,7 +248,7 @@ async def fetch_info(replied_user, event):
  except Exception as e:
         print (e)
 
-async def get_det(replied_user, event):
+async def detail(replied_user, event):
  try:
     user_id = replied_user.user.id
     first_name = replied_user.user.first_name
@@ -264,7 +264,6 @@ async def get_det(replied_user, event):
         last_name.replace("\u2060", "") if last_name else ("This User has no Last Name")
     )
     username = "@{}".format(username) if username else ("This User has no Username")
-    user_bio = "This User has no About" if not user_bio else user_bio
 
     caption = "<b>User Info:</b> \n"
     caption += f"ID: <code>{user_id}</code> \n \n"
