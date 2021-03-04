@@ -273,6 +273,16 @@ async def detail(replied_user, event):
       caption += f"Last Name: {last_name} \n"
     caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
+    if user_id in SUDO_USERS:
+        caption += "\n<b>Sudo User</b>"
+
+    if user_id in DEV_USERS:
+        caption += "\n<b>Dev User</b>"
+
+    if user_id == OWNER_ID:
+        caption += (
+            "\n<b>Owner</b>"
+        )
     return caption
  except Exception as e:
         print (e)
