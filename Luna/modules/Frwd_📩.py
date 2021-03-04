@@ -2,6 +2,7 @@ import logging
 from Luna import tbot, CMD_HELP
 from Luna.events import register
 import asyncio
+from telethon import *
 from telethon import TelegramClient, events
 @register(pattern="^/frwd")
 async def frwder(event):
