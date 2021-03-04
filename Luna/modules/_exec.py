@@ -80,7 +80,7 @@ async def _(event):
           try:
             x = open(result)
             bc = x.readlines(2)
-        evaluation = bc
+            evaluation = bc
     elif stdout:
         evaluation = stdout
     else:
