@@ -310,7 +310,7 @@ async def useridgetter(target):
     if message:
         if not message.forward:
             user_id = message.sender.id
-                name = message.sender.first_name
+            name = message.sender.first_name
         else:
             user_id = message.forward.sender.id
             name = message.forward.sender.first_name
