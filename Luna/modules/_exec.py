@@ -97,6 +97,7 @@ async def _(event):
 
     else:
         await event.reply(final_output)
+        await event.reply(stdout)
 
 
 async def aexec(code, smessatatus):
