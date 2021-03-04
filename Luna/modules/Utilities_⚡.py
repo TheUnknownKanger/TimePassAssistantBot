@@ -272,7 +272,7 @@ async def get_det(replied_user, event):
     caption += f"Last Name: {last_name} \n"
     caption += f"Username: {username} \n"
     # caption += f"Common Chats with this user: {common_chat} \n\n"
-    caption += f"User link: <a href="tg://user?id={user_id}">{first_name}</a>"
+    caption += f'User link: <a href="tg://user?id={user_id}">{first_name}</a>'
     return caption
  except Exception as e:
         print (e)
