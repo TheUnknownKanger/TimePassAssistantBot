@@ -10,3 +10,5 @@ requests
 tldextract
 pillow
 PyDictionary
+gitpython
+heroku3
