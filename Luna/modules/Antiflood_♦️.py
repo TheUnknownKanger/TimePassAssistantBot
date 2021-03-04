@@ -136,7 +136,7 @@ async def _(event):
        return   
     if event.is_group:
         if not await is_register_admin(event.input_chat, event.message.sender_id):
-            await event.reply("only admins can execute this command")
+            await event.reply("Only admins can execute this command")
             return
         if not await can_change_info(message=event):
             await event.reply("You are missing the following rights to use this command:CanChangeinfo")
@@ -180,6 +180,9 @@ async def _(event):
     if event.is_private:
        return
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("Only admins can execute this command")
+            return
         if not await can_change_info(message=event):
             await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
@@ -200,6 +203,9 @@ async def _(event):
     if event.is_private: 
         return 
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("Only admins can execute this command")
+            return
         if not await can_change_info(message=event):
             await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
