@@ -56,6 +56,9 @@ async def is_register_admin(chat, user):
 @register(pattern="^/cleanbluetext ?(.*)")
 async def _(event):
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
         if not await can_change_info(message=event):
             return
     else:
@@ -92,6 +95,9 @@ async def _(event):
 @register(pattern="^/ignorecleanbluetext ?(.*)")
 async def _(event):
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
         if not await can_change_info(message=event):
             return
     else:
@@ -118,6 +124,9 @@ async def _(event):
 @register(pattern="^/unignorecleanbluetext ?(.*)")
 async def _(event):
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
         if not await can_change_info(message=event):
             return
     else:
@@ -145,6 +154,9 @@ async def _(event):
 async def _(event):
 
     if event.is_group:
+        if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
         if not await can_change_info(message=event):
             return
     else:
@@ -218,6 +230,9 @@ async def profanity(event):
         return
     if MONGO_DB_URI is None:
         return
+    if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
     if not await can_change_info(message=event):
         return
     input = event.pattern_match.group(1)
@@ -266,6 +281,9 @@ async def profanity(event):
         return
     if MONGO_DB_URI is None:
         return
+    if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
     if not await can_change_info(message=event):
         return
     input = event.pattern_match.group(1)
@@ -312,6 +330,9 @@ async def cleanservice(event):
         return
     if MONGO_DB_URI is None:
         return
+    if not await is_register_admin(event.input_chat, event.message.sender_id):
+            await event.reply("You need to be an admin to do this.")
+            return
     if not await can_change_info(message=event):
         return
     input = event.pattern_match.group(1)
