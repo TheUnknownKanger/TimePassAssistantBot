@@ -136,6 +136,7 @@ async def _(event):
        return   
     if event.is_group:
         if not await can_change_info(message=event):
+            await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
     chat_id = event.chat_id
     args = event.pattern_match.group(1)
@@ -177,6 +178,7 @@ async def _(event):
        return
     if event.is_group:
         if not await can_change_info(message=event):
+            await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
     chat_id = event.chat_id
     limit = sql.get_flood_limit(chat_id)
@@ -196,6 +198,7 @@ async def _(event):
         return 
     if event.is_group:
         if not await can_change_info(message=event):
+            await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
     chat_id = event.chat_id   
     args = event.pattern_match.group(1)
