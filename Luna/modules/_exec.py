@@ -79,7 +79,7 @@ async def _(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "None"
+        evaluation = "<b>Success<\b>"
 
     final_output = "`{}`".format(evaluation)
     MAX_MESSAGE_SIZE_LIMIT = 4095
