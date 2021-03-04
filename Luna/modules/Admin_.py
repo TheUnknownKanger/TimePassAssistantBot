@@ -217,8 +217,9 @@ async def promote(promt):
     if promt.is_group:
         if event.sender_id == OWNER_ID:
             pass
-        elif not await can_promote_users(message=promt):
-            return
+        else:
+          if not await can_promote_users(message=promt):
+             return
     else:
         return
 
