@@ -215,11 +215,11 @@ def find_instance(items, class_or_tuple):
 @register(pattern="^/promote(?: |$)(.*)")
 async def promote(promt):
     if promt.is_group:
-        if event.sender_id == OWNER_ID:
+        if promt.sender_id == OWNER_ID:
             pass
         else:
           if not await can_promote_users(message=promt):
-             return
+            return
     else:
         return
 
