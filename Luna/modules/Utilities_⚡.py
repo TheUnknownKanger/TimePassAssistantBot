@@ -261,7 +261,7 @@ async def detail(replied_user, event):
         else ("This User has no First Name")
     )
     last_name = (
-        last_name.replace("\u2060", "") if last_name else ("This User has no Last Name")
+        last_name.replace("\u2060", "") if last_name else None
     )
     username = "@{}".format(username) if username else ("This User has no Username")
 
