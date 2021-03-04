@@ -135,6 +135,9 @@ async def _(event):
     if event.is_private:
        return   
     if event.is_group:
+        if not await is_register_admin(message=event):
+            await event.reply("only admins can execute this command")
+            return
         if not await can_change_info(message=event):
             await event.reply("You are missing the following rights to use this command:CanChangeinfo")
             return  
