@@ -97,9 +97,6 @@ async def _(event):
 
     else:
         await event.reply(final_output)
-    await event.reply(stderr)
-    f = open(stderr.text, "r")
-    await event.reply(f.readline(5))
 
 
 async def aexec(code, smessatatus):
