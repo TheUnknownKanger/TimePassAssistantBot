@@ -48,7 +48,7 @@ def get_reason(id):
 TMP_DOWNLOAD_DIRECTORY = "./"
 
 
-@register(pattern="^/info(?: |$)(.*)")
+@register(pattern="^/who(?: |$)(.*)")
 async def who(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -96,7 +96,7 @@ async def who(event):
     except TypeError:
         await event.reply(caption, parse_mode="html")
 
-@register(pattern="^/unfo(?: |$)(.*)")
+@register(pattern="^/info(?: |$)(.*)")
 async def who(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
