@@ -305,7 +305,7 @@ async def useridgetter(target):
         self_user = await target.get_sender()
         user_id = self_user.id
         name = self_user.first_name
-        await target.reply("User {}'s id is `{}`".format(name, user_id))
+        await target.reply("User {}'s id is `{}`.".format(name, user_id))
 
     if message:
         if not message.forward:
@@ -314,7 +314,7 @@ async def useridgetter(target):
         else:
             user_id = message.forward.sender.id
             name = message.forward.sender.first_name
-        await target.reply("User {}'s id is `{}`".format(name, user_id))
+        await target.reply("User {}'s id is `{}`.".format(name, user_id))
 
 
 @register(pattern="^/chatid$")
@@ -392,9 +392,7 @@ async def ping(event):
     import datetime
 
     start_time = datetime.datetime.now()
-    message = await event.reply("Pinging .")
-    await message.edit("Pinging ..")
-    await message.edit("Pinging ...")
+    message = await event.reply("Pinging_")
     end_time = datetime.datetime.now()
     pingtime = end_time - start_time
     telegram_ping = str(round(pingtime.total_seconds(), 2)) + "s"
