@@ -58,6 +58,34 @@ async def _(event):
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
      return
+    if event.text.startswith("Brb"):
+     cmd = event.text[len("Brb ") :]
+     if cmd is not None:
+        reason = cmd
+     else:
+        reason = ""
+     fname = sender.first_name        
+     # print(reason)
+     start_time = time.time()
+     sql.set_afk(sender.id, reason, start_time)
+     await event.reply(
+           "**{} is now AFK !**".format(fname),
+           parse_mode="markdown")
+     return
+    if event.text.startswith("brb"):
+     cmd = event.text[len("brb ") :]
+     if cmd is not None:
+        reason = cmd
+     else:
+        reason = ""
+     fname = sender.first_name        
+     # print(reason)
+     start_time = time.time()
+     sql.set_afk(sender.id, reason, start_time)
+     await event.reply(
+           "**{} is now AFK !**".format(fname),
+           parse_mode="markdown")
+     return
 
     if sql.is_afk(sender.id):
        res = sql.rm_afk(sender.id)
