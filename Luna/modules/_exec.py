@@ -75,7 +75,12 @@ async def _(event):
     if exc:
         evaluation = exc
     elif stderr:
-        evaluation = stderr
+        result = stderr
+        if "Trace" in result:
+          try:
+            x = open(result)
+            bc = x.readlines(2)
+        evaluation = bc
     elif stdout:
         evaluation = stdout
     else:
@@ -97,16 +102,6 @@ async def _(event):
 
     else:
         await event.reply(final_output)
-    result = stderr
-    if "Trace" in result:
-      try:
-        x = open(result)
-        bc = x.readlines(2)
-        await event.reply(bc)
-      except:
-         await event.reply("Randi rona h ye to ")
-    else:
-      await event.reply(result)
 
 
 async def aexec(code, smessatatus):
