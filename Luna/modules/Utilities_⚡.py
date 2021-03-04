@@ -96,7 +96,7 @@ async def who(event):
     except TypeError:
         await event.reply(caption, parse_mode="html")
 
-@register(pattern="^/u(?: |$)(.*)")
+@register(pattern="^/unfo(?: |$)(.*)")
 async def who(event):
     approved_userss = approved_users.find({})
     for ch in approved_userss:
@@ -271,8 +271,6 @@ async def get_det(replied_user, event):
     caption += f"First Name: {first_name} \n"
     caption += f"Last Name: {last_name} \n"
     caption += f"Username: {username} \n"
-    # caption += f"Common Chats with this user: {common_chat} \n\n"
-    caption += f'User link: <a href="tg://user?id={user_id}">{first_name}</a>'
     return caption
  except Exception as e:
         print (e)
