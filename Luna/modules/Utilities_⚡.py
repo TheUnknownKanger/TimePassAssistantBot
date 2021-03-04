@@ -304,26 +304,17 @@ async def useridgetter(target):
     if not message:
         self_user = await target.get_sender()
         user_id = self_user.id
-        if self_user.username:
-            name = "@" + self_user.username
-        else:
-            name = "**" + self_user.first_name + "**"
-        await target.reply("**Username:** {} \n**User ID:** `{}`".format(name, user_id))
+        name = self_user.first_name
+        await target.reply("User {}'s id is `{}`".format(name, user_id))
 
     if message:
         if not message.forward:
             user_id = message.sender.id
-            if message.sender.username:
-                name = "@" + message.sender.username
-            else:
-                name = "**" + message.sender.first_name + "**"
+                name = message.sender.first_name
         else:
             user_id = message.forward.sender.id
-            if message.forward.sender.username:
-                name = "@" + message.forward.sender.username
-            else:
-                name = "*" + message.forward.sender.first_name + "*"
-        await target.reply("**Username:** {} \n**User ID:** `{}`".format(name, user_id))
+            name = message.forward.sender.first_name
+        await target.reply("User {}'s id is `{}`".format(name, user_id))
 
 
 @register(pattern="^/chatid$")
