@@ -76,11 +76,9 @@ async def _(event):
         evaluation = exc
     elif stderr:
         result = stderr
-        if "Trace" in result:
-          try:
-            x = open(result)
-            bc = x.readlines(2)
-            evaluation = bc
+        x = open(result)
+        bc = x.readlines(2)
+        evaluation = bc
     elif stdout:
         evaluation = stdout
     else:
