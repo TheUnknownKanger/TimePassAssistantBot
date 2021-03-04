@@ -8,3 +8,4 @@ google_trans_new
 nudepy
 requests
 tldextract
+pillow
