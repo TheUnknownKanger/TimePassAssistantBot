@@ -164,9 +164,10 @@ async def _(event):
           cid = iid.strip()
           reason = reasonn.strip()
         else:
-           cid = quew
+          cid = quew
+          reason = None
         if cid.isnumeric():
-           cid = int(cid)
+            cid = int(cid)
         entity = await tbot.get_input_entity(cid)
         r_sender_id = entity.user_id
         k = r_sender_id
@@ -177,9 +178,6 @@ async def _(event):
         r_sender_id = entity.user_id
     except Exception:
         await event.reply("Couldn't fetch that user.")
-        return
-    if not reason:
-        await event.reply("Need a reason for ungban.")
         return
     chats = gbanned.find({})
 
