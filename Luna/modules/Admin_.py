@@ -247,8 +247,8 @@ async def promote(promt):
     # Try to promote if current user is admin or creator
     try:
         await tbot(
-            EditAdminRequest(promt.chat_id, user.id, new_rights, "Admin"))
-        await promt.reply("Promoted Successfully!")
+            EditAdminRequest(promt.chat_id, user.id, new_rights, "ᏗᎴᎷᎥᏁ"))
+        await promt.reply("Promoted Successfully!🎉")
 
     # If Telethon spit BadRequestError, assume
     # we don't have Promote permission
@@ -260,7 +260,10 @@ async def promote(promt):
 @register(pattern="^/demote(?: |$)(.*)")
 async def demote(dmod):
     if dmod.is_group:
-        if not await can_promote_users(message=dmod):
+        if dmod.sender_id == OWNER_ID:
+            pass
+        else:
+          if not await can_promote_users(message=dmod):
             return
     else:
         return
