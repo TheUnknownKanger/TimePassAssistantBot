@@ -28,7 +28,7 @@ def get_reason(id):
     return gbanned.find_one({"user": id})
 
 chat = -1001356773955
-@tbot.on(events.NewMessage(pattern="^/gban (.*)"))
+@tbot.on(events.NewMessage(pattern="^/gban ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
@@ -41,10 +41,10 @@ async def _(event):
        reply_message = await event.get_reply_message()
        k = reply_message.sender_id
        cid = k
-       if quew:
-           reason = quew
+       if quew == None:
+           reason = "None"
        else:
-           reason = None
+           reason = quew
        user = reply_message.sender.first_name
     if not event.reply_to_msg_id:
         if "|" in quew:
