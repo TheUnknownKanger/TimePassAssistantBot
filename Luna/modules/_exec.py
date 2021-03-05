@@ -51,7 +51,7 @@ async def _(event):
         if "os" in cmd:
           await event.reply("Only Dev's can mess with os.")
           return
-         pass
+        pass
     else:
         return
     
