@@ -64,9 +64,6 @@ async def _(event):
     except Exception:
         await event.reply("Couldn't fetch that user.")
         return
-    if not reason:
-        await event.reply("Need a reason for gban.")
-        return
     chats = gbanned.find({})
 
     if r_sender_id == OWNER_ID:
