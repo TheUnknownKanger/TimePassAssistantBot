@@ -103,8 +103,8 @@ async def _(event):
     )
     await event.client.send_message(
         chat,
-        "**NEW GLOBAL BAN**\n\n**PERMALINK:** [user](tg://user?id={})\n**BANNER:** `{}`\n**REASON:** `{}`\n`{}`".format(
-            r_sender_id, cd, reason, user
+        "**NEW GLOBAL BAN**\n\n**USER:**{}\n**PERMALINK:** [user](tg://user?id={})\n**BANNER:** `{}`\n**REASON:** `{}`".format(
+            user, r_sender_id, cd, reason
         ),
     )
     await event.reply("Gbanned Successfully !")
