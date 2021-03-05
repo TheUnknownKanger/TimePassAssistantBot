@@ -1,4 +1,4 @@
-from Luna import SUDO_USERS, tbot, OWNER_ID
+from Luna import SUDO_USERS, tbot, OWNER_ID, DEV_USERS
 from telethon.tl.types import ChatBannedRights
 from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
@@ -113,7 +113,9 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    if event.sender_id == OWNER_ID:
+    if event.sender_id in SUDO_USERS:
+        pass
+    elif event.sender_id == OWNER_ID:
         pass
     else:
         return
@@ -123,7 +125,11 @@ async def _(event):
        reply_message = await event.get_reply_message()
        k = reply_message.sender_id
        cid = k
-       reason = quew
+       if quew:
+           reason = quew
+       else:
+           reason = "None"
+       user = reply_message.sender.first_name
     if not event.reply_to_msg_id:
         if "|" in quew:
           iid, reasonn = quew.split("|")
@@ -131,6 +137,11 @@ async def _(event):
         reason = reasonn.strip()   
         if cid.isnumeric():
            cid = int(cid)
+        entity = await tbot.get_input_entity(cid)
+        r_sender_id = entity.user_id
+        k = r_sender_id
+        replied_user = await tbot(GetFullUserRequest(k))
+        user = replied_user.user.first_name
     entity = await tbot.get_input_entity(cid)
     try:
         r_sender_id = entity.user_id
@@ -145,6 +156,9 @@ async def _(event):
     if r_sender_id == OWNER_ID:
         await event.reply("Fool, how can I ungban my master ?")
         return
+    if r_sender_id in SUDO_USERS:
+        await event.reply("Hey that's a sudo user idiot.")
+        return
 
     for c in chats:
         if r_sender_id == c["user"]:
@@ -152,8 +166,8 @@ async def _(event):
             gbanned.delete_one({"user": r_sender_id})
             await event.client.send_message(
                 chat,
-                "**REMOVAL OF GLOBAL BAN**\n\n**PERMALINK:** [user](tg://user?id={})\n**REMOVER:** `{}`\n**REASON:** `{}`".format(
-                    r_sender_id, cd, reason
+                "**REMOVAL OF GLOBAL BAN**\n\n**USER:** {}\n**PERMALINK:** [user](tg://user?id={})\n**REMOVER:** `{}`\n**REASON:** `{}`".format(
+                    user, r_sender_id, event.sender_id, reason
                 ),
             )
             await event.reply("Ungbanned Successfully !")
