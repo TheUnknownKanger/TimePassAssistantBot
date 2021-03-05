@@ -404,6 +404,34 @@ async def ping(event):
         parse_mode="html",
     )
 
+@register(pattern="^/staffs")
+async def _(event):
+   reply = "**Owner 💞:**\n"
+   replied_user = await tbot(GetFullUserRequest(OWNER_ID))
+   h = replied_user.user.first_name
+   reply += "• [{}](tg://user?id={})\n\n".format(h, OWNER_ID)
+   k = SUDO_USERS
+   p = list(k)
+   reply += "**Sudo_Users ➕:**\n"
+   for m in p:
+        user_id = int(m)
+        try:
+            reply += "• [{}](tg://user?id={})\n".format(m, m)
+        except Exception:
+            pass
+   l = DEV_USERS
+   n = list(l)
+   reply += "\n**Dev_Users 🎮:**\n"
+   for f in n:
+        user_id = int(f)
+        try:
+            reply += "• [{}](tg://user?id={})\n".format(f, f)
+        except Exception:
+            pass
+   await event.client.send_message(
+                event.chat_id, reply)
+
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
