@@ -40,7 +40,10 @@ async def _(event):
        reply_message = await event.get_reply_message()
        k = reply_message.sender_id
        cid = k
-       reason = quew
+       if quew:
+           reason = quew
+       else:
+           reason = "None"
        user = reply_message.sender.first_name
     if not event.reply_to_msg_id:
         if "|" in quew:
