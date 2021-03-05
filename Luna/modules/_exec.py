@@ -49,8 +49,6 @@ async def _(event):
         if "os" in cmd:
           await event.reply("Nope")
           return
-        else:
-          pass
         pass
     elif event.sender_id in SUDO_USERS:
     else:
