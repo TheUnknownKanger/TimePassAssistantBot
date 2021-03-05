@@ -10,5 +10,5 @@ async def _(event):
             reply += "Lel"
         except Exception:
             pass
-  await event.reply(reply)
-  await event.reply(p)
+   await event.reply(reply)
+   await event.reply(p)
