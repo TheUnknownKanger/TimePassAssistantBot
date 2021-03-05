@@ -137,10 +137,10 @@ async def _(event):
        reply_message = await event.get_reply_message()
        k = reply_message.sender_id
        cid = k
-       if quew:
-           reason = quew
-       else:
+       if quew == None:
            reason = "None"
+       else:
+           reason = quew
        user = reply_message.sender.first_name
     if not event.reply_to_msg_id:
         if "|" in quew:
@@ -182,16 +182,24 @@ async def _(event):
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
             gbanned.delete_one({"user": r_sender_id})
-            await event.client.send_message(
+            if reason:
+              await event.client.send_message(
                 chat,
                 "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** `{}`".format(
                     place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
                 ),
-            )
+               )
+            else:
+               await event.client.send_message(
+                chat,
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id
+                ),
+               )
             k = await event.reply("Initiating Removal Of Global Ban.!")
             await asyncio.sleep(6)
             await k.delete()
-            await event.reply("UNGban Completed")
+            await event.reply("Global Ungban Completed.")
             return
     await event.reply("Is that user even gbanned ?")
 
@@ -217,7 +225,7 @@ async def join_ban(event):
                     await tbot(EditBannedRequest(event.chat_id, user, BANNED_RIGHTS))
                     await event.reply(
                         "This user is gbanned and has been removed !\n\n**Gbanned By**: `{}`\n**Reason**: `{}`".format(
-                            cd, reason
+                           bannerid, reason
                         )
                     )
                 except Exception as e:
@@ -246,7 +254,7 @@ async def type_ban(event):
                 )
                 await event.reply(
                     "This user is gbanned and has been removed !\n\n**Gbanned By**: `{}`\n**Reason**: `{}`".format(
-                        cd, reason
+                        bannerid, reason
                     )
                 )
             except Exception:
