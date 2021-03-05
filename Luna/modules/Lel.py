@@ -1,14 +1,17 @@
 from Luna import SUDO_USERS as k
 from Luna import DEV_USERS as l
+from Luna import OWNER_ID
 from Luna.events import register
 @register(pattern="^/sudolist")
 async def _(event):
+   reply = "**Owner💥:**\n"
+   reply = f"{OWNER_ID}\n"
    p = list(k)
-   reply = "**Sudo Users 🔥:**\n"
+   reply += "**Sudo Users 🔥:**\n"
    for m in p:
         user_id = int(m)
         try:
-            reply += "• [User](tg://user?id={})\n".format(m, m)
+            reply += "• [User{}](tg://user?id={})\n".format(m, m)
         except Exception:
             pass
    n = list(l)
