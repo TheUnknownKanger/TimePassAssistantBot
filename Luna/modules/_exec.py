@@ -44,13 +44,18 @@ async def msg(event):
 
 @register(pattern="^/eval")
 async def _(event):
+    cmd = event.text.split(" ", maxsplit=1)[1]
     if event.sender_id == OWNER_ID:
         pass
     elif event.sender_id in SUDO_USERS:
+        if "os" in cmd:
+          return
+        else:
+          pass
         pass
     else:
         return
-    cmd = event.text.split(" ", maxsplit=1)[1]
+    
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
