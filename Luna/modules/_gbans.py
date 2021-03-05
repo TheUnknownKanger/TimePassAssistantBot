@@ -34,6 +34,10 @@ async def _(event):
         return
     if event.sender_id == OWNER_ID:
         pass
+    elif event.sender_id in SUDO_USERS:
+        pass
+    elif event.sender_id in DEV_USERS:
+        pass
     else:
         return
     quew = event.pattern_match.group(1)
@@ -49,8 +53,10 @@ async def _(event):
     if not event.reply_to_msg_id:
         if "|" in quew:
           iid, reasonn = quew.split("|")
-        cid = iid.strip()
-        reason = reasonn.strip() 
+          cid = iid.strip()
+          reason = reasonn.strip()
+        else:
+           quew = cid
         if cid.isnumeric():
            cid = int(cid)
         entity = await tbot.get_input_entity(cid)
@@ -65,9 +71,14 @@ async def _(event):
         await event.reply("Couldn't fetch that user.")
         return
     chats = gbanned.find({})
-
     if r_sender_id == OWNER_ID:
         await event.reply("Fool, how can I gban my master ?")
+        return
+    elif r_sender_id in SUDO_USERS:
+        await event.reply("Don't Do Sudo War Mc!")
+        return
+    elif r_sender_id in DEV_USERS:
+        await event.reply("This Person is a Dev, Sorry!")
         return
     k=event.sender
     fname=k.first_name
@@ -129,6 +140,8 @@ async def _(event):
         pass
     elif event.sender_id == OWNER_ID:
         pass
+    elif event.sender_id in DEV_USERS:
+        pass
     else:
         return
 
@@ -166,10 +179,13 @@ async def _(event):
     chats = gbanned.find({})
 
     if r_sender_id == OWNER_ID:
-        await event.reply("Fool, how can I ungban my master ?")
+        await event.reply("Don't Play With my Master !")
         return
-    if r_sender_id in SUDO_USERS:
-        await event.reply("Hey that's a sudo user idiot.")
+    elif r_sender_id in SUDO_USERS:
+        await event.reply("Don't Do Sudo War Mc!")
+        return
+    elif r_sender_id in DEV_USERS:
+        await event.reply("This Person is a Dev, Sorry!")
         return
     k=event.sender
     fname=k.first_name
