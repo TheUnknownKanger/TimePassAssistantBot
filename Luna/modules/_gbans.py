@@ -77,7 +77,7 @@ async def _(event):
     cd = (f"{fname}-{X}")
     origin = event.chat_id
     ok = event.chat.title
-    from = (f"{ok} {origin}")
+    place = (f"{ok} {origin}")
     for c in chats:
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
@@ -107,7 +107,7 @@ async def _(event):
     await event.client.send_message(
         chat,
         "**Global Ban**\n**Originated from: {}\n\n**USER:**{}\n**PERMALINK:** [user](tg://user?id={})\n**BANNER:** `{}`\n**REASON:** `{}`".format(
-            from, user, r_sender_id, cd, reason
+            place, user, r_sender_id, cd, reason
         ),
     )
     await event.reply("Gbanned Successfully !")
