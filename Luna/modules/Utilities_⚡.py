@@ -416,7 +416,7 @@ async def _(event):
    for m in p:
         user_id = int(m)
         try:
-            reply += "• [`{}`](tg://user?id={})\n".format(m, m)
+            reply += f"• `{m}`\n"
         except Exception:
             pass
    l = DEV_USERS
