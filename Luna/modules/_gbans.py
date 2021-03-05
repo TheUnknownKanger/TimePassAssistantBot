@@ -106,8 +106,8 @@ async def _(event):
     )
     await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**USER:** [{}](tg://user?id={})\n**PERMALINK:** [user](tg://user?id={})\n**REASON:** `{}`".format(
-            place, cd, event.sender_id, user, r_sender_id, r_sender_id, reason
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** `{}`".format(
+            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
         ),
     )
     await event.reply("Gbanned Successfully !")
