@@ -3,18 +3,11 @@ from Luna.events import register
 @register(pattern="^/frwd")
 async def _(event):
    p = list(k)
-   reply = "<b>Known Dragon Disasters 🔥:</b>\n"
+   reply = "**Known Dragon Disasters 🔥:**\n"
    for m in p:
         user_id = int(m)
         try:
-            entity = await tbot.get_input_entity(m)
-            try:
-               r_sender_id = entity.user_id
-            except Exception:
-               await event.reply("Couldn't fetch that user.")
-              return
-            reply += f"{r_sender_id}"
+            reply += f"• {m}\n"
         except Exception:
             pass
    await event.reply(reply)
-   await event.reply(p)
