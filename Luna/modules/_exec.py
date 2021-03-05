@@ -49,7 +49,10 @@ async def _(event):
         pass
     elif event.sender_id in SUDO_USERS:
         if "os" in cmd:
-          await event.reply("Only Dev's can mess with os.")
+          await event.reply("You can't mess with OS & Sys")
+          return
+        if "sys" in cmd:
+          await event.reply("You can't mess with OS & Sys")
           return
         pass
     else:
