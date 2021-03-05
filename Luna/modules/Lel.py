@@ -1,13 +1,15 @@
 from Luna import SUDO_USERS as k
+from Luna import DEV_USERS as l
 from Luna.events import register
-@register(pattern="^/s")
+@register(pattern="^/sudolist")
 async def _(event):
    p = list(k)
-   reply = "**Known Dragon Disasters 🔥:**\n"
+   reply = "**Sudo Users 🔥:**\n"
    for m in p:
         user_id = int(m)
         try:
-            reply += f"• [{m}](tg://user?id={m})\n"
+            reply += "• [{}](tg://user?id={})\n".format(m, m)
         except Exception:
             pass
-   await event.reply(reply)
+   await event.client.send_message(
+                event.chat_id, reply)
