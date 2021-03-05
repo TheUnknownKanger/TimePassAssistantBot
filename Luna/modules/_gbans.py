@@ -44,7 +44,7 @@ async def _(event):
        if quew:
            reason = quew
        else:
-           reason = "None"
+           reason = None
        user = reply_message.sender.first_name
     if not event.reply_to_msg_id:
         if "|" in quew:
