@@ -412,7 +412,7 @@ async def _(event):
    reply += "• [{}](tg://user?id={})\n\n".format(h, OWNER_ID)
    k = SUDO_USERS
    p = list(k)
-   reply += "**Sudo_Users ➕:**\n"
+   reply += "**Sudo_Users 🤘:**\n"
    for m in p:
         user_id = int(m)
         try:
@@ -421,7 +421,7 @@ async def _(event):
             pass
    l = DEV_USERS
    n = list(l)
-   reply += "\n**Dev_Users 🎮:**\n"
+   reply += "\n**Dev_Users 🤖:**\n"
    for f in n:
         user_id = int(f)
         try:
