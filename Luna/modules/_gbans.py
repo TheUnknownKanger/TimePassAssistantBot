@@ -1,9 +1,9 @@
-from julia import SUDO_USERS, tbot, OWNER_ID
+from Luna import SUDO_USERS, tbot, OWNER_ID
 from telethon.tl.types import ChatBannedRights
 from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
 from pymongo import MongoClient
-from julia import MONGO_DB_URI
+from Luna import MONGO_DB_URI
 from telethon.tl.functions.users import GetFullUserRequest
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -26,7 +26,7 @@ gbanned = db.gban
 def get_reason(id):
     return gbanned.find_one({"user": id})
 
-chat = -1001433850650
+chat = -1001356773955
 @tbot.on(events.NewMessage(pattern="^/gban (.*)"))
 async def _(event):
     if event.fwd_from:
