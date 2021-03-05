@@ -13,7 +13,7 @@ async def _(event):
             pass
    n = list(l)
    reply += "**Dev Users 🤖:**\n"
-   from f in n:
+   for f in n:
         user_id = int(f)
         try:
             reply += "• [{}](tg://user?id={})\n".format(f, f)
