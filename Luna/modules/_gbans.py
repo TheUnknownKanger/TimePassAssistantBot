@@ -96,7 +96,7 @@ async def _(event):
             )
             await event.client.send_message(
                 chat,
-                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n** New Reason:** `{}`".format(
+                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**New Reason:** `{}`".format(
                     place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
                 ),
             )
@@ -169,18 +169,24 @@ async def _(event):
     k=event.sender
     fname=k.first_name
     X=k.last_name
-    cd = (f"{fname}-{X}") 
+    cd = (f"{fname}-{X}")
+    origin = event.chat_id
+    ok = event.chat.title
+    place = (f"{ok} {origin}") 
     for c in chats:
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
             gbanned.delete_one({"user": r_sender_id})
             await event.client.send_message(
                 chat,
-                "**REMOVAL OF GLOBAL BAN**\n\n**USER:** {}\n**PERMALINK:** [user](tg://user?id={})\n**REMOVER:** `{}`\n**REASON:** `{}`".format(
-                    user, r_sender_id, cd, reason
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** `{}`".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
                 ),
             )
-            await event.reply("Ungbanned Successfully !")
+            k = await event.reply("Initiating Removal Of Global Ban.!")
+            await asyncio.sleep(6)
+            await k.delete()
+            await event.reply("UNGban Completed")
             return
     await event.reply("Is that user even gbanned ?")
 
