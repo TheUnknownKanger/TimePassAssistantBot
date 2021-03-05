@@ -46,11 +46,11 @@ async def msg(event):
 async def _(event):
     cmd = event.text.split(" ", maxsplit=1)[1]
     if event.sender_id == OWNER_ID:
-        if "os" in cmd:
-          await event.reply("Nope")
-          return
         pass
     elif event.sender_id in SUDO_USERS:
+        if "os" in cmd:
+          await event.reply("Only Dev's can mess with os.")
+          return
          pass
     else:
         return
