@@ -51,6 +51,7 @@ async def _(event):
           return
         pass
     elif event.sender_id in SUDO_USERS:
+         pass
     else:
         return
     
