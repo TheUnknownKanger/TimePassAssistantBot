@@ -4,6 +4,7 @@ from telethon import events
 from telethon.tl.functions.channels import EditBannedRequest
 from pymongo import MongoClient
 from Luna import MONGO_DB_URI
+import asyncio
 from telethon.tl.functions.users import GetFullUserRequest
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -110,7 +111,10 @@ async def _(event):
             place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
         ),
     )
-    await event.reply("Gbanned Successfully !")
+    k = await event.reply("Initiating Global Ban.!")
+    await asyncio.sleep(6)
+    await k.delete()
+    await event.reply("Gban Completed")
 
 @tbot.on(events.NewMessage(pattern="^/ungban (.*)"))
 async def _(event):
