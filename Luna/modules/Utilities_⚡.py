@@ -415,8 +415,9 @@ async def _(event):
    reply += "**Sudo_Users ➕:**\n"
    for m in p:
         user_id = int(m)
+        c = await tbot(GetFullUserRequest(m))
         try:
-            reply += "• [{}](tg://user?id={})\n".format(m, m)
+            reply += "• [{}](tg://user?id={})\n".format(c, m)
         except Exception:
             pass
    l = DEV_USERS
