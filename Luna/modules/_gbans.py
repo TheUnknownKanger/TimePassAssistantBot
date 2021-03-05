@@ -139,15 +139,14 @@ async def _(event):
 async def _(event):
     if event.fwd_from:
         return
-    if event.sender_id in SUDO_USERS:
+    if event.sender_id == OWNER_ID:
         pass
-    elif event.sender_id == OWNER_ID:
+    elif event.sender_id in SUDO_USERS:
         pass
     elif event.sender_id in DEV_USERS:
         pass
     else:
         return
-
     quew = event.pattern_match.group(1)
     if event.reply_to_msg_id:
        reply_message = await event.get_reply_message()
@@ -164,10 +163,9 @@ async def _(event):
           cid = iid.strip()
           reason = reasonn.strip()
         else:
-          cid = quew
-          reason = None
+           cid = quew
         if cid.isnumeric():
-            cid = int(cid)
+           cid = int(cid)
         entity = await tbot.get_input_entity(cid)
         r_sender_id = entity.user_id
         k = r_sender_id
