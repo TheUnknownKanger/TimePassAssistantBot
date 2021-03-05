@@ -7,6 +7,7 @@ async def _(event):
    for m in p:
         user_id = int(m)
         try:
+            entity = await tbot.get_input_entity(m)
             reply += "Lel"
         except Exception:
             pass
