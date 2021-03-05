@@ -5,7 +5,7 @@ from Luna.events import register
 @register(pattern="^/staffs")
 async def _(event):
    reply = "**Owner💥:**\n"
-   reply += f"{OWNER_ID}\n"
+   reply += "• [{}](tg://user?id={})\n\n".format(OWNER_ID, OWNER_ID)
    p = list(k)
    reply += "**Sudo Users 🔥:**\n"
    for m in p:
@@ -15,13 +15,12 @@ async def _(event):
         except Exception:
             pass
    n = list(l)
-   reply += "**Dev Users 🤖:**\n"
+   reply += "\n**Dev Users 🤖:**\n"
    for f in n:
         user_id = int(f)
         try:
             reply += "• [{}](tg://user?id={})\n".format(f, f)
         except Exception:
             pass
-   reply += "• [{}](tg://user?id={})\n".format(OWNER_ID, OWNER_ID)
    await event.client.send_message(
                 event.chat_id, reply)
