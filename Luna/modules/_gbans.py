@@ -96,8 +96,8 @@ async def _(event):
             )
             await event.client.send_message(
                 chat,
-                "**GLOBAL BAN UPDATE**\n\n**PERMALINK:** `{}` \n**UPDATER:** `{}`**\nREASON:** `{}`".format(
-                    r_sender_id, cd, reason
+                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n** New Reason:** `{}`".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
                 ),
             )
             return
@@ -107,7 +107,7 @@ async def _(event):
     )
     await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** <u>[{}](tg://user?id={})</u>\n**Reason:** `{}`".format(
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** `{}`".format(
             place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
         ),
     )
