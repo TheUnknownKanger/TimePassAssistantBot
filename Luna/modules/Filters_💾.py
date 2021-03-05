@@ -35,8 +35,9 @@ async def can_change_info(message):
         )
     )
     p = result.participant
-    return isinstance(p, types.ChannelParticipantCreator) or (isinstance(
-        p, types.ChannelParticipantAdmin) and p.admin_rights.change_info)
+    return isinstance(p, types.ChannelParticipantCreator) or (
+        isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
+    )
 
 
 @tbot.on(events.NewMessage(pattern=None))
@@ -99,13 +100,27 @@ async def on_snip(event):
                 try:
                     filter = filter.strip()
                     button = options.strip()
-                    params = re.findall(r'\'(.*?)\'', button)
-                    butto = [Button.url(*params)]
+                    if "•" in button:
+                       mbutton = button.split("•")
+                       lbutton = []   
+                       for i in mbutton:
+                           params = re.findall(r"\'(.*?)\'", i) or re.findall(r'\"(.*?)\"', i)
+                           lbutton.append(params)
+                       longbutton = []
+                       for c in lbutton:
+                           butto = [Button.url(*c)]
+                           longbutton.append(butto)    
+                    else:
+                           params = re.findall(r"\'(.*?)\'", button) or re.findall(r'\"(.*?)\"', button)
+                           butto = [Button.url(*params)]                        
                 except BaseException:
                     filter = filter.strip()
-                    button = None
+                    butto = None
 
-                await event.reply(filter, buttons=butto, file=media)
+                try:
+                    await event.reply(filter, buttons=longbutton, file=media)
+                except:
+                    await event.reply(filter, buttons=butto, file=media)
 
                 if event.chat_id not in last_triggered_filters:
 
@@ -229,6 +244,7 @@ async def on_snip_delete(event):
 
     await event.reply(f"Filter **{name}** deleted successfully")
 
+
 @register(pattern="^/stopallfilters$")
 async def on_all_snip_delete(event):
     if event.is_group:
@@ -239,23 +255,28 @@ async def on_all_snip_delete(event):
     remove_all_filters(event.chat_id)
     await event.reply(f"Filters in current chat deleted successfully !")
 
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **Admin Only**
- - /savefilter <word> <message>: Every time someone says "word", the bot will reply with "message"
-You can also include buttons in filters, example send `/savefilter google` in reply to `Click Here To Open Google | [Button.url('Google', 'google.com')]`
+ - /savefilter <word>: Every time someone says "word", the bot will reply with that message
+
+You can also include buttons in filters, example send `/savefilter google` in reply to "`Click Here To Open Google | [button('Google', 'google.com')]`"
+If you want more buttons, seperate each with "`•`", example send `/savefilter searchengine` in reply to "`Search Engines | [button('Google', 'google.com')] • [button('Yahoo', 'yahoo.com')] • [button('Bing', 'bing.com')]`"
+
+**NOTE**: 
+You need to use either ' or " to enclose the button text and url
+eg : `[button('Google', 'google.com')]`
+**or** `[button("Google", "google.com")]`
+
  - /stopfilter <word>: Stop that filter.
  - /stopallfilters: Delete all filters in the current chat.
+
 **Admin+Non-Admin**
  - /listfilters: List all active filters in the chat
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
