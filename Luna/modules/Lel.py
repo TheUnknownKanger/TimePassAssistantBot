@@ -8,7 +8,15 @@ async def _(event):
    for m in p:
         user_id = int(m)
         try:
-            reply += "• [{}](tg://user?id={})\n".format(m, m)
+            reply += "• [User](tg://user?id={})\n".format(m, m)
+        except Exception:
+            pass
+   n = list(l)
+   reply += "**Dev Users 🤖:**\n"
+   from f in n:
+        user_id = int(f)
+        try:
+            reply += "• [{}](tg://user?id={})\n".format(f, f)
         except Exception:
             pass
    await event.client.send_message(
