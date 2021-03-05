@@ -1,7 +1,7 @@
 import subprocess
 from Luna import tbot
 from Luna.events import register
-from Luna import OWNER_ID, SUDO_USERS
+from Luna import OWNER_ID, SUDO_USERS, DEV_USERS
 import asyncio
 import traceback
 import io
@@ -47,12 +47,14 @@ async def _(event):
     cmd = event.text.split(" ", maxsplit=1)[1]
     if event.sender_id == OWNER_ID:
         pass
+    if event.sender_id in DEV_USERS:
+        pass
     elif event.sender_id in SUDO_USERS:
         if "os" in cmd:
-          await event.reply("You can't mess with OS & Sys")
+          await event.reply("Not enough Access")
           return
         if "sys" in cmd:
-          await event.reply("You can't mess with OS & Sys")
+          await event.reply("Not enough Access")
           return
         pass
     else:
