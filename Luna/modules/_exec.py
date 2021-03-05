@@ -46,13 +46,13 @@ async def msg(event):
 async def _(event):
     cmd = event.text.split(" ", maxsplit=1)[1]
     if event.sender_id == OWNER_ID:
-        pass
-    elif event.sender_id in SUDO_USERS:
         if "os" in cmd:
+          await event.reply("Nope")
           return
         else:
           pass
         pass
+    elif event.sender_id in SUDO_USERS:
     else:
         return
     
