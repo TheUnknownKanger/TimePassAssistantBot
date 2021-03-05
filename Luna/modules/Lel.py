@@ -1,6 +1,6 @@
 from Luna import SUDO_USERS as k
-
-@register(pattern="^/s")
+from Luna.events import register
+@register(pattern="^/frwd")
 async def _(event):
    p = list(k)
    reply = "<b>Known Dragon Disasters 🔥:</b>\n"
