@@ -8,7 +8,12 @@ async def _(event):
         user_id = int(m)
         try:
             entity = await tbot.get_input_entity(m)
-            reply += "Lel"
+            try:
+               r_sender_id = entity.user_id
+            except Exception:
+               await event.reply("Couldn't fetch that user.")
+              return
+            reply += f"{r_sender_id}"
         except Exception:
             pass
    await event.reply(reply)
