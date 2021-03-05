@@ -159,7 +159,10 @@ async def _(event):
     if r_sender_id in SUDO_USERS:
         await event.reply("Hey that's a sudo user idiot.")
         return
-
+    k=event.sender
+    fname=k.first_name
+    X=k.last_name
+    cd = (f"{fname}-{X}") 
     for c in chats:
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
@@ -167,7 +170,7 @@ async def _(event):
             await event.client.send_message(
                 chat,
                 "**REMOVAL OF GLOBAL BAN**\n\n**USER:** {}\n**PERMALINK:** [user](tg://user?id={})\n**REMOVER:** `{}`\n**REASON:** `{}`".format(
-                    user, r_sender_id, event.sender_id, reason
+                    user, r_sender_id, cd, reason
                 ),
             )
             await event.reply("Ungbanned Successfully !")
