@@ -75,6 +75,15 @@ async def hmm(event):
    pro = "I am fairly yound and I was made by RoseloverX."
    try:
       async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+   except CFError as e:
+           print(e)
+  elif "Jessica" in result:
+   pro = "My name is Luna"
+   try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
            await event.reply(pro)
    except CFError as e:
            print(e)
@@ -119,12 +128,29 @@ async def _(event):
     response = requests.request("POST", url, data=payload, headers=headers)
     lodu = response.json()
     result = (lodu['message']['text'])
-    try:
-       async with tbot.action(event.chat_id, 'typing'):
+    if "Thergiakis" in result:
+      pro = "I am fairly yound and I was made by RoseloverX."
+      try:
+        async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+      except CFError as e:
+           print(e)
+    elif "Jessica" in result:
+      pro = "My name is Luna"
+      try:
+        async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+      except CFError as e:
+           print(e)
+    else:
+      try:
+         async with tbot.action(event.chat_id, 'typing'):
            await asyncio.sleep(1)
            await event.reply(result)
-    except CFError as e:
-           print(e)
+      except CFError as e:
+           print(e)e
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
