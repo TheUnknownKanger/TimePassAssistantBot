@@ -1,6 +1,7 @@
 import requests
 from Luna import tbot, CMD_HELP, BOT_ID
 from Luna.events import register
+from telethon import events
 url = "https://iamai.p.rapidapi.com/ask"
 import os
 
