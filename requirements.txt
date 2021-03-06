@@ -13,3 +13,4 @@ PyDictionary
 gitpython
 heroku3
 aiohttp
+gtts
