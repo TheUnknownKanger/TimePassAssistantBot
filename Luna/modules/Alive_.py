@@ -9,6 +9,8 @@ async def _(event):
     lname = k.last_name
     reply = "**I'm Alive Master**\n\n"
     reply += f"**Awake Since:** {StartTime}"
-    reply += f"**Owner:** {fname}-{lname}"
+    reply += f"\n\n**Owner:** {fname}-{lname}\n"
+    reply += "**Telethon Ver:** 1.20.0"
+    reply += "\n**Logging:** Active"
     await event.reply(reply)
     
