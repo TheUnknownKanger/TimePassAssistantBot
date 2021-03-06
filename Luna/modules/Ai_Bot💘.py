@@ -34,14 +34,14 @@ async def _(event):
         return
     else:
         return
-  chat = event.chat
-  is_chat = sql.is_chat(chat.id)
-  if not is_chat:
+ chat = event.chat
+ is_chat = sql.is_chat(chat.id)
+ if not is_chat:
           sql.set_ses(chat.id)
           await event.reply("AI successfully enabled for this chat!")
           return
-  await event.reply("AI is already enabled for this chat!")
-  return ""
+ await event.reply("AI is already enabled for this chat!")
+ return ""
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
