@@ -420,11 +420,11 @@ async def _(event):
         except Exception:
             pass
    d = DEV_USERS
-   reply += "**DEV_USERS 🎮:**\n"
+   reply += "\n**DEV_USERS 🎮:**\n"
    for v in d:
          nub = await bot.get_entity(v)
          try:
-            reply += f"• {nub.first_name} `{v}`\n"
+            reply += f"• {nub.first_name}\n"
          except Exception:
             pass
    await event.client.send_message(
