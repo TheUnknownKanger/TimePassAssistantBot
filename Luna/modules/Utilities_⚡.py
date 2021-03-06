@@ -423,8 +423,10 @@ async def _(event):
    reply += "\n**DEV_USERS 🎮:**\n"
    for v in d:
          nub = await bot.get_entity(v)
+         b = nub.first_name
+         q = nub.last_name
          try:
-            reply += f"• {nub.first_name}-{nub.last_name}\n"
+            reply += f"• {b}-{q}\n"
          except Exception:
             pass
    await event.client.send_message(
