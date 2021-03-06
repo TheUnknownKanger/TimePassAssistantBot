@@ -422,7 +422,7 @@ async def _(event):
    dev = DEV_USERS
    reply += "**DEV_USERS 😏:**\n"
    for pro in dev:
-            sure = await bot.get_entity(m)
+            sure = await bot.get_entity(pro)
             try:
                reply += f"• {sure.first_name}\n"
             except Exception:
