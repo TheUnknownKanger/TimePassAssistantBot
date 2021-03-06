@@ -4,6 +4,7 @@ from Luna import tbot as bot
 import io
 import sys
 import traceback
+from telethon import custom, events, Button
 import random
 import time
 from pymongo import MongoClient
@@ -416,6 +417,18 @@ async def _(event):
     reply += "**Bot_Ver:** 1.8\n"
     reply += f"**Chat:** {ok}"
     await event.reply(reply)
+    await tbot.send_message(
+            event.chat_id,
+            pm_caption,
+            buttons=[
+                [
+                    Button.url(
+                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
+                    ),
+                ],
+            ],
+        )
+
 
 @register(pattern="^/staffs")
 async def _(event):
