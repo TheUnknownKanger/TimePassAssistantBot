@@ -416,12 +416,22 @@ async def _(event):
    for m in k:
         ok = await bot.get_entity(m)
         try:
-            reply += f"• {ok.first_name}\n"
+            reply += f"• {ok.first_name} `{m}`\n"
         except Exception:
             pass
+   if DEV_USERS == None:
+            pass
+   else:
+      dev = DEV_USERS
+      reply += "**DEV_USERS 😏:**\n"
+      from pro in dev:
+                sure = await bot.get_entity(m)
+                try:
+                  reply += f"• {sure.first_name}\n"
+                except Exception:
+                  pass
    await event.client.send_message(
                 event.chat_id, reply)
-
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
