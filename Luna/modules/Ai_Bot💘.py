@@ -6,6 +6,7 @@ url = "https://iamai.p.rapidapi.com/ask"
 import os
 from telethon import types
 from telethon.tl import functions
+import asyncio
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
@@ -27,6 +28,7 @@ async def hmm(event):
   result = (lodu['message']['text'])
   try:
       async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(3)
            await event.reply(result)
   except CFError as e:
            print(e)
@@ -61,7 +63,12 @@ async def _(event):
     response = requests.request("POST", url, data=payload, headers=headers)
     lodu = response.json()
     result = (lodu['message']['text'])
-    await event.reply(result)
+    try:
+       async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(3)
+           await event.reply(result)
+    except CFError as e:
+           print(e)
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
