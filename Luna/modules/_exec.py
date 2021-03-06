@@ -56,6 +56,8 @@ async def _(event):
         if "sys" in cmd:
           await event.reply("Not enough Access")
           return
+        if "telethon" in cmd:
+          await event.reply("Not enough Access")
         pass
     else:
         return
