@@ -38,7 +38,7 @@ async def on_note(event):
     await event.reply(note.reply, reply_to=message_id)
 
 
-@register(pattern="^/addnote(?: |$)(.*)")
+@register(pattern="^/save(?: |$)(.*)")
 async def _(event):
     if event.is_group:
         if not await can_change_info(message=event):
@@ -106,7 +106,7 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **Admin Only**
- - /addnote <word>: Type in reply to a message to save that message to the note called "word"
+ - /save <word>: Type in reply to a message to save that message to the note called "word"
  - /rmnote <word>: delete the note called "word"
 
 **Admin+Non-Admin**
