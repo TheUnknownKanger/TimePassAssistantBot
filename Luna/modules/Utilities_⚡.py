@@ -419,14 +419,14 @@ async def _(event):
             reply += f"• {ok.first_name} `{m}`\n"
         except Exception:
             pass
-   dev = DEV_USERS
-   reply += "\n**DEV_USERS 🎮:**\n"
-   for pro in dev:
-            sure = await bot.get_entity(pro)
-            try:
-               reply += f"• {sure.first_name} `{pro}`\n"
-            except Exception:
-               pass
+   d = DEV_USERS
+   reply += "**DEV_USERS 🎮:**\n"
+   for v in d:
+         nub = await bot.get_entity(v)
+         try:
+            reply += f"• {nub.first_name}\n"
+         except Exception:
+            pass
    await event.client.send_message(
                 event.chat_id, reply)
 
