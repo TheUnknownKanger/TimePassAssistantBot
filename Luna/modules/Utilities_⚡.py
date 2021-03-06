@@ -1,6 +1,7 @@
 from Luna.events import register
 from Luna import CMD_HELP
 from Luna import tbot as bot
+from Luna import tbot
 import io
 import sys
 import traceback
@@ -416,10 +417,9 @@ async def _(event):
     reply += "**Telethon Ver:** 1.20.0\n"
     reply += "**Bot_Ver:** 1.8\n"
     reply += f"**Chat:** {ok}"
-    await event.reply(reply)
     await tbot.send_message(
             event.chat_id,
-            pm_caption,
+            reply,
             buttons=[
                 [
                     Button.url(
