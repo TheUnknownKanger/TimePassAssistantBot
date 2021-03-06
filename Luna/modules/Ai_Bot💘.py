@@ -4,6 +4,44 @@ from Luna.events import register
 from telethon import events
 url = "https://iamai.p.rapidapi.com/ask"
 import os
+import Luna.modules.sql.chatbot_sql as sql
+from time import time
+from telethon import types
+from telethon.tl import functions
+
+
+async def can_change_info(message):
+    try:
+        result = await tbot(
+            functions.channels.GetParticipantRequest(
+                channel=message.chat_id,
+                user_id=message.sender_id,
+            )
+        )
+        p = result.participant
+        return isinstance(p, types.ChannelParticipantCreator) or (isinstance(
+            p, types.ChannelParticipantAdmin) and p.admin_rights.change_info)
+    except Exception:
+        return False
+
+
+
+
+@register(pattern="^/eaichat")
+async def _(event):
+ if event.is_group:
+        if not await can_change_info(message=event):
+            return
+    else:
+        return
+  chat = event.chat
+  is_chat = sql.is_chat(chat.id)
+  if not is_chat:
+          sql.set_ses(chat.id)
+          await event.reply("AI successfully enabled for this chat!")
+          return
+  await event.reply("AI is already enabled for this chat!")
+  return ""
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
