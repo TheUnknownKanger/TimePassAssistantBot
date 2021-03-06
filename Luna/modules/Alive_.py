@@ -1,6 +1,6 @@
 from Luna import tbot, OWNER_ID, StartTime
 
-
+from Luna.events import register
 
 @register(pattern="^/alive")
 async def _(event):
