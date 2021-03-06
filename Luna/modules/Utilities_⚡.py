@@ -414,18 +414,20 @@ async def _(event):
    p = list(k)
    reply += "**Sudo_Users 🤘:**\n"
    for m in p:
-        user_id = int(m)
+        ok = await tbot.get_entity(m)
+        fn = ok.first_name
         try:
-            reply += f"• `{m}`\n"
+            reply += f"• {fn}\n"
         except Exception:
             pass
    l = DEV_USERS
    n = list(l)
    reply += "\n**Dev_Users 🤖:**\n"
    for f in n:
-        user_id = int(f)
+        lel = await tbot.get_entity(f)
+        la = lel.first_name
         try:
-            reply += "• [`{}`](tg://user?id={})\n".format(f, f)
+            reply += "• [`{}`](tg://user?id={})\n".format(la, la)
         except Exception:
             pass
    await event.client.send_message(
