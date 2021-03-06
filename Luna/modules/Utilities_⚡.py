@@ -415,18 +415,12 @@ async def _(event):
    reply += "**Sudo_Users 🤘:**\n"
    for m in k:
         ok = await bot.get_entity(m)
-        try:
-            reply += f"• `{m}`-{ok.first_name}\n"
-        except Exception:
-            pass
+        reply += f"• `{m}`-{ok.first_name}\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎮:**\n"
    for v in d:
         nub = await bot.get_entity(v)
-        try:
-            reply += f"• `{v}`-{nub.first_name}\n"
-        except Exception:
-            pass
+        reply += f"• `{v}`-{nub.first_name}\n"
    await event.client.send_message(
                 event.chat_id, reply)
 
