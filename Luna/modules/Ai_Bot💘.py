@@ -150,7 +150,7 @@ async def _(event):
            await asyncio.sleep(1)
            await event.reply(result)
       except CFError as e:
-           print(e)e
+           print(e)
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
