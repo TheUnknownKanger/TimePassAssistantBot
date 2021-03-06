@@ -405,7 +405,7 @@ async def ping(event):
         parse_mode="html",
     )
 
-@register(pattern="^/sudo")
+@register(pattern="^/staffs")
 async def _(event):
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
@@ -415,12 +415,18 @@ async def _(event):
    reply += "**Sudo_Users 🤘:**\n"
    for m in k:
         ok = await bot.get_entity(m)
-        reply += f"• `{m}`-{ok.first_name}\n"
+        try:
+           reply += f"• `{m}`-{ok.first_name}\n"
+        except Exception:
+           reply+= "Error"
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎮:**\n"
    for v in d:
         nub = await bot.get_entity(v)
-        reply += f"• `{v}`-{nub.first_name}\n"
+        try:
+           reply += f"• `{v}`-{nub.first_name}\n"
+        except Exception:
+           reply += "Error"
    await event.client.send_message(
                 event.chat_id, reply)
 
