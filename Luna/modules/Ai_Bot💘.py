@@ -1,5 +1,5 @@
 import requests
-from Luna import tbot, CMD_HELP
+from Luna import tbot, CMD_HELP, BOT_ID
 from Luna.events import register
 url = "https://iamai.p.rapidapi.com/ask"
 import os
@@ -23,6 +23,35 @@ async def hmm(event):
   lodu = response.json()
   result = (lodu['message']['text'])
   await event.reply(result)
+
+@tbot.on(events.NewMessage(pattern=None))
+async def _(event):
+    if event.is_group:
+        pass
+    else:
+        return
+    if reply_msg:
+        if reply_msg.sender_id == BOT_ID:
+            pass
+    else:
+        return
+    test = str(event.text)
+    r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
+    k = f"({r})"
+    new_string = k.replace("(", "{")
+    lol = new_string.replace(")","}")
+    payload = lol
+    headers = {
+        'content-type': "application/json",
+        'x-forwarded-for': "<user's ip>",
+        'x-rapidapi-key': "fef481fee3mshf99983bfc650decp104100jsnbad6ddb2c846",
+        'x-rapidapi-host': "iamai.p.rapidapi.com"
+        }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+    lodu = response.json()
+    result = (lodu['message']['text'])
+    await event.reply(result)
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
