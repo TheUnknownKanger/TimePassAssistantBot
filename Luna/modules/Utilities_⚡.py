@@ -417,17 +417,7 @@ async def _(event):
     reply += "**Telethon Ver:** 1.20.0\n"
     reply += "**Bot_Ver:** 1.8\n"
     reply += f"**Chat:** {ok}"
-    await tbot.send_message(
-            event.chat_id,
-            reply,
-            buttons=[
-                [
-                    Button.url(
-                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
-                    ),
-                ],
-            ],
-        )
+    await event.reply(reply)
 
 
 @register(pattern="^/staffs")
