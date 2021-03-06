@@ -424,7 +424,7 @@ async def _(event):
    else:
       dev = DEV_USERS
       reply += "**DEV_USERS 😏:**\n"
-      from pro in dev:
+      for pro in dev:
                 sure = await bot.get_entity(m)
                 try:
                   reply += f"• {sure.first_name}\n"
