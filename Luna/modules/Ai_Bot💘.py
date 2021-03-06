@@ -49,7 +49,7 @@ async def _(event):
 
 
 
-@register(pattern="Luna (.*)")
+@register(pattern="Anie (.*)")
 async def hmm(event):
   chat = event.chat
   is_chat = sql.is_chat(chat.id)  
