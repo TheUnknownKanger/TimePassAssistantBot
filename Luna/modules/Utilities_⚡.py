@@ -1,5 +1,6 @@
 from Luna.events import register
-from Luna import CMD_HELP, tbot
+from Luna import CMD_HELP
+from Luna import tbot as bot
 import io
 import sys
 import traceback
@@ -404,7 +405,7 @@ async def ping(event):
         parse_mode="html",
     )
 
-@register(pattern="^/staffs")
+@register(pattern="^/s")
 async def _(event):
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
@@ -413,16 +414,9 @@ async def _(event):
    k = SUDO_USERS
    reply += "**Sudo_Users 🤘:**\n"
    for m in k:
-        ok = await tbot.get_entity(m)
+        ok = await bot.get_entity(m)
         try:
             reply += f"• {ok.first_name}\n"
-        except Exception:
-            pass
-   n = DEV_USERS
-   reply += "\n**Dev_Users 🤖:**\n"
-   for f in n:
-        try:
-            reply += "• [`{}`](tg://user?id={})\n".format(f, f)
         except Exception:
             pass
    await event.client.send_message(
