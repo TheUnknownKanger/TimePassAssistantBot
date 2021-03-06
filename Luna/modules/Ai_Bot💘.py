@@ -30,6 +30,23 @@ async def _(event):
     return ""
 
 
+@register(pattern="^/rmchat$")
+async def _(event):
+    if event.is_group:
+        pass
+    else:
+        return
+    chat = event.chat
+    send = await event.get_sender()
+    user = await tbot.get_entity(send)
+    is_chat = sql.is_chat(chat.id)
+    if not is_chat:
+        await event.reply("AI isn't enabled here in the first place!")
+        return ""
+    sql.rem_chat(chat.id)
+    await event.reply("AI disabled successfully!")
+
+
 
 
 @register(pattern="Luna (.*)")
