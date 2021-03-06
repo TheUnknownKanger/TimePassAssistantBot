@@ -73,7 +73,7 @@ async def hmm(event):
   result = (lodu['message']['text'])
   try:
       async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(3)
+           await asyncio.sleep(1)
            await event.reply(result)
   except CFError as e:
            print(e)
@@ -83,6 +83,10 @@ async def _(event):
     if event.is_group:
         pass
     else:
+        return
+    chat = event.chat
+    is_chat = sql.is_chat(chat.id)  
+    if not is_chat:
         return
     reply_msg = await event.get_reply_message()
     if reply_msg:
@@ -110,7 +114,7 @@ async def _(event):
     result = (lodu['message']['text'])
     try:
        async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(3)
+           await asyncio.sleep(1)
            await event.reply(result)
     except CFError as e:
            print(e)
