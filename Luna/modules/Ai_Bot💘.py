@@ -35,6 +35,8 @@ async def _(event):
     if reply_msg:
         if reply_msg.sender_id == 1624337697:
             pass
+        else:
+            return
     else:
         return
     test = str(event.text)
