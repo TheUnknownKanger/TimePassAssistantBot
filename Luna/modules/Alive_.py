@@ -8,7 +8,7 @@ async def _(event):
     reply = "**I'm Up And Alive**\n\n"
     reply += f"**Awake Since:** {StartTime}\n"
     reply += "**Telethon Ver: 1.20.0**\n"
-    reply += "**Bot_Ver: 1.8**"
-    reply += f"**Chat: {ok}"
+    reply += "**Bot_Ver: 1.8**\n"
+    reply += f"**Chat: {ok}**"
     await event.reply(reply)
     
