@@ -7,6 +7,30 @@ import os
 from telethon import types
 from telethon.tl import functions
 import asyncio
+import Luna.modules.sql.chatbot_sql as sql
+
+@register(pattern="^/addchat$")
+async def _(event):
+    if event.is_group:
+        pass
+    else:
+        return
+
+    chat = event.chat
+    send = await event.get_sender()
+    user = await tbot.get_entity(send)
+    is_chat = sql.is_chat(chat.id)
+    if not is_chat:
+        ses_id = "6969"
+        expires = "6"
+        sql.set_ses(chat.id, ses_id, expires)
+        await event.reply("AI successfully enabled for this chat!")
+        return
+    await event.reply("AI is already enabled for this chat!")
+    return ""
+
+
+
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
