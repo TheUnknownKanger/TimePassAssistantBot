@@ -133,7 +133,7 @@ async def on_snip(event):
                 last_triggered_filters[event.chat_id].remove(name)
 
 
-@register(pattern="^/savefilter (.*)")
+@register(pattern="^/setfilter (.*)")
 async def on_snip_save(event):
     if event.is_group:
         if not await can_change_info(message=event):
