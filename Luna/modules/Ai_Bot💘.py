@@ -71,13 +71,20 @@ async def hmm(event):
   response = requests.request("POST", url, data=payload, headers=headers)
   lodu = response.json()
   result = (lodu['message']['text'])
-  try:
+  if "Thergiakis" in result:
+   pro = "I am fairly yound and I was made by RoseloverX."
+   try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await event.reply(pro)
+   except CFError as e:
+           print(e)
+  else:
+    try:
       async with tbot.action(event.chat_id, 'typing'):
            await asyncio.sleep(1)
            await event.reply(result)
-  except CFError as e:
+    except CFError as e:
            print(e)
-
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
