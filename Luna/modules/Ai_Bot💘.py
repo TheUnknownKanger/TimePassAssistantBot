@@ -5,6 +5,7 @@ from telethon import events
 url = "https://iamai.p.rapidapi.com/ask"
 import os
 from telethon import types
+from telethon.tl import functions
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
