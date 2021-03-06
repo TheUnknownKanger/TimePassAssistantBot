@@ -4,7 +4,7 @@ from Luna.events import register
 from telethon import events
 url = "https://iamai.p.rapidapi.com/ask"
 import os
-
+from telethon import types
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
@@ -24,7 +24,11 @@ async def hmm(event):
   response = requests.request("POST", url, data=payload, headers=headers)
   lodu = response.json()
   result = (lodu['message']['text'])
-  await event.reply(result)
+  try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await event.reply(result)
+  except CFError as e:
+           print(e)
 
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
