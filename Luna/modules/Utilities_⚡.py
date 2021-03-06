@@ -416,7 +416,7 @@ async def _(event):
    for m in k:
         ok = await bot.get_entity(m)
         try:
-            reply += f"• {ok.first_name}\n"
+            reply += f"• {ok.first_name} `{m}`\n"
         except Exception:
             pass
    d = DEV_USERS
