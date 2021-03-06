@@ -411,23 +411,18 @@ async def _(event):
    h = replied_user.user.first_name
    reply += "• [{}](tg://user?id={})\n\n".format(h, OWNER_ID)
    k = SUDO_USERS
-   p = list(k)
    reply += "**Sudo_Users 🤘:**\n"
-   for m in p:
+   for m in k:
         ok = await tbot.get_entity(m)
-        fn = ok.first_name
         try:
-            reply += f"• {fn}\n"
+            reply += f"• {ok.first_name}\n"
         except Exception:
             pass
-   l = DEV_USERS
-   n = list(l)
+   n = DEV_USERS
    reply += "\n**Dev_Users 🤖:**\n"
    for f in n:
-        lel = await tbot.get_entity(f)
-        la = lel.first_name
         try:
-            reply += "• [`{}`](tg://user?id={})\n".format(la, la)
+            reply += "• [`{}`](tg://user?id={})\n".format(f, f)
         except Exception:
             pass
    await event.client.send_message(
