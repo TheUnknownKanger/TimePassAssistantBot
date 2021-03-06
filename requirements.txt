@@ -1,4 +1,4 @@
-telethon
+telethon==1.19.5
 pymongo
 sqlalchemy
 psycopg2-binary
