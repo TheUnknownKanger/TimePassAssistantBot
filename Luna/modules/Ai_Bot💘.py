@@ -33,7 +33,7 @@ async def _(event):
         return
     reply_msg = await event.get_reply_message()
     if reply_msg:
-        if reply_msg.sender_id == BOT_ID:
+        if reply_msg.sender_id == 1624337697:
             pass
     else:
         return
