@@ -51,6 +51,10 @@ async def _(event):
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
+  chat = event.chat
+  is_chat = sql.is_chat(chat.id)  
+  if not is_chat:
+        return
   test = event.pattern_match.group(1)
   r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
   k = f"({r})"
