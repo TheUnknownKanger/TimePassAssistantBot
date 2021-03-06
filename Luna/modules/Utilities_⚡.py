@@ -426,7 +426,7 @@ async def _(event):
          b = nub.first_name
          q = nub.last_name
          try:
-            reply += f"• {b}-{q}\n"
+            reply += f"• {b}\n"
          except Exception:
             pass
    await event.client.send_message(
