@@ -416,7 +416,7 @@ async def _(event):
    for m in k:
         ok = await bot.get_entity(m)
         try:
-           reply += f"• `{m}`-{ok.first_name}\n"
+           reply += f"• `{m}`-{ok.first_name}{ok.last_name}\n"
         except Exception:
            reply+= "Error"
    d = DEV_USERS
@@ -424,7 +424,7 @@ async def _(event):
    for v in d:
         nub = await bot.get_entity(v)
         try:
-           reply += f"• `{v}`-{nub.first_name}\n"
+           reply += f"• `{v}`-{nub.first_name}{nub.last_name}\n"
         except Exception:
            reply += "Error"
    await event.client.send_message(
