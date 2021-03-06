@@ -1,5 +1,5 @@
 from Luna.events import register
-from Luna import CMD_HELP
+from Luna import CMD_HELP, tbot
 import io
 import sys
 import traceback
