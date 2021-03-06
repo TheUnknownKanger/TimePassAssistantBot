@@ -405,7 +405,7 @@ async def ping(event):
         parse_mode="html",
     )
 
-@register(pattern="^/sudo")
+@register(pattern="^/lel")
 async def _(event):
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
