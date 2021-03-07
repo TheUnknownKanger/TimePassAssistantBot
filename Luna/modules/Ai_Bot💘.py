@@ -152,7 +152,7 @@ async def _(event):
       except CFError as e:
            print(e)
 
-@register(pattern="nub (.*)")
+@register(pattern="^/nub (.*)")
 async def hmm(event):
   querystring = event.pattern_match.group(1)
 
