@@ -1,4 +1,4 @@
-
+from Luna.events import register
 from telethon import custom, events, Button
 pm_caption = "Your Info"
 from Luna import tbot as bot
