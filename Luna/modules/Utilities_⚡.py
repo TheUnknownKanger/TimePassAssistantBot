@@ -442,7 +442,8 @@ async def _(event):
     line_type = obj["line_type"]
     validornot = obj["valid"]
     reply = "**Valid:** " + str(validornot)
-    reply += "\n**Phone number:** " + str(number)
+    if "True" in validornot:
+         reply += "\n**Phone number:** " + str(number)
     if country_code:
          reply += "\n**Country:** " + str(country_code)
     if country_name:
