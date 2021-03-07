@@ -338,8 +338,8 @@ async def pin(msg):
             return
     else:
         return
-    previous_message = await event.get_reply_message()
-    k = await event.reply(previous_message)
+    previous_message = await msg.get_reply_message()
+    k = await msg.reply(previous_message)
     to_pin = k
 
     if not to_pin:
