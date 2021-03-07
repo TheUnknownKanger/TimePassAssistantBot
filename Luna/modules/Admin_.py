@@ -1,4 +1,4 @@
-from Luna import tbot, OWNER_ID
+from Luna import tbot, OWNER_ID, WHITE_LIST
 from telethon.errors import (ChatAdminRequiredError, ImageProcessFailedError,
                              PhotoCropSizeSmallError)
 
@@ -673,7 +673,6 @@ async def _(event):
 async def ban(bon):
     """ For /ban command, do a ban at targeted person """
     # Here laying the sanity check
-
     if not bon.is_group:
         #print("1")
         return
@@ -688,7 +687,9 @@ async def ban(bon):
     else:
         print("user not found")
         return
-
+    if user.id in WHITE_LIST:
+        await event.reply("That User Is Whitelisted")
+        return
     if bon.is_group:
         if await is_register_admin(bon.input_chat, user.id):
             await bon.reply("Why will i ban an admin ?")
@@ -725,7 +726,9 @@ async def kick(bon):
         pass
     else:
         return
-
+    if user.id in WHITE_LIST:
+        await event.reply("That User Is Whitelisted")
+        return
     if bon.is_group:
         if await is_register_admin(bon.input_chat, user.id):
             await bon.reply("Why will i kick an admin ?")
@@ -819,7 +822,9 @@ async def spider(spdr):
         pass
     else:
         return
-
+    if user.id in WHITE_LIST:
+        await event.reply("That User Is Whitelisted")
+        return
     if spdr.is_group:
         if await is_register_admin(spdr.input_chat, user.id):
             await spdr.reply("Why will i mute an admin ?")
