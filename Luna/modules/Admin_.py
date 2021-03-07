@@ -552,8 +552,8 @@ async def _(event):
     creator = chat.creator
 
     # Well
-    if not admin and not creator:
-        await event.reply("`I don't have enough permissions!`")
+    if not creator:
+        await event.reply("`Only Chat Creator Can Access This!`")
         return   
 
     c = 0
@@ -687,9 +687,6 @@ async def ban(bon):
     else:
         print("user not found")
         return
-    if user.id in WHITE_LIST:
-        await event.reply("That User Is Whitelisted")
-        return
     if bon.is_group:
         if await is_register_admin(bon.input_chat, user.id):
             await bon.reply("Why will i ban an admin ?")
@@ -725,9 +722,6 @@ async def kick(bon):
     if user:
         pass
     else:
-        return
-    if user.id in WHITE_LIST:
-        await event.reply("That User Is Whitelisted")
         return
     if bon.is_group:
         if await is_register_admin(bon.input_chat, user.id):
@@ -821,9 +815,6 @@ async def spider(spdr):
     if user:
         pass
     else:
-        return
-    if user.id in WHITE_LIST:
-        await event.reply("That User Is Whitelisted")
         return
     if spdr.is_group:
         if await is_register_admin(spdr.input_chat, user.id):
