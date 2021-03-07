@@ -2,7 +2,6 @@ import requests
 from Luna import tbot, CMD_HELP, BOT_ID
 from Luna.events import register
 from telethon import events
-url = "https://iamai.p.rapidapi.com/ask"
 import os
 from telethon import types
 from telethon.tl import functions
@@ -55,6 +54,7 @@ async def hmm(event):
   is_chat = sql.is_chat(chat.id)  
   if not is_chat:
         return
+  url = "https://iamai.p.rapidapi.com/ask"
   test = event.pattern_match.group(1)
   r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
   k = f"({r})"
@@ -104,6 +104,7 @@ async def _(event):
     is_chat = sql.is_chat(chat.id)  
     if not is_chat:
         return
+    url = "https://iamai.p.rapidapi.com/ask"
     reply_msg = await event.get_reply_message()
     if reply_msg:
         if reply_msg.sender_id == 1624337697:
