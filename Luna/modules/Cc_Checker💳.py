@@ -19,7 +19,8 @@ async def alive(event):
           await asyncio.sleep(2)
           response = await bot_conv.get_response()
           await event.delete()
-          await event.reply(response)
+          m = response.replace("Checked By Amarnath[Left TG] [Free User]", "")
+          await event.reply(m)
 
 @register(pattern="^/ss (.*)")
 async def alive(event):
