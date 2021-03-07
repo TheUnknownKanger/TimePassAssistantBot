@@ -152,6 +152,23 @@ async def _(event):
       except CFError as e:
            print(e)
 
+@register(pattern="nub (.*)")
+async def hmm(event):
+  querystring = event.pattern_match.group(1)
+
+  url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+
+  headers = {
+      'x-rapidapi-key': "fef481fee3mshf99983bfc650decp104100jsnbad6ddb2c846",
+      'x-rapidapi-host': "acobot-brainshop-ai-v1.p.rapidapi.com"
+      }
+
+  response = requests.request("GET", url, headers=headers, params=querystring)
+  k = response.json()
+  result = (k['cnt'])
+  await event.reply(result)
+
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
