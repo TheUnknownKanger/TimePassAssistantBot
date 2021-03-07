@@ -153,8 +153,12 @@ async def _(event):
            print(e)
 
 @register(pattern="^/nub (.*)")
-async def hmm(event):
-  querystring = event.pattern_match.group(1)
+async def _(event):
+  m = event.pattern_match.group(1)
+  r = ('"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":"{}"').format(m)
+  h = f"({r})"
+  new = h.replace("(", "{")
+  old = new.replace(")", "}")
 
   url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
@@ -163,10 +167,13 @@ async def hmm(event):
       'x-rapidapi-host': "acobot-brainshop-ai-v1.p.rapidapi.com"
       }
 
-  response = requests.request("GET", url, headers=headers, params=querystring)
+  response = requests.request("GET", url, headers=headers, params=old)
   k = response.json()
   result = (k['cnt'])
-  await event.reply(result)
+  if result:
+      await event.reply(result)
+  else:
+      await event.reply(k)
 
 
 file_help = os.path.basename(__file__)
