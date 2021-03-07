@@ -340,7 +340,7 @@ async def pin(msg):
         return
     previous_message = await msg.get_reply_message()
     k = await msg.reply(previous_message)
-    to_pin = k.msg_id
+    to_pin = k.id
 
     if not to_pin:
         await msg.reply("Reply to a message which you want to pin.")
@@ -355,7 +355,6 @@ async def pin(msg):
     try:
         await tbot(
             UpdatePinnedMessageRequest(msg.to_id, to_pin, is_silent))
-        await msg.reply("Pinned Successfully!")
     except Exception:
         await msg.reply("Failed to pin.")
         return
