@@ -340,7 +340,7 @@ async def pin(msg):
         return
     previous_message = await msg.get_reply_message()
     k = await msg.reply(previous_message)
-    to_pin = k
+    to_pin = k.msg_id
 
     if not to_pin:
         await msg.reply("Reply to a message which you want to pin.")
