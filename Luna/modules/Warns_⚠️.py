@@ -55,8 +55,7 @@ async def _(event):
    if event.reply_to_msg_id:
     warn_reason = event.text[len("/warn ") :]
     if not warn_reason:
-        await event.reply("Please provide a reason for warning.")
-        return
+        warn_reason = "None"
     reply_message = await event.get_reply_message()
     if not await is_register_admin(event.input_chat, reply_message.sender_id):
         pass
@@ -123,7 +122,7 @@ async def _(event):
             buttons=[
                 [
                     Button.inline(
-                        "Remove Warn ✖️", data=f"rm_warn-{reply_message.sender_id}"
+                        "Remove Warn ✨", data=f"rm_warn-{reply_message.sender_id}"
                     ),
                     Button.inline(
                         "Rules ✝️", data=f"start-ruleswarn-{reply_message.sender_id}"
@@ -267,8 +266,7 @@ async def _(event):
    if event.reply_to_msg_id:
     warn_reason = event.text[len("/warn ") :]
     if not warn_reason:
-        await event.reply("Please provide a reason for warning.")
-        return
+        warn_reason = "None"
     reply_message = await event.get_reply_message()
     await reply_message.delete()
     if not await is_register_admin(event.input_chat, reply_message.sender_id):
