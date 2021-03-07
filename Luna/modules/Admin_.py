@@ -340,7 +340,7 @@ async def pin(msg):
         return
     previous_message = await msg.get_reply_message()
     k = await tbot.send_message(
-            event.chat_id,
+            msg.chat_id,
             previous_message
           )
     to_pin = k.id
