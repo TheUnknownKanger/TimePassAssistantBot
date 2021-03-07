@@ -16,7 +16,7 @@ from telethon.tl.types import *
 from telethon.errors import *
 from Luna import *
 import os
-from Luna import SUDO_USERS, OWNER_ID, DEV_USERS
+from Luna import SUDO_USERS, OWNER_ID, DEV_USERS, WHITE_LIST
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -278,14 +278,12 @@ async def detail(replied_user, event):
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
     if user_id in SUDO_USERS:
         caption += "\nStatus: <b>Sudo User</b>"
-
     if user_id in DEV_USERS:
         caption += "\nStatus: <b>Dev User</b>"
-
     if user_id == OWNER_ID:
-        caption += (
-            "\nStatus: <b>Owner</b>"
-        )
+        caption += "\nStatus: <b>Owner</b>"
+    if user_id in WHITE_LIST:
+        caption += "\nStatus: <b>White Listed</b>"
     return caption
  except Exception as e:
         print (e)
