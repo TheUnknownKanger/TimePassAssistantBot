@@ -16,7 +16,7 @@ async def alive(event):
       ok = event.pattern_match.group(1)
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/key {ok}")
-          await asyncio.sleep(2)
+          await asyncio.sleep(1)
           response = await bot_conv.get_response()
           await event.delete()
           await event.reply(response)
@@ -53,6 +53,6 @@ async def alive(event):
       ok = event.pattern_match.group(1)
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/bin {ok}")
-          await asyncio.sleep(3)
+          await asyncio.sleep(5)
           response = await bot_conv.get_response()
           await event.reply(response)
