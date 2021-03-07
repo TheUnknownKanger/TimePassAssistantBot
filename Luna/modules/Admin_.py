@@ -330,6 +330,36 @@ async def pin(msg):
         await msg.reply("Failed to pin.")
         return
 
+
+@register(pattern="^/permapin(?: |$)(.*)")
+async def pin(msg):
+    if msg.is_group:
+        if not await can_pin_msg(message=msg):
+            return
+    else:
+        return
+    previous_message = await event.get_reply_message()
+    k = await event.reply(previous_message)
+    to_pin = k
+
+    if not to_pin:
+        await msg.reply("Reply to a message which you want to pin.")
+        return
+
+    options = msg.pattern_match.group(1)
+
+    is_silent = True
+    if options.lower() == "loud":
+        is_silent = False
+
+    try:
+        await tbot(
+            UpdatePinnedMessageRequest(msg.to_id, to_pin, is_silent))
+        await msg.reply("Pinned Successfully!")
+    except Exception:
+        await msg.reply("Failed to pin.")
+        return
+
 @register(pattern="^/unpin$")
 async def pin(msg):
     if msg.is_group:
