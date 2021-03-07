@@ -341,13 +341,10 @@ async def pin(msg):
     previous_message = await msg.get_reply_message()
     k = await msg.reply(previous_message)
     to_pin = k.id
-
     if not to_pin:
         await msg.reply("Reply to a message which you want to pin.")
         return
-
     options = msg.pattern_match.group(1)
-
     is_silent = True
     if options.lower() == "loud":
         is_silent = False
@@ -1255,6 +1252,7 @@ async def set_group_sticker(gpic):
 __help__ = """
  - /adminlist : list of admins in the chat
  - /pin <loud(optional)> | /unpin: pins/unpins the message in the chat
+ - /permapin: sends The msg Then pins it
  - /promote: promotes a user
  - /demote: demotes a user
  - /ban: bans a user
