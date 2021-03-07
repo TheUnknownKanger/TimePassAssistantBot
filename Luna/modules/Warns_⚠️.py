@@ -73,7 +73,7 @@ async def _(event):
         sql.reset_warns(reply_message.sender_id, event.chat_id)
         if sql.get_warn_strength(event.chat_id) == "kick":
             await tbot.kick_participant(event.chat_id, reply_message.sender_id)
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been kicked!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been kicked!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
@@ -93,7 +93,7 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, reply_message.sender_id, BANNED_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been banned!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been banned!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
@@ -103,13 +103,13 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, reply_message.sender_id, MUTE_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been muted!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been muted!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
             return
     else:
-        reply = "<u><a href='tg://user?id={}'>{}</a></u> has {}/{} warnings... watch out!".format(
+        reply = "<a href='tg://user?id={}'>{}</a> has {}/{} warnings... watch out!".format(
             reply_message.sender_id, reply_message.sender.first_name, num_warns, limit
         )
         if warn_reason:
@@ -177,7 +177,7 @@ async def _(event):
         sql.reset_warns(r_sender_id, event.chat_id)
         if sql.get_warn_strength(event.chat_id) == "kick":
             await tbot.kick_participant(event.chat_id, r_sender_id)
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been kicked!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been kicked!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
@@ -197,7 +197,7 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, r_sender_id, BANNED_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been banned!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been banned!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
@@ -207,13 +207,13 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, r_sender_id, MUTE_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been muted!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been muted!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
             return
      else:
-        reply = "<u><a href='tg://user?id={}'>{}</a></u> has {}/{} warnings... watch out!".format(
+        reply = "<a href='tg://user?id={}'>{}</a> has {}/{} warnings... watch out!".format(
             r_sender_id, r_sender_fname, num_warns, limit
         )
         if warn_reason:
@@ -285,7 +285,7 @@ async def _(event):
         sql.reset_warns(reply_message.sender_id, event.chat_id)
         if sql.get_warn_strength(event.chat_id) == "kick":
             await tbot.kick_participant(event.chat_id, reply_message.sender_id)
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been kicked!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been kicked!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
@@ -305,7 +305,7 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, reply_message.sender_id, BANNED_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been banned!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been banned!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
@@ -315,13 +315,13 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, reply_message.sender_id, MUTE_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been muted!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been muted!".format(
                 limit, reply_message.sender_id, reply_message.sender.first_name
             )
             await event.reply(reply, parse_mode="html")
             return
     else:
-        reply = "<u><a href='tg://user?id={}'>{}</a></u> has {}/{} warnings... watch out!".format(
+        reply = "<a href='tg://user?id={}'>{}</a> has {}/{} warnings... watch out!".format(
             reply_message.sender_id, reply_message.sender.first_name, num_warns, limit
         )
         if warn_reason:
@@ -389,7 +389,7 @@ async def _(event):
         sql.reset_warns(r_sender_id, event.chat_id)
         if sql.get_warn_strength(event.chat_id) == "kick":
             await tbot.kick_participant(event.chat_id, r_sender_id)
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been kicked!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been kicked!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
@@ -409,7 +409,7 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, r_sender_id, BANNED_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been banned!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been banned!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
@@ -419,13 +419,13 @@ async def _(event):
             await tbot(
                 EditBannedRequest(event.chat_id, r_sender_id, MUTE_RIGHTS)
             )
-            reply = "{} warnings, <u><a href='tg://user?id={}'>{}</a></u> has been muted!".format(
+            reply = "{} warnings, <a href='tg://user?id={}'>{}</a> has been muted!".format(
                 limit, r_sender_id, r_sender_fname
             )
             await event.reply(reply, parse_mode="html")
             return
      else:
-        reply = "<u><a href='tg://user?id={}'>{}</a></u> has {}/{} warnings... watch out!".format(
+        reply = "<a href='tg://user?id={}'>{}</a> has {}/{} warnings... watch out!".format(
             r_sender_id, r_sender_fname, num_warns, limit
         )
         if warn_reason:
@@ -502,7 +502,7 @@ async def rm_warn(event):
                 return
             sql.remove_warn(user_id, event.chat_id)
             await event.edit(
-                f"Warn removed by <u><a href='tg://user?id={sid}'>user</a></u> ",
+                f"Warn removed by <a href='tg://user?id={sid}'>user</a> ",
                 parse_mode="html",
             )
         else:
