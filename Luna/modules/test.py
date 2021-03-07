@@ -16,7 +16,8 @@ async def nfo(event):
         )
 
 boy = event.sender_id
-PRO = await bot.get_entity(boy)
+
+PRO = await tbot.get_entity(boy)
 LEGENDX = "Your Details By Luna\n\n"
 LEGENDX += f"First Name : {PRO.first_name} \n"
 LEGENDX += f"Last Name : {PRO.last_name}\n"
