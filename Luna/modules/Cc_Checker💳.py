@@ -18,6 +18,7 @@ async def alive(event):
           await bot_conv.send_message(f"/key {ok}")
           await asyncio.sleep(2)
           response = await bot_conv.get_response()
+          await event.delete()
           await event.reply(response)
 
 @register(pattern="^/ss (.*)")
