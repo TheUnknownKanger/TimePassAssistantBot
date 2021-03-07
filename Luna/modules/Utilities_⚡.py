@@ -442,12 +442,17 @@ async def _(event):
     line_type = obj["line_type"]
     validornot = obj["valid"]
     reply = "**Valid:** " + str(validornot)
-    reply += "\n\n**Phone number:** " + str(number)
-    reply += "\n**Country:** " + str(country_code)
-    reply += "\n**Country Name:** " + str(country_name)
-    reply += "\n**Location:** " + str(location)
-    reply += "\n**Carrier:** " + str(carrier)
-    reply += "\n**Device:** " + str(line_type)
+    reply += "\n**Phone number:** " + str(number)
+    if country_code:
+         reply += "\n**Country:** " + str(country_code)
+    if country_name:
+         reply += "\n**Country Name:** " + str(country_name)
+    if location:
+         reply += "\n**Location:** " + str(location)
+    if carrier:
+         reply += "\n**Carrier:** " + str(carrier)
+    if line_type:
+         reply += "\n**Device:** " + str(line_type)
     await event.reply(reply)
 
 
