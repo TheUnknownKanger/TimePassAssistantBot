@@ -20,9 +20,7 @@ async def alive(event):
           response = await bot_conv.get_response()
           await event.delete()
           await event.reply(response)
-          if "Free" in response.text:
-              k = response.text.replace("Checked By **Amarnath[Left TG] [Free User**]", "")
-              await event.reply(k)
+
 
 @register(pattern="^/ss (.*)")
 async def alive(event):
@@ -57,5 +55,13 @@ async def alive(event):
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/bin {ok}")
           await asyncio.sleep(5)
+          response = await bot_conv.get_response()
+          await event.reply(response)
+
+@register(pattern="^/c3 (.*)")
+async def alive(event):
+      ok = event.pattern_match.group(1)
+      async with ubot.conversation("@Gayroebot") as bot_conv:
+          await bot_conv.send_message(f"/c3 {ok}")
           response = await bot_conv.get_response()
           await event.reply(response)
