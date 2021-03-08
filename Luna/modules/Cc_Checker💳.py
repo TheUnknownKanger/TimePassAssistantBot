@@ -20,6 +20,9 @@ async def alive(event):
           response = await bot_conv.get_response()
           await event.delete()
           await event.reply(response)
+          if "Free" in response.text:
+              k = response.text.replace("Checked By Amarnath[Left TG] [Free User]", "")
+              await event.reply(k)
 
 @register(pattern="^/ss (.*)")
 async def alive(event):
