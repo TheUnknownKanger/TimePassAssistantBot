@@ -408,14 +408,14 @@ async def _(event):
    h = replied_user.user.first_name
    reply += "• [{}](tg://user?id={})\n".format(h, OWNER_ID)
    k = SUDO_USERS
-   reply += "**Sudo_Users 💘:**\n"
+   reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
            reply += f"•💐`{m}`\n"
         except Exception:
            print("lel")
    d = DEV_USERS
-   reply += "\n**DEV_USERS 🛡️:**\n"
+   reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
         try:
            reply += f"•💐`{v}`\n"
