@@ -414,7 +414,7 @@ async def _(event):
            k = await abot(GetFullUserRequest(m))
            reply += f"•{k.user.first_name} `{k.user.id}`\n"
         except Exception:
-           print(lel)
+           print("lel")
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
@@ -422,7 +422,7 @@ async def _(event):
            l = await abot(GetFullUserRequest(v))
            reply += f"•{l.user.first_name} ('{l.user.id}')\n"
         except Exception:
-           print(lel)
+           print("lel")
    await event.client.send_message(
                 event.chat_id, reply)
 
