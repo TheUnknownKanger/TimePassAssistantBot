@@ -93,7 +93,7 @@ async def hmm(event):
            await asyncio.sleep(1)
            await event.reply(result)
     except CFError as e:
-           url = f"https://lunabot.tech/?query=hi"
+           url = f"https://lunabot.tech/?query={test}"
            async with aiohttp.ClientSession() as session:
              async with session.get(url) as res:
                        res = await res.json()
