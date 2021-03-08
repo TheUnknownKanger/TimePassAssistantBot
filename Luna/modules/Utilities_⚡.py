@@ -470,9 +470,9 @@ async def _(event):
    for m in k:
         try:
            k = await ubot(GetFullUserRequest(m))
-           reply += f"•**{k.user.first_name}-{k.user.last_name}** ('{k.user.id}')\n"
+           reply += f"•{k.user.first_name}-{k.user.last_name} `{k.user.id}`\n"
         except Exception:
-           reply+= "Deleted Acc."
+           reply+= "Error\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
