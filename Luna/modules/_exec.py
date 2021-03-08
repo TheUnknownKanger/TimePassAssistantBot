@@ -64,6 +64,7 @@ async def _(event):
           return
         if "telethon" in cmd:
           await event.reply("**Can't Use Telethon**")
+          return
         pass
     else:
         return
