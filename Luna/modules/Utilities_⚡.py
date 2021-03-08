@@ -1,7 +1,7 @@
 from Luna.events import register
 from Luna import CMD_HELP
 from Luna import tbot as bot
-from Luna import tbot
+from Luna import tbot, abot
 import io
 import sys
 import traceback
@@ -411,7 +411,7 @@ async def _(event):
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
         try:
-           k = await ubot(GetFullUserRequest(m))
+           k = await abot(GetFullUserRequest(m))
            reply += f"•{k.user.first_name} `{k.user.id}`\n"
         except Exception:
            reply+= "Deleted Acc.\n"
@@ -419,7 +419,7 @@ async def _(event):
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
         try:
-           l = await ubot(GetFullUserRequest(v))
+           l = await abot(GetFullUserRequest(v))
            reply += f"•{l.user.first_name} ('{l.user.id}')\n"
         except Exception:
            reply += "Deleted Acc.\n"
