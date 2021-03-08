@@ -414,7 +414,8 @@ async def _(event):
            k = await abot(GetFullUserRequest(m))
            reply += f"•{k.user.first_name} `{k.user.id}`\n"
         except Exception:
-           reply+= "Deleted Acc.\n"
+           j = await tbot(GetFullUserRequest(m))
+           reply += f"•{j.user.first_name} `{j.user.id}`\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
