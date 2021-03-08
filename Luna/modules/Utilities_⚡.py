@@ -412,7 +412,7 @@ async def _(event):
    for m in k:
         try:
            k = await abot(GetFullUserRequest(m))
-           reply += f"•{k.user.first_name} `{k.user.id}`\n"
+           reply += f"•`{k.user.id}`\n"
         except Exception:
            print("lel")
    d = DEV_USERS
@@ -420,7 +420,7 @@ async def _(event):
    for v in d:
         try:
            l = await abot(GetFullUserRequest(v))
-           reply += f"•{l.user.first_name} ('{l.user.id}')\n"
+           reply += f"•{l.user.id}\n"
         except Exception:
            print("lel")
    await event.client.send_message(
