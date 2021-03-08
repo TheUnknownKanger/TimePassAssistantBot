@@ -16,7 +16,7 @@ from telethon.tl.types import *
 from telethon.errors import *
 from Luna import *
 import os
-from Luna import SUDO_USERS, OWNER_ID, DEV_USERS, WHITE_LIST
+from Luna import SUDO_USERS, OWNER_ID, DEV_USERS
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -285,8 +285,6 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Dev User</b>"
     if user_id == OWNER_ID:
         caption += "\nStatus: <b>Owner</b>"
-    if user_id in WHITE_LIST:
-        caption += "\nStatus: <b>White Listed</b>"
     return caption
  except Exception as e:
         print (e)
@@ -419,6 +417,8 @@ async def _(event):
     reply += "**Bot_Ver:** 1.8\n"
     reply += f"**Chat:** {ok}"
     await event.reply(reply)
+
+
 @register(pattern="^/phone (.*)")
 async def _(event):
     import requests, json
