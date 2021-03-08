@@ -14,3 +14,4 @@ gitpython
 heroku3
 aiohttp
 gtts
+wit
