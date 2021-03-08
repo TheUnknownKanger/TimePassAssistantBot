@@ -100,29 +100,6 @@ async def who(event):
     except TypeError:
         await event.reply(caption, parse_mode="html")
 
-@register(pattern="^/info(?: |$)(.*)")
-async def who(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender.id == userss:
-            pass
-        else:
-            return
-    replied_user = await get_user(event)
-    try:
-        caption = await detail(replied_user, event)
-    except AttributeError:
-        event.edit("`Could not fetch info of that user.`")
-        return
-    message_id_to_reply = event.message.reply_to_msg_id
-    if not message_id_to_reply:
-        message_id_to_reply = None
-    await event.reply(caption, parse_mode="html")
 
 async def get_user(event):
     if event.reply_to_msg_id:
@@ -252,42 +229,7 @@ async def fetch_info(replied_user, event):
  except Exception as e:
         print (e)
 
-async def detail(replied_user, event):
- try:
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    last_name = replied_user.user.last_name
-    username = replied_user.user.username
-    res = replied_user.user.restricted
 
-    first_name = (
-        first_name.replace("\u2060", "")
-        if first_name
-        else ("This User has no First Name")
-    )
-    last_name = (
-        last_name.replace("\u2060", "") if last_name else None
-    )
-    username = "@{}".format(username) if username else ("This User has no Username")
-
-    caption = "<b>User Info:</b> \n"
-    caption += f"ID: <code>{user_id}</code> \n"
-    caption += f"First Name: {first_name} \n"
-    if last_name:
-      caption += f"Last Name: {last_name} \n"
-    caption += f"Username: {username} \n"
-    caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
-    if res == True:
-        caption += "\nRestricted: <b>True</b>"
-    if user_id in SUDO_USERS:
-        caption += "\nStatus: <b>Sudo User</b>"
-    if user_id in DEV_USERS:
-        caption += "\nStatus: <b>Dev User</b>"
-    if user_id == OWNER_ID:
-        caption += "\nStatus: <b>Owner</b>"
-    return caption
- except Exception as e:
-        print (e)
 
 @register(pattern="^/id$")
 async def useridgetter(target):
