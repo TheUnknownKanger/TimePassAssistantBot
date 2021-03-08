@@ -21,7 +21,7 @@ async def alive(event):
           await event.delete()
           await event.reply(response)
           if "Free" in response.text:
-              k = response.text.replace("Checked By Amarnath[Left TG] [Free User]", "")
+              k = response.text.replace("Checked By **Amarnath[Left TG] [Free User**]", "")
               await event.reply(k)
 
 @register(pattern="^/ss (.*)")
