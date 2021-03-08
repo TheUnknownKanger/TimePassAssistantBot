@@ -143,11 +143,11 @@ async def get_user(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await tbot(GetFullUserRequest(user_id))
+                replied_user = await ubot(GetFullUserRequest(user_id))
                 return replied_user
         try:
-            user_object = await tbot.get_entity(user)
-            replied_user = await tbot(GetFullUserRequest(user_object.id))
+            user_object = await ubot.get_entity(user)
+            replied_user = await ubot(GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
             await event.reply(str(err))
             return None
