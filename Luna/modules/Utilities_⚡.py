@@ -16,7 +16,7 @@ from telethon.tl.types import *
 from telethon.errors import *
 from Luna import *
 import os
-from Luna import SUDO_USERS, OWNER_ID, DEV_USERS
+from Luna import SUDO_USERS, OWNER_ID, DEV_USERS, ubot
 from telethon.tl.functions.photos import GetUserPhotosRequest
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -127,7 +127,7 @@ async def who(event):
 async def get_user(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        replied_user = await tbot(GetFullUserRequest(previous_message.sender_id))
+        replied_user = await ubot(GetFullUserRequest(previous_message.sender_id))
     else:
         user = event.pattern_match.group(1)
 
