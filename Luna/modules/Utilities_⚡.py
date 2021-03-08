@@ -278,7 +278,7 @@ async def detail(replied_user, event):
     caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
     if res == True:
-        caption += "\n**Restricted:** True"
+        caption += "\nRestricted: <b>True</b>"
     if user_id in SUDO_USERS:
         caption += "\nStatus: <b>Sudo User</b>"
     if user_id in DEV_USERS:
