@@ -93,7 +93,12 @@ async def hmm(event):
            await asyncio.sleep(1)
            await event.reply(result)
     except CFError as e:
-           print(e)
+           url = f"https://lunabot.tech/?query=hi"
+           async with aiohttp.ClientSession() as session:
+             async with session.get(url) as res:
+                       res = await res.json()
+                       text = res["response"]
+                       await event.reply(text)
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
