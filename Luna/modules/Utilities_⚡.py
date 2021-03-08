@@ -411,14 +411,14 @@ async def _(event):
    reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
-           reply += f"•💐`{m}`\n"
+           reply += f"•🔰`{m}`\n"
         except Exception:
            print("lel")
    d = DEV_USERS
    reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
         try:
-           reply += f"•💐`{v}`\n"
+           reply += f"•🔰`{v}`\n"
         except Exception:
            print("lel")
    await event.client.send_message(
