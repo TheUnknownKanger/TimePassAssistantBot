@@ -33,7 +33,7 @@ async def gsearch(q_event):
             title = gresults["titles"][i]
             link = gresults["links"][i]
             desc = gresults["descriptions"][i]
-            msg += f"👉[{title}]({link})\n`{desc}`\n\n"
+            msg += f"👉[{title}]({link})"
         except IndexError:
             break
     await k.edit(
