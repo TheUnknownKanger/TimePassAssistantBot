@@ -468,19 +468,19 @@ async def _(event):
    k = SUDO_USERS
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
-        k = await ubot(GetFullUserRequest(m))
         try:
-           reply += f"•{k.user.first_name}-{k.user.last_name} `{k.user.id}`\n"
+           k = await ubot(GetFullUserRequest(m))
+           reply += f"•{k.user.first_name} `{k.user.id}`\n"
         except Exception:
-           reply+= "Error\n"
+           reply+= "Deleted Acc.\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
         try:
            l = await ubot(GetFullUserRequest(v))
-           reply += f"•**{l.user.first_name}-{l.user.last_name}** ('{l.user.id}')\n"
+           reply += f"•{l.user.first_name} ('{l.user.id}')\n"
         except Exception:
-           reply += "Error"
+           reply += "Deleted Acc.\n"
    await event.client.send_message(
                 event.chat_id, reply)
 
