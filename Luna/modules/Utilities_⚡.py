@@ -466,17 +466,19 @@ async def _(event):
    h = replied_user.user.first_name
    reply += "• [{}](tg://user?id={})\n\n".format(h, OWNER_ID)
    k = SUDO_USERS
-   reply += "**Sudo_Users 🤘:**\n"
+   reply += "**Sudo_Users 😈:**\n"
    for m in k:
         try:
-           reply += f"• **User**-`{m}`\n"
+           k = await ubot(GetFullUserRequest(m))
+           reply += f"•**{k.user.first_name}-{k.user.last_name}** ('{k.user.id}')\n"
         except Exception:
-           reply+= "Error"
+           reply+= "Deleted Acc."
    d = DEV_USERS
-   reply += "\n**DEV_USERS 🎮:**\n"
+   reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
         try:
-           reply += f"• **User**-`{v}`\n"
+           l = await ubot(GetFullUserRequest(v))
+           reply += f"•**{l.user.first_name}-{l.user.last_name}** ('{l.user.id}')\n"
         except Exception:
            reply += "Error"
    await event.client.send_message(
