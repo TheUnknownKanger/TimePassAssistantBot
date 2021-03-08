@@ -468,8 +468,8 @@ async def _(event):
    k = SUDO_USERS
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
+        k = await ubot(GetFullUserRequest(m))
         try:
-           k = await ubot(GetFullUserRequest(m))
            reply += f"•{k.user.first_name}-{k.user.last_name} `{k.user.id}`\n"
         except Exception:
            reply+= "Error\n"
