@@ -14,5 +14,4 @@ gitpython
 heroku3
 aiohttp
 gtts
-wit
-youtube-search-python
+search_engine_parser
