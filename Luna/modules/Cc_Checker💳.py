@@ -1,4 +1,4 @@
-from Luna import ubot
+from Luna import ubot, abot
 from Luna.events import register
 import asyncio
 
@@ -61,7 +61,7 @@ async def alive(event):
 @register(pattern="^/c3 (.*)")
 async def alive(event):
       ok = event.pattern_match.group(1)
-      async with ubot.conversation("@Gayroebot") as bot_conv:
+      async with abot.conversation("@Gayroebot") as bot_conv:
           await bot_conv.send_message(f"/c3 {ok}")
           response = await bot_conv.get_response()
           await event.reply(response)
