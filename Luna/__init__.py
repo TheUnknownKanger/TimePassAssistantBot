@@ -78,6 +78,10 @@ if ENV:
     ss = "1BVtsOJoBu7yjDRoHp5Ivhp4pMMkVgzVsNKLmFj12yFTDMmSqw34kQXOg1AeeWmT8bheY8o0DFfxewhTiz0YlqS-lZ4ZpSYknEqii2G1hvlclN0yMaUFouTZGKnkxCoxPp5C5WqejPM5pfiYGz6MaCXtLPgSrakywE_Q9_8c9UE72pNLhciAmAmkNtrHFld19lIwjz4lnUocbcWui9Y3AhY5_rDnG0AcU4LzgKb-W_kypsHe5-fBobZOdYuSuwUB_1sX1TDjGEfLGYMJzOPcwsWXJtzMt2vlmymKHliOl9OnVkh8EKQTaLkJ5qkpoHSieMpluKPuBe66kXPXxwGJ9YXEV6tZQfSw="
     abot = TelegramClient (StringSession(ss), api, key)
     try:
+        abot.start()
+    except BaseException:
+        pass
+    try:
         ubot.start()
     except BaseException:
         print("Error Dude !")
