@@ -18,10 +18,10 @@ from telethon.errors import *
 async def msg(event):
     if event.sender_id == OWNER_ID:
         pass
-    if event.sender_id in SUDO_USERS:
+    elif event.sender_id in SUDO_USERS:
         await event.reply("This is a Assembler restricted command. You do not have permissions to run this.")
         return
-    if event.sender_id in DEV_USERS:
+    elif event.sender_id in DEV_USERS:
         await event.reply("This is a Assembler restricted command. You do not have permissions to run this.")
         return
     else:
