@@ -411,7 +411,7 @@ async def _(event):
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
         try:
-           k = await tbot(GetFullUserRequest(m))
+           k = await abot(GetFullUserRequest(m))
            reply += f"•{k.user.first_name} `{k.user.id}`\n"
         except Exception:
            print(lel)
@@ -419,7 +419,7 @@ async def _(event):
    reply += "\n**DEV_USERS 🎟️:**\n"
    for v in d:
         try:
-           l = await tbot(GetFullUserRequest(v))
+           l = await abot(GetFullUserRequest(v))
            reply += f"•{l.user.first_name} ('{l.user.id}')\n"
         except Exception:
            print(lel)
