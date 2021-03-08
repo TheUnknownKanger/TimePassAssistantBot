@@ -406,7 +406,7 @@ async def _(event):
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
    h = replied_user.user.first_name
-   reply += "• [{}](tg://user?id={})\n\n".format(h, OWNER_ID)
+   reply += "• [{}](tg://user?id={})\n".format(h, OWNER_ID)
    k = SUDO_USERS
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
@@ -415,7 +415,7 @@ async def _(event):
         except Exception:
            print("lel")
    d = DEV_USERS
-   reply += "\n**DEV_USERS 🎟️:**\n"
+   reply += "\n**DEV_USERS 🛡️:**\n"
    for v in d:
         try:
            reply += f"•🍀`{v}`\n"
