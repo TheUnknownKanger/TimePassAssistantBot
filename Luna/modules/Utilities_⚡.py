@@ -411,8 +411,9 @@ async def _(event):
    reply += "**Sudo_Users 😈:**\n"
    for m in k:
         try:
-           k = await abot(GetFullUserRequest(m))
-           reply += f"•`{k.user.id}`\n"
+           object = await ubot.get_entity(m)
+           s = await tbot(GetFullUserRequest(object))
+           reply += f"•`{s.user.id}`\n"
         except Exception:
            print("lel")
    d = DEV_USERS
