@@ -1,4 +1,4 @@
-from Luna import tbot, ubot, OWNER_ID as owner, BOT_ID as me, SUDO_USERS as sudo, DEV_USERS as dev
+from Luna import tbot, ubot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev
 from Luna.events import register
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -78,7 +78,7 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Dev User</b>"
     if user_id == owner:
         caption += "\nStatus: <b>Owner</b>"
-    if user_id == me:
+    if user_id == 1624337697:
         caption += "\nStatus: <b>Me</b>"
     return caption
  except Exception as e:
