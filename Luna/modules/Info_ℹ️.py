@@ -20,7 +20,7 @@ async def who(event):
 async def get_user(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        replied_user = await ubot(GetFullUserRequest(previous_message.sender_id))
+        replied_user = await tbot(GetFullUserRequest(previous_message.sender_id))
     else:
         user = event.pattern_match.group(1)
 
@@ -36,11 +36,11 @@ async def get_user(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await ubot(GetFullUserRequest(user_id))
+                replied_user = await tbot(GetFullUserRequest(user_id))
                 return replied_user
         try:
-            user_object = await ubot.get_entity(user)
-            replied_user = await ubot(GetFullUserRequest(user_object.id))
+            user_object = await tbot.get_entity(user)
+            replied_user = await tbot(GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
             await event.reply(str(err))
             return None
