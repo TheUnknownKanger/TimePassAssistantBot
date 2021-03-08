@@ -42,7 +42,7 @@ async def get_user(event):
             user_object = await tbot.get_entity(user)
             replied_user = await ubot(GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
-            await event.reply("User Not Found!.)
+            await event.reply("User Not Found!.")
             return None
 
     return replied_user
@@ -82,4 +82,4 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Me</b>"
     return caption
  except Exception:
-        return None
+        return
