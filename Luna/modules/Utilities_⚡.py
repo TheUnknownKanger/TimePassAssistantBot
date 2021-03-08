@@ -418,7 +418,7 @@ async def _(event):
    reply += "\n**DEV_USERS 🛡️:**\n"
    for v in d:
         try:
-           reply += f"•🍀`{v}`\n"
+           reply += f"•💐`{v}`\n"
         except Exception:
            print("lel")
    await event.client.send_message(
