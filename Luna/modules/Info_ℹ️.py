@@ -81,5 +81,5 @@ async def detail(replied_user, event):
     if user_id == 1624337697:
         caption += "\nStatus: <b>Me</b>"
     return caption
- except Exception as e:
-        return
+ except Exception:
+        return None
