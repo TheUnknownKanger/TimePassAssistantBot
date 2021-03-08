@@ -258,6 +258,7 @@ async def detail(replied_user, event):
     first_name = replied_user.user.first_name
     last_name = replied_user.user.last_name
     username = replied_user.user.username
+    res = replied_user.user.restricted
 
     first_name = (
         first_name.replace("\u2060", "")
@@ -276,7 +277,7 @@ async def detail(replied_user, event):
       caption += f"Last Name: {last_name} \n"
     caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
-    if user.restricted == True:
+    if res == True:
         caption += "\n**Restricted:** True"
     if user_id in SUDO_USERS:
         caption += "\nStatus: <b>Sudo User</b>"
