@@ -15,7 +15,7 @@ opener.addheaders = [("User-agent", useragent)]
 
 @register(pattern="^/gs (.*)")
 async def gsearch(q_event):
-    k = await event.reply("Searching......")
+    k = await q_event.reply("Searching......")
     match = q_event.pattern_match.group(1)
     page = re.findall(r"page=\d+", match)
     try:
