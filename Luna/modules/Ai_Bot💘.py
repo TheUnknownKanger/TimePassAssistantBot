@@ -119,7 +119,7 @@ async def _(event):
       async with tbot.action(event.chat_id, 'typing'):
           await asyncio.sleep(1)
           await event.reply(text)
-      except CFError as e:
+    except CFError as e:
            print(e)
 
 file_help = os.path.basename(__file__)
