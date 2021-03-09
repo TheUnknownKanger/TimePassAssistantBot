@@ -148,6 +148,23 @@ async def _(event):
       except CFError as e:
            print(e)
 
+@register(pattern="gey (.*)")
+async def gey(event):
+
+  site = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
+
+  querystring = event.pattern_match.group(1)
+
+  headers = {
+    'x-rapidapi-key': "570edf7b9cmshfb93d79bc816574p14c318jsn0e0bd91171a1",
+    'x-rapidapi-host': "acobot-brainshop-ai-v1.p.rapidapi.com"
+    }
+
+  response = requests.request("GET", site, headers=headers, params=querystring)
+
+  await event.reply(response.text)
+
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
