@@ -31,7 +31,7 @@ datetime_ist = datetime.now(IST)
 def get_reason(id):
     return gbanned.find_one({"user": id})
 
-chat = -1001486931338
+chat = -1001309757591
 @tbot.on(events.NewMessage(pattern="^/gban ?(.*)"))
 async def _(event):
     if event.fwd_from:
