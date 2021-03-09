@@ -1,28 +1,55 @@
-import requests
-from Luna import tbot, CMD_HELP, BOT_ID
-from Luna.events import register
-from telethon import events
-url = "https://iamai.p.rapidapi.com/ask"
+from julia import CMD_HELP, BOT_ID
 import os
+from Luna import tbot
+from time import time
+
+import Luna.modules.sql.chatbot_sql as sql
+from coffeehouse.api import API
+from coffeehouse.exception import CoffeeHouseError as CFError
+from coffeehouse.lydia import LydiaAI
+from Luna import LYDIA_API_KEY, OWNER_ID
 from telethon import types
 from telethon.tl import functions
-import asyncio
-import Luna.modules.sql.chatbot_sql as sql
+from Luna.events import register
+from telethon import events
 
-@register(pattern="^/eaichat$")
+CoffeeHouseAPI = API(LYDIA_API_KEY)
+api_client = LydiaAI(CoffeeHouseAPI)
+
+
+async def can_change_info(message):
+    try:
+        result = await tbot(
+            functions.channels.GetParticipantRequest(
+                channel=message.chat_id,
+                user_id=message.sender_id,
+            )
+        )
+        p = result.participant
+        return isinstance(p, types.ChannelParticipantCreator) or (
+            isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
+        )
+    except Exception:
+        return False
+
+
+@register(pattern="^/addchat$")
 async def _(event):
     if event.is_group:
-        pass
+        if not await can_change_info(message=event):
+            return
     else:
         return
 
+    global api_client
     chat = event.chat
     send = await event.get_sender()
     user = await tbot.get_entity(send)
     is_chat = sql.is_chat(chat.id)
     if not is_chat:
-        ses_id = "6969"
-        expires = "6"
+        ses = api_client.create_session()
+        ses_id = str(ses.id)
+        expires = str(ses.expires)
         sql.set_ses(chat.id, ses_id, expires)
         await event.reply("AI successfully enabled for this chat!")
         return
@@ -30,10 +57,11 @@ async def _(event):
     return ""
 
 
-@register(pattern="^/daichat$")
+@register(pattern="^/rmchat$")
 async def _(event):
     if event.is_group:
-        pass
+        if not await can_change_info(message=event):
+            return
     else:
         return
     chat = event.chat
@@ -47,118 +75,73 @@ async def _(event):
     await event.reply("AI disabled successfully!")
 
 
-
-
 @register(pattern="Luna (.*)")
 async def hmm(event):
   chat = event.chat
   is_chat = sql.is_chat(chat.id)  
   if not is_chat:
         return
-  test = event.pattern_match.group(1)
-  r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
-  k = f"({r})"
-  new_string = k.replace("(", "{")
-  lol = new_string.replace(")","}")
-  payload = lol
-  headers = {
-    'content-type': "application/json",
-    'x-forwarded-for': "<user's ip>",
-    'x-rapidapi-key': "33b8b1a671msh1c579ad878d8881p173811jsn6e5d3337e4fc",
-    'x-rapidapi-host': "iamai.p.rapidapi.com"
-    }
+  msg = event.pattern_match.group(1)
+  if msg:
+        if not await check_message(event):
+            return
+        sesh, exp = sql.get_ses(chat.id)
+        query = msg
+        try:
+            if int(exp) < time():
+                ses = api_client.create_session()
+                ses_id = str(ses.id)
+                expires = str(ses.expires)
+                sql.set_ses(chat.id, ses_id, expires)
+                sesh, exp = sql.get_ses(chat.id)
+        except ValueError:
+            pass
+        try:          
+                rep = api_client.think_thought(sesh, query)
+                await event.reply(rep)
+        except CFError as e:
+            print(e)
 
-  response = requests.request("POST", url, data=payload, headers=headers)
-  lodu = response.json()
-  result = (lodu['message']['text'])
-  if "Thergiakis" in result:
-   pro = "I am fairly yound and I was made by RoseloverX."
-   try:
-      async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(pro)
-   except CFError as e:
-           print(e)
-  elif "Jessica" in result:
-   pro = "My name is Luna"
-   try:
-      async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(pro)
-   except CFError as e:
-           print(e)
-  else:
-    try:
-      async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(result)
-    except CFError as e:
-           print(e)
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
         pass
     else:
         return
+    global api_client
+    msg = str(event.text)
     chat = event.chat
-    is_chat = sql.is_chat(chat.id)  
+    is_chat = sql.is_chat(chat.id)
     if not is_chat:
         return
-    reply_msg = await event.get_reply_message()
-    if reply_msg:
-        if reply_msg.sender_id == 1624337697:
-            pass
-        else:
+    if msg:
+        if not await check_message(event):
             return
-    else:
-        return
-    test = str(event.text)
-    r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
-    k = f"({r})"
-    new_string = k.replace("(", "{")
-    lol = new_string.replace(")","}")
-    payload = lol
-    headers = {
-    'content-type': "application/json",
-    'x-forwarded-for': "<user's ip>",
-    'x-rapidapi-key': "33b8b1a671msh1c579ad878d8881p173811jsn6e5d3337e4fc",
-    'x-rapidapi-host': "iamai.p.rapidapi.com"
-    }
+        sesh, exp = sql.get_ses(chat.id)
+        query = msg
+        try:
+            if int(exp) < time():
+                ses = api_client.create_session()
+                ses_id = str(ses.id)
+                expires = str(ses.expires)
+                sql.set_ses(chat.id, ses_id, expires)
+                sesh, exp = sql.get_ses(chat.id)
+        except ValueError:
+            pass
+        try:          
+                rep = api_client.think_thought(sesh, query)
+                await event.reply(rep)
+        except CFError as e:
+            print(e)
 
-    response = requests.request("POST", url, data=payload, headers=headers)
-    lodu = response.json()
-    result = (lodu['message']['text'])
-    if "Thergiakis" in result:
-      pro = "I am fairly yound and I was made by RoseloverX."
-      try:
-        async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(pro)
-      except CFError as e:
-           print(e)
-    elif "Jessica" in result:
-      pro = "My name is Luna"
-      try:
-        async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(pro)
-      except CFError as e:
-           print(e)
-    else:
-      try:
-         async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(1)
-           await event.reply(result)
-      except CFError as e:
-           print(e)
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
- - Luna: Ask any question and Get Answer From Machine Learning Ai
+ - /addchat: Activates AI mode in the chat the bot will give auto replies to anyone who tags the bot
+ - /rmchat: Deactivates AI mode in the chat the bot will stop giving auto replies to anyone who tags the bot
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
-
