@@ -100,7 +100,7 @@ async def help(event):
 @tbot.on(events.CallbackQuery(pattern=r"help_menu"))
 async def help_menu(event):
     buttons = paginate_help(event, 0, CMD_LIST, "helpme")
-    await event.edit(pmt, buttons=buttons)
+    await event.edit(pm_caption, buttons=buttons)
 
 
 @tbot.on(events.callbackquery.CallbackQuery(data=re.compile(rb"helpme_next\((.+?)\)")))
@@ -164,8 +164,8 @@ def get_page(id):
 
 
 def paginate_help(event, page_number, loaded_plugins, prefix):
-    number_of_rows = 5
-    number_of_cols = 3
+    number_of_rows = 4
+    number_of_cols = 2
 
     to_check = get_page(id=event.sender_id)
 
