@@ -111,8 +111,8 @@ async def _(event):
             tym = pic.strftime('%H:%M:%S')
             await event.client.send_message(
                 chat,
-                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**New Reason:** {}\n**Event Time:** **{}**".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
+                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** {}\n**New Reason:** {}\n**Event Time:** **{}**".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, reason, tym
                 ),
             )
             return
@@ -125,15 +125,15 @@ async def _(event):
     if reason:
       await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}\n**Event Time:** **{}**".format(
-            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** {}\n**Reason:** {}\n**Event Time:** **{}**".format(
+            place, cd, event.sender_id, user, r_sender_id, r_sender_id, reason, tym
         ),
       )
     else:
       await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Event Time:** **{}**".format(
-            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, tym
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** {}\n**Event Time:** **{}**".format(
+            place, cd, event.sender_id, user, r_sender_id, r_sender_id, tym
         ),
       )
     k = await event.reply("Initiating Global Ban.!")
@@ -211,15 +211,15 @@ async def _(event):
             if reason:
               await event.client.send_message(
                 chat,
-                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}\n**Event Time:** **{}**".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** {}\n**Reason:** {}\n**Event Time:** **{}**".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, reason, tym
                 ),
                )
             else:
                await event.client.send_message(
                 chat,
-                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Event Time:** **{}**".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, tym
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** {}\n**Event Time:** **{}**".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, tym
                 ),
                )
             k = await event.reply("Initiating Removal Of Global Ban.!")
