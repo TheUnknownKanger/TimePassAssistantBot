@@ -23,7 +23,7 @@ from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import *
-
+import asyncio
 from Luna import *
 from Luna.events import register
 
@@ -1151,7 +1151,9 @@ async def purge_messages(event):
         return
 
     text = f"Purged Successfully !"
-    await event.respond(text, parse_mode="markdown")
+    k = await event.respond(text, parse_mode="markdown")
+    await asyncio.sleep(1)
+    await k.delete()
 
 
 @register(pattern="^/del$")
