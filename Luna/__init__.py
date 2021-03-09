@@ -74,7 +74,7 @@ if ENV:
     else:
        try:
           sw = spamwatch.Client(SPAMWATCH_API)
-    except:
+       except:
           sw = None
     if STRING_SESSION:
         ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
