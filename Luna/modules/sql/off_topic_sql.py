@@ -36,27 +36,24 @@ def set_ot(chat_id, ot_grp):
             autochat = Pro(str(chat_id), str(ot_grp))
         else:
             autochat.ot_grp = str(ses_id)
-            autochat.expires = str(expires)
 
         SESSION.add(autochat)
         SESSION.commit()
 
 
 def get_ses(chat_id):
-    autochat = SESSION.query(ChatbotChats).get(str(chat_id))
-    sesh = ""
-    exp = ""
+    autochat = SESSION.query(Pro).get(str(chat_id))
+    ot = ""
     if autochat:
-        sesh = str(autochat.ses_id)
-        exp = str(autochat.expires)
+        ot = str(autochat.ot_grp)
 
     SESSION.close()
-    return sesh, exp
+    return ot
 
 
 def rem_chat(chat_id):
     with INSERTION_LOCK:
-        autochat = SESSION.query(ChatbotChats).get(str(chat_id))
+        autochat = SESSION.query(Pro).get(str(chat_id))
         if autochat:
             SESSION.delete(autochat)
 
@@ -65,6 +62,6 @@ def rem_chat(chat_id):
 
 def get_all_chats():
     try:
-        return SESSION.query(ChatbotChats.chat_id).all()
+        return SESSION.query(Pro.chat_id).all()
     finally:
         SESSION.close()
