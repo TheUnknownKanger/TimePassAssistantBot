@@ -153,7 +153,8 @@ async def gey(event):
 
   site = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
 
-  querystring = event.pattern_match.group(1)
+  querystring = {"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":"My Name is Legend, Remember That."}
+
 
   headers = {
     'x-rapidapi-key': "570edf7b9cmshfb93d79bc816574p14c318jsn0e0bd91171a1",
