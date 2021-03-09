@@ -1,5 +1,6 @@
 telethon
 pymongo
+pytz
 sqlalchemy
 psycopg2-binary
 dnspython
