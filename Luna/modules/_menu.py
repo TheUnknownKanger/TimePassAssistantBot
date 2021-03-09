@@ -35,7 +35,7 @@ async def start(event):
                 ],
              ],
         )
-    else:
-        await event.reply("I am Alive ^_^")
+   else:
+        await event.reply("I am Alive 😌")
 
 
