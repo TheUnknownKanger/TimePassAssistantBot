@@ -115,7 +115,7 @@ async def _(event):
             res = await res.json()
             text = res["response"]
     
-   try:
+    try:
       async with tbot.action(event.chat_id, 'typing'):
           await asyncio.sleep(1)
           await event.reply(text)
