@@ -2,13 +2,12 @@ import requests
 from Luna import tbot, CMD_HELP, BOT_ID
 from Luna.events import register
 from telethon import events
+url = "https://iamai.p.rapidapi.com/ask"
 import os
 from telethon import types
 from telethon.tl import functions
 import asyncio
 import Luna.modules.sql.chatbot_sql as sql
-url = "https://iamai.p.rapidapi.com/ask"
-
 
 @register(pattern="^/addchat$")
 async def _(event):
@@ -23,7 +22,7 @@ async def _(event):
     is_chat = sql.is_chat(chat.id)
     if not is_chat:
         ses_id = "6969"
-        expires = "69"
+        expires = "6"
         sql.set_ses(chat.id, ses_id, expires)
         await event.reply("AI successfully enabled for this chat!")
         return
@@ -94,7 +93,7 @@ async def hmm(event):
            await asyncio.sleep(1)
            await event.reply(result)
     except CFError as e:
-           await event.reply(e)
+           print(e)
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
@@ -152,30 +151,6 @@ async def _(event):
            await event.reply(result)
       except CFError as e:
            print(e)
-
-@register(pattern="^/nub (.*)")
-async def _(event):
-  m = event.pattern_match.group(1)
-  r = ('"bid":"178","key":"sX5A2PcYZbsN5EY6","uid":"mashape","msg":"{}"').format(m)
-  h = f"({r})"
-  new = h.replace("(", "{")
-  old = new.replace(")", "}")
-
-  url = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
-
-  headers = {
-      'x-rapidapi-key': "fef481fee3mshf99983bfc650decp104100jsnbad6ddb2c846",
-      'x-rapidapi-host': "acobot-brainshop-ai-v1.p.rapidapi.com"
-      }
-
-  response = requests.request("GET", url, headers=headers, params=old)
-  k = response.json()
-  result = (k['cnt'])
-  if result:
-      await event.reply(result)
-  else:
-      await event.reply(k)
-
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
