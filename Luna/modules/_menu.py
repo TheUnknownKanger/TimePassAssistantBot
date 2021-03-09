@@ -70,7 +70,7 @@ async def reopen_again(event):
                 ],
              ],
         )
-   else:
+    else:
         await event.reply("I am Alive 😌")
 
 
