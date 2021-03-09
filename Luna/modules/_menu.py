@@ -39,3 +39,38 @@ async def start(event):
         await event.reply("I am Alive 😌")
 
 
+@tbot.on(events.CallbackQuery(pattern=r"start_again"))
+async def start_again(event):
+    if not event.is_group:
+        await event.edit(
+            "The menu is closed 🔒",
+            buttons=[[Button.inline("Reopen Menu 🔑", data="reopen_again")]],
+        )
+    else:
+        await event.reply("I am Alive 😊")
+
+
+@tbot.on(events.CallbackQuery(pattern=r"reopen_again"))
+async def reopen_again(event):
+    if not event.is_group:
+        await event.edit(
+            pm_caption,
+            buttons=[
+                [
+                    Button.url(
+                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
+                    ),
+                    Button.url(
+                        "Support Group 🎭", "https://t.me/lunabotsupport"
+                    ),
+                ],
+                [
+                    Button.inline("Commands ❓", data="help_menu"),
+                    Button.inline("Close Menu 🔒", data="start_again"),
+                ],
+             ],
+        )
+   else:
+        await event.reply("I am Alive 😌")
+
+
