@@ -119,7 +119,8 @@ async def _(event):
     gbanned.insert_one(
         {"bannerid": event.sender_id, "user": r_sender_id, "reason": reason}
     )
-    tym = datetime_ist.strftime('%H:%M:%S')
+    op = datetime.now(IST)
+    tym = op.strftime('%H:%M:%S')
     if reason:
       await event.client.send_message(
         chat,
