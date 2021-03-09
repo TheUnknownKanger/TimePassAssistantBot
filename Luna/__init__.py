@@ -34,7 +34,7 @@ if ENV:
     WHITE_LIST = {int(x) for x in os.environ.get("WHITE_LIST", "").split()}
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
-    SPAMWATCH_API = os.environ.get("SPAMWATCH _API", None)
+    SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
     DB_URI = os.environ.get("DATABASE_URL")
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
