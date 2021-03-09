@@ -34,6 +34,7 @@ async def start(event):
                 ],
             ],
         )
+   await event.reply("Help Menu Not Working Will Fix Soon!")
  else:
    await event.reply("I am Alive 😌")
    
