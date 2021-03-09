@@ -83,9 +83,9 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Me</b>"
     spamwtc = sw.get_ban(int(user_id))
     if spamwtc:
-        caption += "\nSpamWatched: **True**"
+        caption += "\nSpamWatched: <b>True</b>"
     else:
-        caption += "\nSpamWatched: **False**"
+        caption += "\nSpamWatched: <b>False</b>"
     return caption
  except Exception:
         print("lel")
