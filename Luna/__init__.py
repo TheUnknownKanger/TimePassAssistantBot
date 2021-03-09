@@ -9,7 +9,7 @@ from logging import INFO
 
 from telethon import TelegramClient
 from telethon.sessions import StringSession
-
+import spamwatch
 StartTime = time.time()
 CMD_LIST = {}
 CMD_HELP = {}
@@ -34,6 +34,7 @@ if ENV:
     WHITE_LIST = {int(x) for x in os.environ.get("WHITE_LIST", "").split()}
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
+    SPAMWATCH_API = os.environ.get("SPAMWATCH _API", None)
     OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
     DB_URI = os.environ.get("DATABASE_URL")
     YOUTUBE_API_KEY = os.environ.get("YOUTUBE_API_KEY", None)
@@ -68,7 +69,13 @@ if ENV:
             format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=INFO
         )
     LOGS = getLogger(__name__)
-
+    if not SPAMWATCH_API:
+        sw = None
+    else:
+       try:
+          sw = spamwatch.Client(SPAMWATCH_API)
+    except:
+          sw = None
     if STRING_SESSION:
         ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
     else:
