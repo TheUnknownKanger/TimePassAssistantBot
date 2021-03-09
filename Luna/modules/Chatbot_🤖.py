@@ -1,4 +1,4 @@
-from julia import CMD_HELP, BOT_ID
+from Luna import CMD_HELP, BOT_ID
 import os
 from Luna import tbot
 from time import time
