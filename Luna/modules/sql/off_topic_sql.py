@@ -4,26 +4,24 @@ from Luna.modules.sql import BASE, SESSION
 from sqlalchemy import Column, String
 
 
-class ChatbotChats(BASE):
-    __tablename__ = "chatbot_chats"
+class Pro(BASE):
+    __tablename__ = "ot_chats"
     chat_id = Column(String(14), primary_key=True)
     ses_id = Column(String(70))
-    expires = Column(String(15))
 
-    def __init__(self, chat_id, ses_id, expires):
+    def __init__(self, chat_id, ot_grp):
         self.chat_id = chat_id
-        self.ses_id = ses_id
-        self.expires = expires
+        self.ot_grp = ot_grp
 
 
-ChatbotChats.__table__.create(checkfirst=True)
+Pro.__table__.create(checkfirst=True)
 
 INSERTION_LOCK = threading.RLock()
 
 
 def is_chat(chat_id):
     try:
-        chat = SESSION.query(ChatbotChats).get(str(chat_id))
+        chat = SESSION.query(Pro).get(str(chat_id))
         if chat:
             return True
         return False
@@ -31,13 +29,13 @@ def is_chat(chat_id):
         SESSION.close()
 
 
-def set_ses(chat_id, ses_id, expires):
+def set_ot(chat_id, ot_grp):
     with INSERTION_LOCK:
-        autochat = SESSION.query(ChatbotChats).get(str(chat_id))
+        autochat = SESSION.query(Pro).get(str(chat_id))
         if not autochat:
-            autochat = ChatbotChats(str(chat_id), str(ses_id), str(expires))
+            autochat = Pro(str(chat_id), str(ot_grp))
         else:
-            autochat.ses_id = str(ses_id)
+            autochat.ot_grp = str(ses_id)
             autochat.expires = str(expires)
 
         SESSION.add(autochat)
