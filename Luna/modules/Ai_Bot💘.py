@@ -8,7 +8,7 @@ from telethon.tl import functions
 import asyncio
 import Luna.modules.sql.chatbot_sql as sql
 
-@register(pattern="^/addchat$")
+@register(pattern="^/eaichat$")
 async def _(event):
     if event.is_group:
         pass
@@ -29,7 +29,7 @@ async def _(event):
     return ""
 
 
-@register(pattern="^/rmchat$")
+@register(pattern="^/daichat$")
 async def _(event):
     if event.is_group:
         pass
