@@ -107,7 +107,8 @@ async def _(event):
             await event.reply(
                 "This user is already gbanned, I am updating the reason of the gban with your reason."
             )
-            tym = datetime_ist.strftime('%H:%M:%S')
+            pic = datetime.now(IST)
+            tym = pic.strftime('%H:%M:%S')
             await event.client.send_message(
                 chat,
                 "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**New Reason:** {}\n**Event Time:** **{}**".format(
@@ -201,7 +202,8 @@ async def _(event):
     origin = event.chat_id
     ok = event.chat.title
     place = (f"{ok} {origin}")
-    tym = datetime_ist.strftime('%H:%M:%S')
+    abe = datetime.now(IST)
+    tym = abe.strftime('%H:%M:%S')
     for c in chats:
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
