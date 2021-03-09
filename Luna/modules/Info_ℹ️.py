@@ -42,7 +42,7 @@ async def get_user(event):
             user_object = await tbot.get_entity(user)
             replied_user = await tbot(GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
-            await event.reply(str(err))
+            await event.reply("I don't seem to have interacted with this user before - please forward a message from them to give me control! (like a voodoo doll, I need a piece of them to be able to execute certain commands...)")
             return None
 
     return replied_user
