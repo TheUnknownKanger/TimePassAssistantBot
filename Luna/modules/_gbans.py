@@ -25,8 +25,8 @@ client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 gbanned = db.gban
 
-import pytz 
 IST = pytz.timezone('Asia/Kolkata')
+datetime_ist = datetime.now(IST)
 
 def get_reason(id):
     return gbanned.find_one({"user": id})
