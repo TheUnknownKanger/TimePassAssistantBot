@@ -1,14 +1,15 @@
-import aiohttp
-from Luna import tbot, CMD_HELP
+import requests
+from Luna import tbot, CMD_HELP, BOT_ID
 from Luna.events import register
 from telethon import events
+url = "https://iamai.p.rapidapi.com/ask"
 import os
 from telethon import types
 from telethon.tl import functions
 import asyncio
 import Luna.modules.sql.chatbot_sql as sql
 
-@register(pattern="^/eaichat$")
+@register(pattern="^/addchat$")
 async def _(event):
     if event.is_group:
         pass
@@ -29,7 +30,7 @@ async def _(event):
     return ""
 
 
-@register(pattern="^/daichat$")
+@register(pattern="^/rmchat$")
 async def _(event):
     if event.is_group:
         pass
@@ -50,28 +51,49 @@ async def _(event):
 
 @register(pattern="Luna (.*)")
 async def hmm(event):
-    if event.is_group:
-        pass
-    else:
+  chat = event.chat
+  is_chat = sql.is_chat(chat.id)  
+  if not is_chat:
         return
-    chat = event.chat
-    is_chat = sql.is_chat(chat.id)  
-    if not is_chat:
-        return
-    test = event.pattern_match.group(1)
-    url = f"https://lunabot.tech/?query={test}"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as res:
-            res = await res.json()
-            text = res["response"]
-    
+  test = event.pattern_match.group(1)
+  r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
+  k = f"({r})"
+  new_string = k.replace("(", "{")
+  lol = new_string.replace(")","}")
+  payload = lol
+  headers = {
+    'content-type': "application/json",
+    'x-forwarded-for': "<user's ip>",
+    'x-rapidapi-key': "33b8b1a671msh1c579ad878d8881p173811jsn6e5d3337e4fc",
+    'x-rapidapi-host': "iamai.p.rapidapi.com"
+    }
+
+  response = requests.request("POST", url, data=payload, headers=headers)
+  lodu = response.json()
+  result = (lodu['message']['text'])
+  if "Thergiakis" in result:
+   pro = "I am fairly yound and I was made by RoseloverX."
+   try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+   except CFError as e:
+           print(e)
+  elif "Jessica" in result:
+   pro = "My name is Luna"
+   try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+   except CFError as e:
+           print(e)
+  else:
     try:
       async with tbot.action(event.chat_id, 'typing'):
-          await asyncio.sleep(1)
-          await event.reply(text)
+           await asyncio.sleep(1)
+           await event.reply(result)
     except CFError as e:
            print(e)
-
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
     if event.is_group:
@@ -91,17 +113,43 @@ async def _(event):
     else:
         return
     test = str(event.text)
-    url = f"https://lunabot.tech/?query={test}"
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as res:
-            res = await res.json()
-            text = res["response"]
-    
-    try:
-      async with tbot.action(event.chat_id, 'typing'):
-          await asyncio.sleep(1)
-          await event.reply(text)
-    except CFError as e:
+    r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
+    k = f"({r})"
+    new_string = k.replace("(", "{")
+    lol = new_string.replace(")","}")
+    payload = lol
+    headers = {
+    'content-type': "application/json",
+    'x-forwarded-for': "<user's ip>",
+    'x-rapidapi-key': "33b8b1a671msh1c579ad878d8881p173811jsn6e5d3337e4fc",
+    'x-rapidapi-host': "iamai.p.rapidapi.com"
+    }
+
+    response = requests.request("POST", url, data=payload, headers=headers)
+    lodu = response.json()
+    result = (lodu['message']['text'])
+    if "Thergiakis" in result:
+      pro = "I am fairly yound and I was made by RoseloverX."
+      try:
+        async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+      except CFError as e:
+           print(e)
+    elif "Jessica" in result:
+      pro = "My name is Luna"
+      try:
+        async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(pro)
+      except CFError as e:
+           print(e)
+    else:
+      try:
+         async with tbot.action(event.chat_id, 'typing'):
+           await asyncio.sleep(1)
+           await event.reply(result)
+      except CFError as e:
            print(e)
 
 file_help = os.path.basename(__file__)
