@@ -5,6 +5,8 @@ from telethon.tl.functions.channels import EditBannedRequest
 from pymongo import MongoClient
 from Luna import MONGO_DB_URI
 import asyncio
+from datetime import datetime
+import pytz
 from telethon.tl.functions.users import GetFullUserRequest
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -23,6 +25,8 @@ client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 gbanned = db.gban
 
+import pytz 
+IST = pytz.timezone('Asia/Kolkata')
 
 def get_reason(id):
     return gbanned.find_one({"user": id})
@@ -103,10 +107,11 @@ async def _(event):
             await event.reply(
                 "This user is already gbanned, I am updating the reason of the gban with your reason."
             )
+            tym = datetime_ist.strftime('%Y:%m:%d %H:%M:%S')
             await event.client.send_message(
                 chat,
-                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**New Reason:** {}".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
+                "**Global Ban Update**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**New Reason:** {}\n**Event Time:** `{}`".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
                 ),
             )
             return
@@ -114,18 +119,19 @@ async def _(event):
     gbanned.insert_one(
         {"bannerid": event.sender_id, "user": r_sender_id, "reason": reason}
     )
+    tym = datetime_ist.strftime('%Y:%m:%d %H:%M:%S')
     if reason:
       await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}".format(
-            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}\n**Event Time:** `{}`".format(
+            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
         ),
       )
     else:
       await event.client.send_message(
         chat,
-        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})".format(
-            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id
+        "**Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Event Time:** `{}`".format(
+            place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, tym
         ),
       )
     k = await event.reply("Initiating Global Ban.!")
@@ -193,7 +199,8 @@ async def _(event):
     cd = (f"{fname}-{X}")
     origin = event.chat_id
     ok = event.chat.title
-    place = (f"{ok} {origin}") 
+    place = (f"{ok} {origin}")
+    tym = datetime_ist.strftime('%Y:%m:%d %H:%M:%S')
     for c in chats:
         if r_sender_id == c["user"]:
             to_check = get_reason(id=r_sender_id)
@@ -201,15 +208,15 @@ async def _(event):
             if reason:
               await event.client.send_message(
                 chat,
-                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Reason:** {}\n**Event Time:** `{}`".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, reason, tym
                 ),
                )
             else:
                await event.client.send_message(
                 chat,
-                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})".format(
-                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id
+                "**Removal of Global Ban**\n**Originated from: {}**\n\n**Sudo Admin:** [{}](tg://user?id={})\n**User:** [{}](tg://user?id={})\n**ID:** [{}](tg://user?id={})\n**Event Time:** `{}`".format(
+                    place, cd, event.sender_id, user, r_sender_id, r_sender_id, r_sender_id, tym
                 ),
                )
             k = await event.reply("Initiating Removal Of Global Ban.!")
