@@ -1,4 +1,4 @@
-from Luna import tbot, ubot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev
+from Luna import tbot, ubot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev, sw
 from Luna.events import register
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -81,6 +81,10 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Owner</b>"
     if user_id == 1624337697:
         caption += "\nStatus: <b>Me</b>"
+    spamwtc = sw.get_ban(int(user_id))
+    if spamwtc:
+        caption += "\nSpamWatched: **True**"
     return caption
  except Exception:
         print("lel")
+
