@@ -148,7 +148,7 @@ async def _(event):
       except CFError as e:
            print(e)
 
-@register(pattern="gey (.*)")
+@register(pattern="^/gey (.*)")
 async def gey(event):
 
   site = "https://acobot-brainshop-ai-v1.p.rapidapi.com/get"
