@@ -3,7 +3,8 @@ from telethon.tl.types import ChatBannedRights
 from apscheduler.schedulers.asyncio import AsyncIOScheduler 
 from telethon import functions
 from Luna.events import register
-from Luna import tbot
+from Luna import tbot, CMD_HELP
+import os
 
 hehes = ChatBannedRights(
     until_date=None,
@@ -32,7 +33,7 @@ openhehe = ChatBannedRights(
     change_info=True,
 )
 
-@register(pattern="^/scgrp")
+@register(pattern="^/rmnt")
 async def close_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Enable Night Mode in Groups.")
@@ -43,7 +44,7 @@ async def close_ws(event):
     add_nightmode(str(event.chat_id))
     await event.reply(f"**Added Chat {event.chat.title} With Id {event.chat_id} To Database. This Group Will Be Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
 
-@register(pattern="^/rsgrp")
+@register(pattern="^/addnt")
 async def disable_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Disable Night Mode in Groups.")
@@ -62,7 +63,7 @@ async def job_close():
     for warner in ws_chats:
         try:
             await tbot.send_message(
-              int(warner.chat_id), "`12:00 Am, Group Is Closing Till 6 Am. Night Mode Started !` \n**Powered By @FRidayOT**"
+              int(warner.chat_id), "`12:00 Am, Group Is Closing Till 6 Am. Night Mode Started !` \n**Powered By Luna**"
             )
             await tbot(
             functions.messages.EditChatDefaultBannedRightsRequest(
@@ -72,6 +73,43 @@ async def job_close():
         except Exception as e:
             logger.info(f"Unable To Close Group {warner} - {e}")
 
+#Run everyday at 12am
 scheduler = AsyncIOScheduler(timezone="Asia/Kolkata")
-scheduler.add_job(job_close, trigger="cron", hour=18, minute=9)
+scheduler.add_job(job_close, trigger="cron", hour=23, minute=55)
 scheduler.start()
+
+async def job_open():
+    ws_chats = get_all_chat_id()
+    if len(ws_chats) == 0:
+        return
+    for warner in ws_chats:
+        try:
+            await tbot.send_message(
+              int(warner.chat_id), "`06:00 Am, Group Is Opening.`\n**Powered By Luna**"
+            )
+            await tbot(
+            functions.messages.EditChatDefaultBannedRightsRequest(
+                peer=int(warner.chat_id), banned_rights=openhehe
+            )
+        )
+        except Exception as e:
+            logger.info(f"Unable To Open Group {warner.chat_id} - {e}")
+
+# Run everyday at 06
+scheduler = AsyncIOScheduler(timezone="Asia/Kolkata")
+scheduler.add_job(job_open, trigger="cron", hour=6, minute=10)
+scheduler.start()
+
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /addnt: Adds Group to NightMode Chats
+ - /rmnt: Removes Group From NightMode Chats
+
+**Note:** Night Mode chats get Automatically closed at 12pm(IST)
+and Automatically openned at 6am(IST) To Prevent Night Spams.
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
