@@ -4,7 +4,8 @@ import secureme
 @register(pattern="^/encrypt (.*)")
 async def hmm(event):
     if event.reply_to_msg_id:
-          cmd = await event.get_reply_message()
+          lel = await event.get_reply_message()
+          cmd = lel.text
     else:
           cmd = event.pattern_match.group(1)
     Text = cmd
@@ -14,7 +15,8 @@ async def hmm(event):
 @register(pattern="^/decrypt (.*)")
 async def hmm(event):
     if event.reply_to_msg_id:
-          ok = await event.get_reply_message()
+          lel = await event.get_reply_message()
+          ok = lel.text
     else:
           ok = event.pattern_match.group(1)
     Text = ok
