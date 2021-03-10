@@ -27,3 +27,4 @@ apscheduler
 cloudmersive_virus_api_client
 cloudmersive_ocr_api_client
 hachoir
+wikipedia
