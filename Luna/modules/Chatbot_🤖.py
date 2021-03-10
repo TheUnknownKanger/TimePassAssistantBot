@@ -2,7 +2,7 @@ from Luna import CMD_HELP, BOT_ID
 import os
 from Luna import tbot
 from time import time
-
+import asyncio
 import Luna.modules.sql.chatbot_sql as sql
 from coffeehouse.api import API
 from coffeehouse.exception import CoffeeHouseError as CFError
@@ -120,7 +120,9 @@ async def _(event):
             pass
         try:          
                 rep = api_client.think_thought(sesh, query)
-                await event.reply(rep)
+                async with tbot.action(event.chat_id, 'typing'):
+                                              await asyncio.sleep(1)
+                                              await event.reply(rep)
         except CFError as e:
             print(e)
 
