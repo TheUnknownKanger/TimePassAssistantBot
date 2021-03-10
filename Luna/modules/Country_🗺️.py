@@ -3,9 +3,9 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 import flag
-import html
+import html, os
 from countryinfo import CountryInfo
-from Luna import tbot as borg
+from Luna import tbot as borg, CMD_HELP
 from Luna.events import register
 
 
@@ -115,3 +115,12 @@ Gathered By Luna.</b>
     
     await event.delete()
 
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /country: Gather's Info About The Given Country
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
