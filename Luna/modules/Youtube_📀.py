@@ -12,7 +12,8 @@ from youtubesearchpython import SearchVideos
 @tbot.on(events.InlineQuery(pattern=r"yt (.*)"))
 async def inline_id_handler(event: events.InlineQuery.Event):
     builder = event.builder
-    testinput,legendx = event.pattern_match.group(1).split(";")
+    testinput = event.pattern_match.group(1)
+    legendx = 6
     urllib.parse.quote_plus(testinput)
     lund = event.sender_id
     if lund == lund:
