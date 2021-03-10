@@ -1,4 +1,4 @@
-from Luna import tbot
+from Luna import tbot, CMD_HELP
 
 import os
 import re
