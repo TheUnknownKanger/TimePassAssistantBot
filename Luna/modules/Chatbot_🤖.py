@@ -77,10 +77,10 @@ async def _(event):
 @register(pattern="Luna (.*)")
 async def hmm(event):
   chat = event.chat
-  is_chat = sql.is_chat(chat.id)  
-  if not is_chat:
+  global api_client
+  is_chat = sql.is_chat(chat.id)
+    if not is_chat:
         return
-  chat = event.chat
   msg = event.pattern_match.group(1)
   if msg:
         if not await check_message(event):
