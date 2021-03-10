@@ -5,7 +5,7 @@ import datetime
 from typing import List
 
 import requests
-from Luna import TIME_API_KEY, MONGO_DB_URI
+TIME_API_KEY = 'HW6LQCYX43HS'
 from Luna.events import register
 from telethon import types
 from telethon.tl import functions
