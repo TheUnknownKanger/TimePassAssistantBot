@@ -1,7 +1,8 @@
-from Luna import tbot, ubot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev, sw
+from Luna import tbot, ubot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev, sw, CMD_HELP
 from Luna.events import register
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
+import os
 
 @register(pattern="^/info(?: |$)(.*)")
 async def who(event):
@@ -88,3 +89,12 @@ async def detail(replied_user, event):
  except Exception:
         print("lel")
 
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /info: Gets Userinfo
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
