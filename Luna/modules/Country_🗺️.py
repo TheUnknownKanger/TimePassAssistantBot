@@ -79,7 +79,7 @@ async def msg(event):
 
     wiki = a.get("wiki")
 
-    caption = f"""<b><u>information gathered successfully</b></u>
+    caption = f"""<b><u>Information Gathered Successfully</b></u>
 <b>
 Country Name:- {name}
 Alternative Spellings:- {hu}
