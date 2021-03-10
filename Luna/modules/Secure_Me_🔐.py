@@ -1,7 +1,7 @@
 from Luna import tbot
 from Luna.events import register
 import secureme
-@register(pattern="^/encrypt (.*)")
+@register(pattern="^/encrypt ?(.*)")
 async def hmm(event):
     if event.reply_to_msg_id:
           lel = await event.get_reply_message()
@@ -12,7 +12,7 @@ async def hmm(event):
     k = secureme.encrypt(Text)
     await event.reply(k)
 
-@register(pattern="^/decrypt (.*)")
+@register(pattern="^/decrypt ?(.*)")
 async def hmm(event):
     if event.reply_to_msg_id:
           lel = await event.get_reply_message()
