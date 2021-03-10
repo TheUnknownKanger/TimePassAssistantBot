@@ -1,4 +1,5 @@
-from Luna import CMD_LIST, CMD_HELP, tbot
+from Luna import CMD_LIST
+from Luna import tbot
 import io
 import re
 from math import ceil
@@ -6,38 +7,82 @@ from math import ceil
 from telethon import custom, events, Button
 
 from Luna.events import register
+from Luna import CMD_HELP, LUNA_VERSION
 
 from telethon import types
 from telethon.tl import functions
+
+from pymongo import MongoClient
+from Luna import MONGO_DB_URI
+
+client = MongoClient()
+client = MongoClient(MONGO_DB_URI)
+db = client["missjuliarobot"]
+approved_users = db.approve
+pagenumber = db.pagenumber
+
+async def is_register_admin(chat, user):
+    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
+
+        return isinstance(
+            (
+                await tbot(functions.channels.GetParticipantRequest(chat, user))
+            ).participant,
+            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
+        )
+    if isinstance(chat, types.InputPeerChat):
+
+        ui = await tbot.get_peer_id(user)
+        ps = (
+            await tbot(functions.messages.GetFullChatRequest(chat.chat_id))
+        ).full_chat.participants.participants
+        return isinstance(
+            next((p for p in ps if p.user_id == ui), None),
+            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
+        )
+    return None
+
+file1 = "https://telegra.ph/file/dad416657f81a51e56a55.jpg"
 pm_caption = "Hi, my name is Luna!\nI'm a powerful group management bot\nAdd me to your groups as admin\nto manage your groups with my\ncommands\nYou can find my list of available\ncommands with /help"
-file1 = "https://telegra.ph/file/61dee0de08de48dcacce8.jpg"
-pmt = "Hello there! I'm Anie\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\n/help <module name> : PM's you info about that module.\n`/settings` : in PM: will send you your settings for all supported modules.\n~ in a group: will redirect you to pm, with all that chat's settings."
+pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message."
 @register(pattern="^/start$")
 async def start(event):
- if not event.is_group:
-   await tbot.send_message(
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
+    if event.is_group:
+        if await is_register_admin(event.input_chat, event.message.sender_id):
+            pass
+        elif event.chat_id == iid and event.sender_id == userss:
+            pass
+        else:
+            return
+
+    if not event.is_group:
+        await tbot.send_file(event.chat_id, file=file1)
+        await tbot.send_message(
             event.chat_id,
             pm_caption,
-            file=file1,
             buttons=[
                 [
                     Button.url(
-                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
+                        "Add To Group  👥", "t.me/lunaevobot?startgroup=true"
                     ),
                     Button.url(
-                        "Support Group 🎭", "https://t.me/lunabotsupport"
+                        "Support Group 🎙️", "https://t.me/lunabotsupport"
                     ),
                 ],
                 [
                     Button.inline("Commands ❓", data="help_menu"),
-                    Button.inline("Close Menu 🔒", data="start_again"),
+                    Button.url(
+                        "Owner ❄️", "https://t.me/RoseLoverX"
+                    ),
                 ],
             ],
         )
-   await event.reply("Help Menu Not Working Will Fix Soon!")
- else:
-   await event.reply("I am Alive 😌")
-   
+    else:
+        await event.reply("Heya Luna Here!,\nHow Can I Help Ya.")
 
 
 @tbot.on(events.CallbackQuery(pattern=r"start_again"))
@@ -48,7 +93,7 @@ async def start_again(event):
             buttons=[[Button.inline("Reopen Menu 🔑", data="reopen_again")]],
         )
     else:
-        await event.reply("I am Alive 😊")
+        await event.reply("I am Alive 😘")
 
 
 @tbot.on(events.CallbackQuery(pattern=r"reopen_again"))
@@ -59,42 +104,67 @@ async def reopen_again(event):
             buttons=[
                 [
                     Button.url(
-                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
+                        "Add To Group  👥", "t.me/lunaevobot?startgroup=true"
                     ),
                     Button.url(
-                        "Support Group 🎭", "https://t.me/lunabotsupport"
+                        "Support Group 🎙️", "https://t.me/lunabotsupport"
                     ),
                 ],
                 [
                     Button.inline("Commands ❓", data="help_menu"),
-                    Button.inline("Close Menu 🔒", data="start_again"),
+                    Button.url(
+                        "Owner ❄️", "https://t.me/RoseLoverX"
+                    ),
                 ],
-             ],
+            ],
         )
     else:
-        await event.reply("I am Alive 😌")
+        await event.reply("I am Alive ^_^")
 
 
 @register(pattern="^/help$")
 async def help(event):
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
+    if event.is_group:
+        if await is_register_admin(event.input_chat, event.message.sender_id):
+            pass
+        elif event.chat_id == iid and event.sender_id == userss:
+            pass
+        else:
+            return
     if not event.is_group:
         buttons = paginate_help(event, 0, CMD_LIST, "helpme")
         await event.reply(pmt, buttons=buttons)
     else:
         await event.reply(
             "Contact me in PM to get the help menu",
-            buttons=[[Button.url("Help ❓", "t.me/aniegrpbot?start=help")]],
+            buttons=[[Button.url("Help ❓", "t.me/lunaevobot?start=help")]],
         )
+
 
 @register(pattern="^/start help$")
 async def help(event):
+    approved_userss = approved_users.find({})
+    for ch in approved_userss:
+        iid = ch["id"]
+        userss = ch["user"]
+    if event.is_group:
+        if await is_register_admin(event.input_chat, event.message.sender_id):
+            pass
+        elif event.chat_id == iid and event.sender_id == userss:
+            pass
+        else:
+            return
     if not event.is_group:
         buttons = paginate_help(event, 0, CMD_LIST, "helpme")
         await event.reply(pm_caption, buttons=buttons)
     else:
         await event.reply(
             "Contact me in PM to get the help menu",
-            buttons=[[Button.url("Help ❓", "t.me/aniegrpbot?start=help")]],
+            buttons=[[Button.url("Help", "t.me/lunaevobot?start=help")]],
         )
 
 
@@ -137,7 +207,7 @@ async def on_plug_in_callback_query_handler(event):
     try:
         await event.edit(
             reply_pop_up_alert, buttons=[
-                [Button.inline("🔙 Back", data="go_back")]]
+                [Button.inline("⏪ Back", data="go_back")]]
         )
     except BaseException:
         with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
@@ -165,8 +235,8 @@ def get_page(id):
 
 
 def paginate_help(event, page_number, loaded_plugins, prefix):
-    number_of_rows = 4
-    number_of_cols = 2
+    number_of_rows = 6
+    number_of_cols = 3
 
     to_check = get_page(id=event.sender_id)
 
@@ -205,13 +275,12 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "⏮️", data="{}_prev({})".format(prefix, modulo_page)
+                    "⏪", data="{}_prev({})".format(prefix, modulo_page)
                 ),
-                custom.Button.inline("⏹️", data="reopen_again"),
+                custom.Button.inline("◀️", data="reopen_again"),
                 custom.Button.inline(
-                    "⏭️", data="{}_next({})".format(prefix, modulo_page)
+                    "⏩", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
     return pairs
-
