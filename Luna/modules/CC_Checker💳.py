@@ -79,6 +79,8 @@ __help__ = """
  - /C3 <bin>: Check If Bin Is 3D Redirect
  - /bin <bin>: Gather's Info About the bin
  - /key <sk>: Checks if Sk_Key is Live
+More Gates Soon...
+
 **Note:** Format of cc is ccnum|mm|yy|cvv
 """
 
