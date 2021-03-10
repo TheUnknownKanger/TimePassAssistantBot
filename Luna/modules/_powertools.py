@@ -15,11 +15,8 @@ async def sleepybot(time):
     message = time.pattern_match.group(1)
     if message:
        counter = int(time.pattern_match.group(1))
-       await time.reply("`I am sulking and snoozing....`")
-       await time.client.send_message(
-                    chat,
-                    "Bot in sleep for " + str(counter) + " seconds",
-                )
+       await time.reply(f"I am sulking and snoozing....for {counter}'s")
        sleep(counter)
     else:
+       await time.reply(f"I am sulking and snoozing....for 10's")
        sleep(10)
