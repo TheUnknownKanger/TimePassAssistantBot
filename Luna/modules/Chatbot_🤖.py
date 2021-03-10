@@ -79,7 +79,7 @@ async def hmm(event):
   chat = event.chat
   global api_client
   is_chat = sql.is_chat(chat.id)
-    if not is_chat:
+  if not is_chat:
         return
   msg = event.pattern_match.group(1)
   if msg:
