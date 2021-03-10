@@ -33,7 +33,7 @@ openhehe = ChatBannedRights(
     change_info=True,
 )
 
-@register(pattern="^/rmnt")
+@register(pattern="^/addnt")
 async def close_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Enable Night Mode in Groups.")
@@ -42,9 +42,9 @@ async def close_ws(event):
         await event.reply("This Chat is Has Already Enabled Night Mode.")
         return
     add_nightmode(str(event.chat_id))
-    await event.reply(f"**Added Chat {event.chat.title} With Id {event.chat_id} To Database. This Group Will Be Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
+    await event.reply(f"Added Chat {event.chat.title} With Id {event.chat_id} To Database. **This Group Will Be Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
 
-@register(pattern="^/addnt")
+@register(pattern="^/rmnt")
 async def disable_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Disable Night Mode in Groups.")
@@ -53,7 +53,7 @@ async def disable_ws(event):
         await event.reply("This Chat is Has Not Enabled Night Mode.")
         return
     rmnightmode(str(event.chat_id))
-    await event.reply(f"**Removed Chat {event.chat.title} With Id {event.chat_id} From Database. This Group Will Be No Longer Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
+    await event.reply(f"Removed Chat {event.chat.title} With Id {event.chat_id} From Database. **This Group Will Be No Longer Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
 
 
 async def job_close():
