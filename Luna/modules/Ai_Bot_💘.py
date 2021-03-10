@@ -1,18 +1,14 @@
 import requests
 url = "https://iamai.p.rapidapi.com/ask"
-from Luna import tbot, OWNER_ID
+from Luna import tbot, OWNER_ID, CMD_HELP
 from Luna.events import register
 from telethon import events
 from telethon import types
 from telethon.tl import functions
-import asyncio
+import asyncio, os
 
 @register(pattern="q (.*)")
 async def hmm(event):
-  if event.sender_id == OWNER_ID:
-        pass
-  else:
-        return
   test = event.pattern_match.group(1)
   r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
   k = f"({r})"
@@ -52,3 +48,15 @@ async def hmm(event):
            await event.reply(result)
     except CFError as e:
            print(e)
+
+
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - q <query>: Ai api Answers the query
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
+© 2021 GitHub, Inc.
