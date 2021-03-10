@@ -1,7 +1,7 @@
 import logging
 from Luna import tbot, CMD_HELP
 from Luna.events import register
-import asyncio
+import asyncio, os
 from telethon import *
 from telethon.tl import functions
 from telethon.tl.types import *
@@ -46,3 +46,12 @@ async def frwder(event):
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
 
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /frwd <msg> <group>: Forwards the given msg to The Group
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
