@@ -75,32 +75,22 @@ async def _(event):
     await event.reply("AI disabled successfully!")
 
 
-@register(pattern="Luna (.*)")
-async def hmm(event):
-  chat = event.chat
-  is_chat = sql.is_chat(chat.id)  
-  if not is_chat:
+@tbot.on(events.NewMessage(pattern=None))
+async def check_message(event):
+    if event.is_group:
+        pass
+    else:
         return
-  msg = event.pattern_match.group(1)
-  if msg:
-        if not await check_message(event):
-            return
-        sesh, exp = sql.get_ses(chat.id)
-        query = msg
-        try:
-            if int(exp) < time():
-                ses = api_client.create_session()
-                ses_id = str(ses.id)
-                expires = str(ses.expires)
-                sql.set_ses(chat.id, ses_id, expires)
-                sesh, exp = sql.get_ses(chat.id)
-        except ValueError:
-            pass
-        try:          
-                rep = api_client.think_thought(sesh, query)
-                await event.reply(rep)
-        except CFError as e:
-            print(e)
+    message = str(event.text)
+    reply_msg = await event.get_reply_message()
+    if message.lower() == "julia":
+        return True
+    if reply_msg:
+        if reply_msg.sender_id == BOT_ID:
+            return True
+    else:
+        return False
+
 
 @tbot.on(events.NewMessage(pattern=None))
 async def _(event):
