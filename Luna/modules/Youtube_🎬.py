@@ -67,7 +67,6 @@ __help__ = """
  - @AnieGrpBot <query>: YouTube Inline Search
 
 **Note:** Optional, add ; after query to specify Number of Results
-Example Syntax: @Aniegrpbot Dude perfect;3
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
