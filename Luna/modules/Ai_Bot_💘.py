@@ -59,4 +59,3 @@ __help__ = """
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
-© 2021 GitHub, Inc.
