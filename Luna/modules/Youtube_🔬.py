@@ -5,9 +5,7 @@ file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
- - @AnieGrpBot <query>: YouTube Inline Search
-
-**Note:** Optional, add ; after query to specify Number of Results
+ - /wiki <search>: Find results for search in wikipedia and return it.
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
