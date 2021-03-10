@@ -1,6 +1,6 @@
-from Luna import ubot, abot
+from Luna import ubot, abot, CMD_HELP
 from Luna.events import register
-import asyncio
+import asyncio, os
 
 @register(pattern="^/au (.*)")
 async def alive(event):
@@ -65,3 +65,21 @@ async def alive(event):
           await bot_conv.send_message(f"/c3 {ok}")
           response = await bot_conv.get_response()
           await event.reply(response)
+
+
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /au <cc>: Stripe Auth given CC
+ - /pp <cc>: Paypal 1$ Guest Charge
+ - /ss <cc>: Speedy Stripe Auth
+ - /ch <cc>: Check If CC is Live
+ - /C3 <bin>: Check If Bin Is 3D Redirect
+ - /bin <bin>: Gather's Info About the bin
+ - /key <sk>: Checks if Sk_Key is Live
+**Note:** Format of cc is ccnum|mm|yy|cvv
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
