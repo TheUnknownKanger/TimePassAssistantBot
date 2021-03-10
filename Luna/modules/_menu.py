@@ -1,5 +1,4 @@
-from Luna import CMD_LIST
-from Luna import tbot
+from Luna import CMD_LIST, CMD_HELP, tbot
 import io
 import re
 from math import ceil
@@ -7,7 +6,6 @@ from math import ceil
 from telethon import custom, events, Button
 
 from Luna.events import register
-from Luna import CMD_HELP
 
 from telethon import types
 from telethon.tl import functions
@@ -177,7 +175,7 @@ def get_page(id):
 
 def paginate_help(event, page_number, loaded_plugins, prefix):
     number_of_rows = 6
-    number_of_cols = 4
+    number_of_cols = 2
 
     to_check = get_page(id=event.sender_id)
 
@@ -216,11 +214,11 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
         ] + [
             (
                 custom.Button.inline(
-                    "⏪", data="{}_prev({})".format(prefix, modulo_page)
+                    "⏮️", data="{}_prev({})".format(prefix, modulo_page)
                 ),
                 custom.Button.inline("◀️", data="reopen_again"),
                 custom.Button.inline(
-                    "⏩", data="{}_next({})".format(prefix, modulo_page)
+                    "⏭️", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
