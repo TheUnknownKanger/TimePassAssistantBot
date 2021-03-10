@@ -1,6 +1,6 @@
 from Luna import tbot, CMD_HELP
 
-import os
+import osa
 import re
 import urllib
 from math import ceil
