@@ -3,7 +3,8 @@ import os
 import re
 import urllib
 from datetime import datetime
-
+from Luna import tbot, CMD_HELP
+from Luna.events import register
 import requests
 from bs4 import BeautifulSoup
 from PIL import Image
@@ -39,3 +40,14 @@ async def gsearch(q_event):
     await k.edit(
         "**Search Query:**\n`" + match + "`\n\n**Results:**\n" + msg, link_preview=False
     )
+
+
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /gs: Performs A Google Search With given Query
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
