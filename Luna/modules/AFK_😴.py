@@ -32,7 +32,7 @@ async def _(event):
         reason = ""
      fname = sender.first_name   
      # print(reason)
-     start_time = time.time()
+     start_time = fname
      sql.set_afk(sender.id, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
