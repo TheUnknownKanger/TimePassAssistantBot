@@ -127,9 +127,7 @@ async def _(event):
 
             await event.reply(res, parse_mode="markdown")
         else:
-            etime = user.start_time
-            elapsed_time = time.time() - float(etime)
-            final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
+            final = user.start_time
             fst_name = "This user"
             res = "**{} is AFK !**\nReason: {}\n\nLast seen: {}".format(
                 fst_name, user.reason, final
