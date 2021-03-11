@@ -12,7 +12,7 @@ import requests
 from telethon import Button, custom, events, functions
 from youtubesearchpython import SearchVideos
 
-@tbot.on(events.InlineQuery(pattern=r"yt (.*)"))
+@tbot.on(events.InlineQuery(pattern=r"in (.*)"))
 async def inline_id_handler(event: events.InlineQuery.Event):
     builder = event.builder
     k = event.pattern_match.group(1)
