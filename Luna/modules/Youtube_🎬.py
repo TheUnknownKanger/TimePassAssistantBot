@@ -67,7 +67,7 @@ file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
- - /botusername <query>: YouTube Inline Search
+ -/hi: lel
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
