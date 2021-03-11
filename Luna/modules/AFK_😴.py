@@ -72,7 +72,8 @@ async def _(event):
        res = sql.rm_afk(sender.id)
        if res:
           firstname = sender.first_name
-          text = nub.format(firstname)
+          loda = nub.format(firstname)
+          text = f"**{loda}**"
           await event.reply(text, parse_mode="markdown")
         
 
@@ -122,7 +123,7 @@ async def _(event):
             elapsed_time = time.time() - float(etime)
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
-            res = "**{} is AFK !**\n\n**Last seen**: {}".format(fst_name, final)
+            res = "{} is AFK !\nLast seen: {}".format(fst_name, final)
 
             await event.reply(res, parse_mode="markdown")
         else:
@@ -130,7 +131,7 @@ async def _(event):
             elapsed_time = time.time() - float(etime)
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
-            res = "**{} is AFK !**\n\n**Reason**: {}\n\n**Last seen**: {}".format(
+            res = "**{} is AFK !**\nReason: {}\n\nLast seen: {}".format(
                 fst_name, user.reason, final
             )
             await event.reply(res, parse_mode="markdown")
