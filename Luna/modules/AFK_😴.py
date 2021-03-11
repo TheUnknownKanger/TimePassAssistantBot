@@ -20,11 +20,10 @@ async def _(event):
         reason = cmd
      else:
         reason = ""
-     fname = sender.first_name
-     first_name = fname        
+     fname = sender.first_name   
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, first_name, reason, start_time)
+     sql.set_afk(sender.id, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -35,11 +34,10 @@ async def _(event):
         reason = cmd
      else:
         reason = ""
-     fname = sender.first_name 
-     first_name = fname       
+     fname = sender.first_name
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, first_name, reason, start_time)
+     sql.set_afk(sender.id, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -54,7 +52,7 @@ async def _(event):
      first_name = fname   
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, first_name, reason, start_time)
+     sql.set_afk(sender.id, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -114,7 +112,7 @@ async def _(event):
             elapsed_time = time.time() - float(etime)
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
-            res = "**{} is AFK !**\n\n**Last seen**: {}".format(user.first_name, final)
+            res = "**{} is AFK !**\n\n**Last seen**: {}".format(fst_name, final)
 
             await event.reply(res, parse_mode="markdown")
         else:
@@ -123,7 +121,7 @@ async def _(event):
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
             res = "**{} is AFK !**\n\n**Reason**: {}\n\n**Last seen**: {}".format(
-                user.first_name, user.reason, final
+                fst_name, user.reason, final
             )
             await event.reply(res, parse_mode="markdown")
     userid = ""  # after execution
