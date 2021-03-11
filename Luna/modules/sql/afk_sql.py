@@ -12,7 +12,7 @@ class AFK(BASE):
     user_id = Column(Integer, primary_key=True)
     is_afk = Column(Boolean)
     reason = Column(UnicodeText)
-    start_time = Column(UnicodeText)
+    start_time = Column(String)
 
     def __init__(self, user_id, reason="", is_afk=True, start_time=""):
         self.user_id = user_id
