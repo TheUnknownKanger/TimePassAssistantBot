@@ -16,7 +16,7 @@ from Luna import MONGO_DB_URI
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
-db = client["aniegrpbot"]
+db = client["missjuliarobot"]
 approved_users = db.approve
 
 
