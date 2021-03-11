@@ -15,14 +15,12 @@ gitpython
 heroku3
 aiohttp
 gtts
-search_engine_parser
 spamwatch
 coffeehouse
 secureme
 emoji-country-flag
 countryinfo
 html2text
-bing_image_downloader
 apscheduler
 cloudmersive_virus_api_client
 cloudmersive_ocr_api_client
