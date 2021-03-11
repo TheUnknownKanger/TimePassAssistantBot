@@ -1,49 +1,19 @@
 import os
 from Luna import tbot, CMD_HELP
 from Luna.modules.sql import afk_sql as sql
-
+from telethon.tl.functions.users import GetFullUserRequest
 import time
 from telethon import types
 from telethon.tl import functions
 from Luna.events import register
-
-from pymongo import MongoClient
-from Luna import MONGO_DB_URI
 from telethon import events
 
-client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
-approved_users = db.approve
 
-
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-        return isinstance(
-            (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    if isinstance(chat, types.InputPeerUser):          
-        return True
 
 
 @register(pattern=r"(.*?)")
 async def _(event):
-    sender = await event.get_sender()    
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
-
+    sender = await event.get_sender()
     if event.text.startswith("/afk"):
      cmd = event.text[len("/afk ") :]
      if cmd is not None:
@@ -121,6 +91,8 @@ async def _(event):
                 a = c.split()[0]
                 let = await tbot.get_input_entity(a)
                 userid = let.user_id
+                k = await tbot(GetFullUserRequest(let))
+                s = k.user.first_name
         except Exception:
             return
 
@@ -136,12 +108,14 @@ async def _(event):
 
     if sql.is_afk(userid):
         user = sql.check_afk_status(userid)
+        k = await tbot(GetFullUserRequest(let))
+        s = k.user.first_name
         if not user.reason:
             etime = user.start_time
             elapsed_time = time.time() - float(etime)
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
-            res = "**{} is AFK !**\n\n**Last seen**: {}".format(fst_name, final)
+            res = "**{} is AFK !**\n\n**Last seen**: {}".format(s, final)
 
             await event.reply(res, parse_mode="markdown")
         else:
@@ -150,7 +124,7 @@ async def _(event):
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
             res = "**{} is AFK !**\n\n**Reason**: {}\n\n**Last seen**: {}".format(
-                fst_name, user.reason, final
+                s, user.reason, final
             )
             await event.reply(res, parse_mode="markdown")
     userid = ""  # after execution
