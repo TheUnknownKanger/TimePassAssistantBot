@@ -7,8 +7,18 @@ from telethon import types
 from telethon.tl import functions
 from Luna.events import register
 from telethon import events
-
-
+import random
+options = [
+                "{} is here!",
+                "{} is back!",
+                "{} is now in the chat!",
+                "{} is awake!",
+                "{} is back online!",
+                "{} is finally here!",
+                "Welcome back! {}",
+                "Where is {}?\nIn the chat!",
+            ]
+nub = random.choice(options)
 
 
 @register(pattern=r"(.*?)")
@@ -62,7 +72,7 @@ async def _(event):
        res = sql.rm_afk(sender.id)
        if res:
           firstname = sender.first_name
-          text = "**{} is no longer AFK !**".format(firstname)
+          text = nub.format(firstname)
           await event.reply(text, parse_mode="markdown")
         
 
