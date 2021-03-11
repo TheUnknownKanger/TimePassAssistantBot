@@ -119,18 +119,13 @@ async def _(event):
     if sql.is_afk(userid):
         user = sql.check_afk_status(userid)
         if not user.reason:
-            etime = user.start_time
-            elapsed_time = time.time() - float(etime)
-            final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
-            fst_name = "This user"
-            res = "{} is AFK !\nLast seen: {}".format(fst_name, final)
-
+            final = user.start_time
+            res = "**{} is AFK !**".format(final)
             await event.reply(res, parse_mode="markdown")
         else:
             final = user.start_time
-            fst_name = "This user"
-            res = "**{} is AFK !**\nReason: {}\n\nLast seen: {}".format(
-                fst_name, user.reason, final
+            res = "**{} is AFK !\nReason: {}**".format(
+                final, user.reason
             )
             await event.reply(res, parse_mode="markdown")
     userid = ""  # after execution
