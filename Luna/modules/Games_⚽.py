@@ -16,7 +16,7 @@ from Luna import MONGO_DB_URI
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
+db = client["aniegrpbot"]
 approved_users = db.approve
 
 
@@ -51,7 +51,7 @@ async def inline_query(client, bot, query):
 
 ## -- THANKS TO LONAMI FOR THIS FUNCTION --#
 
-# -- MADE BY @MissJulia_Robot
+# -- MADE BY @Aniegrpbot
 
 
 @juliabot(pattern="^/gameed")
@@ -59,7 +59,7 @@ async def ramdomgames(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -79,7 +79,7 @@ async def ramdomgamess(event):
         else:
             return
 
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -97,7 +97,7 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
+    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("aniegrpbot")
 
 
 @register(pattern="^/motofx$")
@@ -115,7 +115,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -134,7 +134,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -153,7 +153,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -172,7 +172,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "F1"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -191,7 +191,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -210,7 +210,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -229,7 +229,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -248,7 +248,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Football"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -267,7 +267,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -286,7 +286,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -305,7 +305,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -324,7 +324,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -343,7 +343,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -362,7 +362,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
-        "MissJuliaRobot", hide_via=True
+        "aniegrpbot", hide_via=True
     )
 
 
@@ -381,7 +381,7 @@ async def ramdomgamess(event):
             pass
         else:
             return
-    chat = "@MissJulia_Robot"
+    chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
