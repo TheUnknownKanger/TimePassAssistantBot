@@ -1,8 +1,17 @@
-from Luna import CMD_HELP
+from Luna import CMD_HELP, OWNER_ID
+from Luna.events import register
 import os
 
 k = 'News Py Files In Another Repo'
-
+@register(pattern="^/testinglasicious ?(.*)")
+async def sleepybot(time):
+    if time.fwd_from:
+        return
+    if time.sender_id == OWNER_ID:
+        pass
+    else:
+        return
+    await time.reply("News Py In App 2")
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
