@@ -20,10 +20,11 @@ async def _(event):
         reason = cmd
      else:
         reason = ""
-     fname = sender.first_name        
+     fname = sender.first_name
+     first_name = fname        
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, reason, start_time)
+     sql.set_afk(sender.id, first_name, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -34,10 +35,11 @@ async def _(event):
         reason = cmd
      else:
         reason = ""
-     fname = sender.first_name        
+     fname = sender.first_name 
+     first_name = fname       
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, reason, start_time)
+     sql.set_afk(sender.id, first_name, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -48,10 +50,11 @@ async def _(event):
         reason = cmd
      else:
         reason = ""
-     fname = sender.first_name        
+     fname = sender.first_name     
+     first_name = fname   
      # print(reason)
      start_time = time.time()
-     sql.set_afk(sender.id, reason, start_time)
+     sql.set_afk(sender.id, first_name, reason, start_time)
      await event.reply(
            "**{} is now AFK !**".format(fname),
            parse_mode="markdown")
@@ -91,8 +94,6 @@ async def _(event):
                 a = c.split()[0]
                 let = await tbot.get_input_entity(a)
                 userid = let.user_id
-                k = await tbot(GetFullUserRequest(let))
-                s = k.user.first_name
         except Exception:
             return
 
@@ -108,14 +109,12 @@ async def _(event):
 
     if sql.is_afk(userid):
         user = sql.check_afk_status(userid)
-        k = await tbot(GetFullUserRequest(let))
-        s = k.user.first_name
         if not user.reason:
             etime = user.start_time
             elapsed_time = time.time() - float(etime)
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
-            res = "**{} is AFK !**\n\n**Last seen**: {}".format(fst_name, final)
+            res = "**{} is AFK !**\n\n**Last seen**: {}".format(user.first_name, final)
 
             await event.reply(res, parse_mode="markdown")
         else:
@@ -124,7 +123,7 @@ async def _(event):
             final = time.strftime("%Hh: %Mm: %Ss", time.gmtime(elapsed_time))
             fst_name = "This user"
             res = "**{} is AFK !**\n\n**Reason**: {}\n\n**Last seen**: {}".format(
-                fst_name, user.reason, final
+                user.first_name, user.reason, final
             )
             await event.reply(res, parse_mode="markdown")
     userid = ""  # after execution
