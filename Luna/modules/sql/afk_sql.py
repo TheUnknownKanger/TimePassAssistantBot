@@ -8,15 +8,14 @@ from sqlalchemy import Boolean, Column, Integer, UnicodeText, String
 
 class AFK(BASE):
     __tablename__ = "afk_users"
-    first_name = Column(UnicodeText)
+
     user_id = Column(Integer, primary_key=True)
     is_afk = Column(Boolean)
     reason = Column(UnicodeText)
     start_time = Column(String)
 
-    def __init__(self, user_id, first_name, reason="", is_afk=True, start_time=""):
+    def __init__(self, user_id, reason="", is_afk=True, start_time=""):
         self.user_id = user_id
-        self.first_name = first_name
         self.reason = reason
         self.is_afk = is_afk
         self.start_time = start_time
@@ -48,10 +47,9 @@ def set_afk(user_id, reason, start_time=""):
     with INSERTION_LOCK:
         curr = SESSION.query(AFK).get(user_id)
         if not curr:
-            curr = AFK(user_id, first_name, reason, True, start_time)
+            curr = AFK(user_id, reason, True, start_time)
         else:
             curr.is_afk = True
-            curr.first_name = first_name
             curr.reason = reason
             curr.start_time = time.time()
         AFK_USERS[user_id] = reason
