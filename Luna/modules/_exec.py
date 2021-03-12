@@ -62,8 +62,8 @@ async def _(event):
         if "sys" in cmd:
           await event.reply("**Can't Access Sys**")
           return
-        if "telethon" in cmd:
-          await event.reply("**Can't Use Telethon**")
+        if "abot" in cmd:
+          await event.reply("**Can't Acess Master Account**")
           return
         pass
     else:
