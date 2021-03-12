@@ -8,7 +8,7 @@ from datetime import datetime
 from Luna import TEMP_DOWNLOAD_DIRECTORY as path
 from Luna import TEMP_DOWNLOAD_DIRECTORY
 from datetime import datetime
-water = './Luna/resources/2326fe2326f8f362760c71bb60d2fee5.jpg'
+water = './Luna/resources/IMG_20210312_133355_666.jpg'
 client = tbot
 
 @register(pattern=r"^/send ?(.*)")
