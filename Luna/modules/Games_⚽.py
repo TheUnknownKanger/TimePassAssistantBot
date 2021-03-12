@@ -1,4 +1,4 @@
-from Luna import CMD_HELP, OWNER_ID
+from Luna import CMD_HELP
 import os
 from Luna import tbot
 from telethon import *
@@ -6,7 +6,7 @@ from telethon import events
 from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.types import *
-
+OWNER_ID = 1309680371
 from Luna import *
 
 from Luna.events import register, lunabot as juliabot
