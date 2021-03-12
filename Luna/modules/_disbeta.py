@@ -6,6 +6,7 @@ import json
 import os
 from typing import Optional
 from Luna import DRAGONS
+from telethon.tl.functions.users import GetFullUserRequest
 ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "Luna/advanced_users.json")
 
 @register(pattern="^/addsudo ?(.*)")
@@ -20,6 +21,8 @@ async def sudo(event):
        entity = await tbot.get_input_entity(cid)
        r_sender_id = entity.user_id
        user_id = r_sender_id
+       replied_user = await tbot(GetFullUserRequest(k))
+       user = replied_user.user.first_name
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
     if user_id in DRAGONS:
@@ -31,8 +34,8 @@ async def sudo(event):
     with open(ELEVATED_USERS_FILE, "w") as outfile:
         json.dump(data, outfile, indent=4)
     rep = "\nSuccessfully set Disaster level of {} to Dragon!".format(
-            user_member.first_name
+            user
         )
-    await event.reply("In Beta Weiti Adding")
+    await event.reply(rep)
 
    
