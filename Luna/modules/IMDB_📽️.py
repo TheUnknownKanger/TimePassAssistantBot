@@ -1,8 +1,6 @@
 from Luna import CMD_HELP
 import os
 from Luna import tbot
-from Luna import MONGO_DB_URI
-from pymongo import MongoClient
 import re
 
 import bs4
@@ -13,37 +11,10 @@ from Luna.events import register
 
 langi = "en"
 
-client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
-approved_users = db.approve
-
-
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-        return isinstance(
-            (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    if isinstance(chat, types.InputPeerUser):
-        return True
-
 
 @register(pattern="^/imdb (.*)")
 async def imdb(e):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if e.is_group:
-        if await is_register_admin(e.input_chat, e.message.sender_id):
-            pass
-        elif e.chat_id == iid and e.sender_id == userss:
-            pass
-        else:
-            return
+    
 
     try:
         movie_name = e.pattern_match.group(1)
