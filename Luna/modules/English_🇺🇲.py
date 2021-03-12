@@ -94,7 +94,7 @@ async def _(event):
     text = event.text[len("/ud "):]
     results = requests.get(f'http://api.urbandictionary.com/v0/define?term={text}').json()
     try:
-        reply_text = f'*{text}*\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
+        reply_text = f'**{text}*"\n\n{results["list"][0]["definition"]}\n\n_{results["list"][0]["example"]}_'
     except:
         reply_text = "No results found."
     await event.reply(reply_text)
