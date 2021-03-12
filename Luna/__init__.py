@@ -34,6 +34,8 @@ if ENV:
     WHITE_LIST = {int(x) for x in os.environ.get("WHITE_LIST", "").split()}
     API_KEY = os.environ.get("API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
+    KEY_2 = os.environ.get("KEY_2", None)
+    HASH_2 = os.environ.get("HASH_2", None)
     SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
     OPENWEATHERMAP_ID = os.environ.get("OPENWEATHERMAP_ID", None)
     DB_URI = os.environ.get("DATABASE_URL")
@@ -55,6 +57,7 @@ if ENV:
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     VIRUS_API_KEY = os.environ.get("VIRUS_API_KEY", None)
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
+    STRING_2 = os.environ.get("STRING_2", None)
     MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
     TEMPORARY_DATA = os.environ.get("TEMPORARY_DATA", None)
     UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL", None)
@@ -82,12 +85,12 @@ if ENV:
         sys.exit(1)
     api = 1822414
     key = "46f1888d3f68396bad08c92ac4d7f00a"
-    ss = "1BVtsOJoBu7yjDRoHp5Ivhp4pMMkVgzVsNKLmFj12yFTDMmSqw34kQXOg1AeeWmT8bheY8o0DFfxewhTiz0YlqS-lZ4ZpSYknEqii2G1hvlclN0yMaUFouTZGKnkxCoxPp5C5WqejPM5pfiYGz6MaCXtLPgSrakywE_Q9_8c9UE72pNLhciAmAmkNtrHFld19lIwjz4lnUocbcWui9Y3AhY5_rDnG0AcU4LzgKb-W_kypsHe5-fBobZOdYuSuwUB_1sX1TDjGEfLGYMJzOPcwsWXJtzMt2vlmymKHliOl9OnVkh8EKQTaLkJ5qkpoHSieMpluKPuBe66kXPXxwGJ9YXEV6tZQfSw="
-    abot = TelegramClient (StringSession(ss), api, key)
-    try:
-        abot.start()
-    except BaseException:
-        pass
+    if STRING_2:
+         abot = TelegramClient(StringSession(STRING_2), KEY_2, HASH_2)
+         try:
+            abot.start()
+         except BaseException:
+            pass
     try:
         ubot.start()
     except BaseException:
