@@ -16,9 +16,6 @@ from Luna import *
 
 from Luna.events import register
 
-
-
-
 @register(pattern=r"^/luna(?: |$)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
@@ -29,14 +26,15 @@ async def _(event):
         server = f"https://api.wolframalpha.com/v1/spoken?appid={appid}&i={i}"
         res = get(server)
         if res == "Wolfram Alpha did not understand your input":
-           await event.reply("Sorry I can't understand")
-           return   
+            await event.reply("Sorry I can't understand")
+            return
         await event.reply(f"**{i}**\n\n" + res.text, parse_mode="markdown")
 
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         required_file_name = await tbot.download_media(
-            previous_message, TEMP_DOWNLOAD_DIRECTORY)
+            previous_message, TEMP_DOWNLOAD_DIRECTORY
+        )
         if IBM_WATSON_CRED_URL is None or IBM_WATSON_CRED_PASSWORD is None:
             await event.reply(
                 "You need to set the required ENV variables for this module. \nModule stopping"
@@ -60,8 +58,7 @@ async def _(event):
                 transcript_confidence = ""
                 for alternative in results:
                     alternatives = alternative["alternatives"][0]
-                    transcript_response += " " + str(
-                        alternatives["transcript"])
+                    transcript_response += " " + str(alternatives["transcript"])
                 if transcript_response != "":
                     string_to_show = "{}".format(transcript_response)
                     appid = WOLFRAM_ID
@@ -88,7 +85,9 @@ async def _(event):
                         )
                     os.remove("results.mp3")
                     os.remove(required_file_name)
-                elif transcript_response == "Wolfram Alpha did not understand your input":
+                if (
+                    answer == "Wolfram Alpha did not understand your input"
+                ):
                     try:
                         answer = "Sorry I can't understand"
                         tts = gTTS(answer, tld="com", lang="en")
@@ -117,10 +116,13 @@ async def _(event):
 
 @register(pattern="^/howdoi (.*)")
 async def howdoi(event):
+    if event.fwd_from:
+        return
     str = event.pattern_match.group(1)
     jit = subprocess.check_output(["howdoi", f"{str}"])
     pit = jit.decode()
     await event.reply(pit)
+
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
@@ -128,9 +130,9 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **For text assistant**
- - /luna <question>: Ask julia any question and it will give accurate reply. For eg: `/julia where is Taj Mahal`, `/julia what is the age of Virat Kohli` etc..
+ - /julia <question>: Ask julia any question and it will give accurate reply. For eg: `/julia where is Taj Mahal`, `/julia what is the age of Virat Kohli` etc..
 **For voice assistant**
- - /luna: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
+ - /julia: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
 
 **Terminal Assistant**
  - /howdoi <question>: Get all coding related answers from Julia. Syntax: `/howdoi print hello world in python`
@@ -139,9 +141,4 @@ __help__ = """
 The question should be a meaningful one otherwise you will get no response !
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
