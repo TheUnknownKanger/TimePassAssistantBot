@@ -9,27 +9,8 @@ from telethon.tl.types import *
 
 from Luna import *
 
-from Luna.events import register, lunabot as juliabot
+from Luna.events import register, lunabot
 
-from pymongo import MongoClient
-from Luna import MONGO_DB_URI
-
-client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
-approved_users = db.approve
-
-
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-        return isinstance(
-            (
-                await tbot(functions.channels.GetParticipantRequest(chat, user))
-            ).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    if isinstance(chat, types.InputPeerUser):
-        return True
 
 
 async def inline_query(client, bot, query):
@@ -51,7 +32,7 @@ async def inline_query(client, bot, query):
 
 ## -- THANKS TO LONAMI FOR THIS FUNCTION --#
 
-# -- MADE BY @Aniegrpbot
+# -- MADE BY @MissJulia_Robot
 
 
 @juliabot(pattern="^/gameed")
@@ -59,7 +40,7 @@ async def ramdomgames(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "1+2=3"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -67,19 +48,9 @@ async def ramdomgames(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
 
-    chat = "@Aniegrpbot"
+    chat = "@AnieGrpbot"
     async with tbot.conversation(chat) as conv:
         try:
             response = conv.wait_event(
@@ -97,24 +68,14 @@ async def ramdomgamess(event):
 async def ramdomgamesk(event):
     if event.fwd_from:
         return
-    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("aniegrpbot")
+    await (await inline_query(ubot, "@gamee", "MotoFX"))[0].click("MissJuliaRobot")
 
 
 @register(pattern="^/motofx$")
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -134,7 +95,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Penalty Shooter"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -142,17 +103,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -172,7 +123,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "F1"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -180,17 +131,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -210,7 +151,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Karate"))[1].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -218,17 +159,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -248,7 +179,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Football"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -256,17 +187,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -286,7 +207,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Neon Blaster"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -294,17 +215,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -324,7 +235,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Disco"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -332,17 +243,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
@@ -362,7 +263,7 @@ async def ramdomgamesk(event):
     if event.fwd_from:
         return
     await (await inline_query(ubot, "@gamee", "Gravity"))[0].click(
-        "aniegrpbot", hide_via=True
+        "MissJuliaRobot", hide_via=True
     )
 
 
@@ -370,17 +271,7 @@ async def ramdomgamesk(event):
 async def ramdomgamess(event):
     if event.fwd_from:
         return
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
+    
     chat = "@Aniegrpbot"
     async with tbot.conversation(chat) as conv:
         try:
