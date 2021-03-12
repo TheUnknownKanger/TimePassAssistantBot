@@ -17,9 +17,9 @@ async def sudo(event):
        cid = event.pattern_match.group(1)
        if cid.isnumeric():
            cid = int(cid)
-        entity = await tbot.get_input_entity(cid)
-        r_sender_id = entity.user_id
-        user_id = r_sender_id
+       entity = await tbot.get_input_entity(cid)
+       r_sender_id = entity.user_id
+       user_id = r_sender_id
     with open(ELEVATED_USERS_FILE, "r") as infile:
         data = json.load(infile)
     if user_id in DRAGONS:
