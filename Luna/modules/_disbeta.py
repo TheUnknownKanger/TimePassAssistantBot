@@ -30,6 +30,9 @@ async def sudo(event):
     
     with open(ELEVATED_USERS_FILE, "w") as outfile:
         json.dump(data, outfile, indent=4)
+    rep = "\nSuccessfully set Disaster level of {} to Dragon!".format(
+            user_member.first_name
+        )
     await event.reply("In Beta Weiti Adding")
 
    
