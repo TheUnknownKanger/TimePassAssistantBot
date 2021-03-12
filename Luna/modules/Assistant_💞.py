@@ -25,10 +25,10 @@ async def _(event):
         appid = WOLFRAM_ID
         server = f"https://api.wolframalpha.com/v1/spoken?appid={appid}&i={i}"
         res = get(server)
-        if res == "Wolfram Alpha did not understand your input":
+        if "Wolfram Alpha did not understand your input" in res:
             await event.reply("Sorry I can't understand")
-            return
-        await event.reply(f"**{i}**\n\n" + res.text, parse_mode="markdown")
+        else:
+            await event.reply(f"**{i}**\n\n" + res.text, parse_mode="markdown")
 
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
