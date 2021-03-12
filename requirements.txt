@@ -28,3 +28,4 @@ hachoir
 wikipedia
 youtube-search-python
 dateparser
+speedtest-cli
