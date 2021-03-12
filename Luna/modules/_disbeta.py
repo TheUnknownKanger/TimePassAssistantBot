@@ -8,7 +8,7 @@ from typing import Optional
 from Luna import DRAGONS
 from telethon.tl.functions.users import GetFullUserRequest
 ELEVATED_USERS_FILE = os.path.join(os.getcwd(), "Luna/advanced_users.json")
-
+ 
 @register(pattern="^/addsudo ?(.*)")
 async def sudo(event):
     if event.reply_to_msg_id:
