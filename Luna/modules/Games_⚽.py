@@ -9,7 +9,7 @@ from telethon.tl.types import *
 
 from Luna import *
 
-from Luna.events import register, lunabot
+from Luna.events import register, lunabot as juliabot
 
 
 
