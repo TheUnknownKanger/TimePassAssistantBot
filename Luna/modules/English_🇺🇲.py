@@ -6,7 +6,6 @@ from Luna import CMD_HELP, MONGO_DB_URI
 from Luna.events import register
 from telethon import *
 from telethon.tl import functions
-from pymongo import MongoClient
 import os
 import urllib.request
 from typing import List
@@ -15,45 +14,8 @@ from PyDictionary import PyDictionary
 from telethon.tl import types
 from telethon.tl.types import *
 
-client = MongoClient()
-client = MongoClient(MONGO_DB_URI)
-db = client["missjuliarobot"]
-approved_users = db.approve
-
-async def is_register_admin(chat, user):
-    if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
-
-        return isinstance(
-            (await
-             tbot(functions.channels.GetParticipantRequest(chat,
-                                                           user))).participant,
-            (types.ChannelParticipantAdmin, types.ChannelParticipantCreator),
-        )
-    if isinstance(chat, types.InputPeerChat):
-
-        ui = await tbot.get_peer_id(user)
-        ps = (await tbot(functions.messages.GetFullChatRequest(chat.chat_id)
-                         )).full_chat.participants.participants
-        return isinstance(
-            next((p for p in ps if p.user_id == ui), None),
-            (types.ChatParticipantAdmin, types.ChatParticipantCreator),
-        )
-    return None
-
-
 @register(pattern="^/tl ?(.*)")
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if (await is_register_admin(event.input_chat, event.message.sender_id)):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
     input_str = event.pattern_match.group(1)
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
@@ -90,17 +52,6 @@ URL = "http://services.gingersoftware.com/Ginger/correct/json/GingerTheText"
 
 @register(pattern="^/spell(?: |$)(.*)")
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if (await is_register_admin(event.input_chat, event.message.sender_id)):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
     ctext = await event.get_reply_message()
     msg = ctext.text
     #  print (msg)
@@ -129,17 +80,6 @@ dictionary = PyDictionary()
 
 @register(pattern="^/define")
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if (await is_register_admin(event.input_chat, event.message.sender_id)):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
     text = event.text[len("/define "):]
     word = f"{text}"
     let = dictionary.meaning(word)
@@ -152,17 +92,6 @@ async def _(event):
 
 @register(pattern="^/synonyms")
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if (await is_register_admin(event.input_chat, event.message.sender_id)):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
     text = event.text[len("/synonyms "):]
     word = f"{text}"
     let = dictionary.synonym(word)
@@ -175,17 +104,6 @@ async def _(event):
 
 @register(pattern="^/antonyms")
 async def _(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if (await is_register_admin(event.input_chat, event.message.sender_id)):
-            pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
-            return
     text = message.text[len("/antonyms "):]
     word = f"{text}"
     let = dictionary.antonym(word)
