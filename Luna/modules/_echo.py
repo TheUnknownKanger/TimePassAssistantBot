@@ -13,9 +13,12 @@ async def echo(event):
   else:
         return
   if event.reply_to_msg_id:
-          lel = await event.get_reply_message()
-          ok = lel.text
+          previous_message = await event.get_reply_message()
+          k = await tbot.send_message(
+                event.chat_id,
+                previous_message
+             )
   else:
           ok = event.pattern_match.group(1)
-  await event.delete()
-  await tbot.send_message(event.chat_id, ok)
+          await event.delete()
+          await tbot.send_message(event.chat_id, ok)
