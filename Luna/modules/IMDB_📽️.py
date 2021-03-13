@@ -1,4 +1,4 @@
-from Luna import CMD_HELP
+from Luna import CMD_HELP, tbot
 import os
 from Luna import tbot
 import re
@@ -109,6 +109,41 @@ async def imdb(e):
         )
     except IndexError:
         await e.reply("Please enter a valid movie name !")
+import sys
+import base64
+from rotten_tomatoes_client import RottenTomatoesClient
+
+@register(pattern="^/rt (.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    result = RottenTomatoesClient.search(term=input_str, limit=1)
+    
+    l = result.get("movies")[0]
+    name = l.get("name")
+    year = l.get("year")
+    image = l.get("image")
+    Classe = l.get("meterClass")
+    Meter = l.get("meterScore")
+    ullu = l.get("url")
+    url = f"http://rottentomatoes.com{ullu}"
+    Ceset = l.get("castItems")
+    cast = ""
+    for Hitler in Ceset:
+      cast += Hitler.get("name") +"\n"
+    caption = f"""Name : {name}
+Year Of Release : {year}
+Link : {url}
+Meter Class : {Classe}
+Meter Score : {Meter}
+Cast : 
+{cast}"""
+    await tbot.send_message(
+        event.chat_id,
+        caption,
+    )
+
 
 
 file_help = os.path.basename(__file__)
@@ -117,6 +152,7 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  - /imdb - Get full info about a movie with imdb.com
+ - /rt - Get Full Details including Cast of a movie from RottenTomatoes
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
