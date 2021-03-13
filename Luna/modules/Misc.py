@@ -30,6 +30,10 @@ file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
+ - /cash : currency converter
+Example syntax: `/cash 1 USD INR`
+ - /crypto : Crypto Value
+Example syntax: `/crypto inr btc`
  - /wall <topic>: Searches best wallpaper on the given topic and returns them
  - /country: Gather's Info About The Given Country
  - /encrypt: Encrypts The Given Text
