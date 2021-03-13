@@ -62,7 +62,7 @@ if ENV:
     VIRUS_API_KEY = os.environ.get("VIRUS_API_KEY", None)
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
     STRING_2 = os.environ.get("STRING_2", None)
-    MONGO_DB_URI = os.environ.get("MONGO_DB_URI", None)
+    MONGO_DB_URI = os.environ.get("ORMONGO_RS_URL", None)
     TEMPORARY_DATA = os.environ.get("TEMPORARY_DATA", None)
     UPSTREAM_REPO_URL = os.environ.get("UPSTREAM_REPO_URL", None)
     CONSOLE_LOGGER_VERBOSE = os.environ.get("CONSOLE_LOGGER_VERBOSE", "False")
