@@ -33,6 +33,7 @@ __help__ = """
  - /cash : currency converter
 Example syntax: `/cash 1 USD INR`
  - /crypto : Crypto Value
+ - /read <lang>: Type in reply to a image to extract the text from it
 Example syntax: `/crypto inr btc`
  - /wall <topic>: Searches best wallpaper on the given topic and returns them
  - /country: Gather's Info About The Given Country
