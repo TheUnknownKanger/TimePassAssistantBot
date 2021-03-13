@@ -13,6 +13,7 @@ async def echo(event):
   else:
         return
   if event.reply_to_msg_id:
+          await event.delete()
           previous_message = await event.get_reply_message()
           k = await tbot.send_message(
                 event.chat_id,
