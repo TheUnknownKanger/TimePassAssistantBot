@@ -39,8 +39,6 @@ Example syntax: `/crypto inr btc`
  - /country: Gather's Info About The Given Country
  - /encrypt: Encrypts The Given Text
  - /decrypt: Decrypts Previously Ecrypted Text
-
-**Note:** Encrypted Using 69 Bit RSA Encryption
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
