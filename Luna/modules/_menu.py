@@ -32,15 +32,18 @@ async def start(event):
             buttons=[
                 [
                     Button.url(
-                        "Add To Group  👥", "t.me/aniegrpbot?startgroup=true"
-                    ),
-                    Button.url(
-                        "Support Group 🎭", "https://t.me/lunabotsupport"
+                        "🤖Add Me To Your Group", "t.me/aniegrpbot?startgroup=true"
                     ),
                 ],
                 [
+                    Button.url(
+                        "🔔Support Group", "https://t.me/lunabotsupport"
+                    ),
+                    Button.url("🔊Updates Channel", "https://t.me/lunagbanlogs"
+                    ),
+                  ],
+                  [
                     Button.inline("Commands ❓", data="help_menu"),
-                    Button.inline("Close Menu 🔒", data="start_again"),
                 ],
             ],
         )
