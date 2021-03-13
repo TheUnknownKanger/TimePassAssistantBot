@@ -52,8 +52,8 @@ async def start(event):
 async def start_again(event):
     if not event.is_group:
         await event.edit(
-            "The menu is closed 🔒",
-            buttons=[[Button.inline("Reopen Menu 🔑", data="reopen_again")]],
+            "The menu is closed",
+            buttons=[[Button.inline("Reopen Menu", data="reopen_again")]],
         )
     else:
         await event.reply("I am Alive 😘")
@@ -146,7 +146,7 @@ async def on_plug_in_callback_query_handler(event):
     try:
         await event.edit(
             reply_pop_up_alert, buttons=[
-                [Button.inline("⏪ Back", data="go_back")]]
+                [Button.inline("Back", data="go_back")]]
         )
     except BaseException:
         with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
