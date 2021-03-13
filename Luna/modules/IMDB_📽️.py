@@ -2,7 +2,6 @@ from Luna import CMD_HELP, tbot
 import os
 from Luna import tbot
 import re
-
 import bs4
 import requests
 from telethon import types
@@ -14,8 +13,8 @@ langi = "en"
 
 @register(pattern="^/imdb (.*)")
 async def imdb(e):
-    
-
+    if e.fwd_from:
+        return
     try:
         movie_name = e.pattern_match.group(1)
         remove_space = movie_name.split(" ")
@@ -23,7 +22,7 @@ async def imdb(e):
         page = requests.get(
             "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + final_name + "&s=all"
         )
-        lnk = str(page.status_code)
+        str(page.status_code)
         soup = bs4.BeautifulSoup(page.content, "lxml")
         odds = soup.findAll("tr", "odd")
         mov_title = odds[0].findNext("td").findNext("td").text
@@ -108,44 +107,11 @@ async def imdb(e):
             parse_mode="HTML",
         )
     except IndexError:
-        await e.reply("Please enter a valid movie name !")
-import sys
-import base64
-from rotten_tomatoes_client import RottenTomatoesClient
-
-@register(pattern="^/rt (.*)")
-async def _(event):
-    if event.fwd_from:
-        return
-    input_str = event.pattern_match.group(1)
-    result = RottenTomatoesClient.search(term=input_str, limit=1)
-    
-    l = result.get("movies")[0]
-    name = l.get("name")
-    year = l.get("year")
-    image = l.get("image")
-    Classe = l.get("meterClass")
-    Meter = l.get("meterScore")
-    ullu = l.get("url")
-    url = f"http://rottentomatoes.com{ullu}"
-    Ceset = l.get("castItems")
-    cast = ""
-    for Hitler in Ceset:
-      cast += Hitler.get("name") +"\n"
-    caption = f"""Name : {name}
-Year Of Release : {year}
-Link : {url}
-Meter Class : {Classe}
-Meter Score : {Meter}
-Cast : 
-{cast}"""
-    await tbot.send_message(
-        event.chat_id,
-        caption,
-    )
+        await e.reply("Plox enter **Valid movie name** kthx")
 
 
 
+ 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
