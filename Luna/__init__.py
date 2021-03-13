@@ -2,6 +2,10 @@ import logging
 import os
 import sys
 import time
+import os
+import urllib.parse as urlparse
+import bmemcached
+import json
 from logging import basicConfig
 from logging import DEBUG
 from logging import getLogger
@@ -96,5 +100,6 @@ if ENV:
     except BaseException:
         print("Error Dude !")
         sys.exit(1)
+    mc = bmemcached.Client(os.environ.get('MEMCACHEDCLOUD_SERVERS').split(','), os.environ.get('MEMCACHEDCLOUD_USERNAME'), os.environ.get('MEMCACHEDCLOUD_PASSWORD'))
 else:
     sys.exit(1)
