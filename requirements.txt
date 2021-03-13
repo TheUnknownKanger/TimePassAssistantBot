@@ -31,3 +31,5 @@ dateparser
 speedtest-cli
 python-binary-memcached
 pytest
+rotten_tomatoes_client
+
