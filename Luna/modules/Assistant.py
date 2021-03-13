@@ -130,9 +130,9 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **For text assistant**
- - /julia <question>: Ask julia any question and it will give accurate reply. For eg: `/julia where is Taj Mahal`, `/julia what is the age of Virat Kohli` etc..
+ - /luna <question>: Ask julia any question and it will give accurate reply. For eg: `/julia where is Taj Mahal`, `/julia what is the age of Virat Kohli` etc..
 **For voice assistant**
- - /julia: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
+ - /luna: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
 
 **Terminal Assistant**
  - /howdoi <question>: Get all coding related answers from Julia. Syntax: `/howdoi print hello world in python`
