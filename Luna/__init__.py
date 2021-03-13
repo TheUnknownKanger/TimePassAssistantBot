@@ -19,7 +19,7 @@ CMD_LIST = {}
 CMD_HELP = {}
 LOAD_PLUG = {}
 LUNA_VERSION = "1.8.1"
-
+Telethon_Version = "1.20.0"
 # enable logging
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
