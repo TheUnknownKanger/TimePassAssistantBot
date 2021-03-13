@@ -32,4 +32,5 @@ speedtest-cli
 python-binary-memcached
 pytest
 rotten_tomatoes_client
+cryptocompare==0.7.3
 
