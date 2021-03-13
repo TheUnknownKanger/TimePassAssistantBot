@@ -1,13 +1,15 @@
-from Luna import tbot, OWNER_ID as owner, SUDO_USERS as su, DEV_USERS as dev
+from Luna import tbot, OWNER_ID, SUDO_USERS, DEV_USERS
 from Luna.events import register
 @register(pattern="^/echo ?(.*)")
-async def legend(are):
-  if event.sender_id == owner:
-             pass
-  elif event.sender_id in su:
-             pass
-  elif event.sender_id in dev:
-             pass
+async def echo(event):
+  if event.fwd_from:
+        return
+  if event.sender_id == OWNER_ID:
+        pass
+  elif event.sender_id in SUDO_USERS:
+        pass
+  elif event.sender_id in DEV_USERS:
+        pass
   else:
         return
   if event.reply_to_msg_id:
