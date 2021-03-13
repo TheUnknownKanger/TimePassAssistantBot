@@ -29,3 +29,4 @@ wikipedia
 youtube-search-python
 dateparser
 speedtest-cli
+python-binary-memcached
