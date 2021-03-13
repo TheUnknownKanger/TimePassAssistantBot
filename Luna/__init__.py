@@ -87,8 +87,6 @@ if ENV:
         ubot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
     else:
         sys.exit(1)
-    api = 1822414
-    key = "46f1888d3f68396bad08c92ac4d7f00a"
     if STRING_2:
          abot = TelegramClient(StringSession(STRING_2), KEY_2, HASH_2)
          try:
