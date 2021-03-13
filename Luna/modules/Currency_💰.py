@@ -2,7 +2,7 @@ from Luna import CMD_HELP
 import os
 from Luna import tbot
 import requests
-
+import cryptocompare
 from Luna import CASH_API_KEY
 
 from telethon import types
@@ -56,6 +56,27 @@ async def _(event):
         )
 
 
+@register(pattern="^/crypto (.*)")
+async def _(event):
+    if event.fwd_from:
+        return
+    input_str = event.pattern_match.group(1)
+    stark = input_str.split(" ", 1)
+    curreo = stark[0]
+    currency1 = stark[1]
+    curre = curreo.upper()
+    currency = currency1.upper()
+    take = ""
+    take = cryptocompare.get_price(currency, curr=curre)
+    t = take.get(currency)
+    k = curre
+    q = str(t.get(curre))
+
+    await event.reply(
+        f"<b><u>Conversion complete</b></u> \n<b>cryptocurrency</b>:-  <code>{currency}</code> \n<b>cryptocurrency value in </b> <code>{k}</code> <b> is :- </b> <code> {q}</code>",
+        parse_mode="HTML",
+    )
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
@@ -63,6 +84,8 @@ file_helpo = file_help.replace("_", " ")
 __help__ = """
  - /cash : currency converter
 Example syntax: `/cash 1 USD INR`
+ - /crypto : Crypto Value
+Example syntax: `/crypto inr btc`
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
