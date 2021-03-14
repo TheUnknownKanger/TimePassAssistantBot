@@ -17,6 +17,24 @@ async def who(event):
         message_id_to_reply = None
     await event.reply(caption, parse_mode="html")
 
+@register(pattern="^/id$")
+async def useridgetter(target):
+    message = await target.get_reply_message()
+    if not message:
+        self_user = await target.get_sender()
+        user_id = self_user.id
+        name = self_user.first_name
+        await target.reply("User {}'s id is `{}`.".format(name, user_id))
+
+    if message:
+        if not message.forward:
+            user_id = message.sender.id
+            name = message.sender.first_name
+        else:
+            user_id = message.forward.sender.id
+            name = message.forward.sender.first_name
+        await target.reply("User {}'s id is `{}`.".format(name, user_id))
+
 
 async def get_user(event):
     if event.reply_to_msg_id:
