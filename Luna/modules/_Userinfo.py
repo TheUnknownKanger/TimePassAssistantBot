@@ -89,14 +89,6 @@ async def detail(replied_user, event):
     if username:
       caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
-    if user_id in sudo:
-        caption += "\nStatus: <b>Sudo User</b>"
-    if user_id in dev:
-        caption += "\nStatus: <b>Dev User</b>"
-    if user_id == owner:
-        caption += "\nStatus: <b>Owner</b>"
-    if user_id == 1624337697:
-        caption += "\nStatus: <b>Me</b>"
     return caption
  except Exception:
         print("lel")
