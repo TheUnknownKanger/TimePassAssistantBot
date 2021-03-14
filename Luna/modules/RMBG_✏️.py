@@ -31,10 +31,10 @@ async def _(event):
             downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
             )
-        await s.delete()
         except Exception as e:
             await event.reply(str(e))
             return
+        await s.delete()
         else:
             output_file_name = ReTrieveFile(downloaded_file_name)
             os.remove(downloaded_file_name)
