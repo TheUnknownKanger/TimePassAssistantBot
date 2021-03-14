@@ -56,6 +56,6 @@ async def cpunfo(event):
         cpuu += f"Core {i}  : {percentage}%\n"
     cpuu += "Total CPU Usage\n"
     cpuu += f"All Core: {psutil.cpu_percent()}%\n"
-    help_string = "**Cpu Info**"
+    help_string = "**Cpu Info**\n"
     help_string += f"{str(cpuu)}\n"
     await event.reply(help_string)
