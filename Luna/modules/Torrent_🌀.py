@@ -28,7 +28,7 @@ async def _(event):
                     "Continue", data=f"torrent-{sender}|{search}|{index}|{chatid}|{msgid}"
                 )
             ],
-            [Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}")],
+            [Button.inline("Close", data=f"torrentstop-{sender}|{chatid}|{msgid}")],
         ],
     )
 
