@@ -26,7 +26,7 @@ async def alive(event):
           pingtime = end_time - start_time
           time = str(round(pingtime.total_seconds(), 2)) + "s"
           if "Invalid" in response.text:
-                reply = f"SK Key : sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+                reply = f"SK Key : {ok}\n"
                 reply += "Result: Invalid API Key\n"
                 reply += "RESPONSE: ❌Invalid Key❌\n"
                 reply += f"Time: {time}\n"
