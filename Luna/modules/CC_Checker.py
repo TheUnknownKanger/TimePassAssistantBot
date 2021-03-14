@@ -26,20 +26,25 @@ async def alive(event):
           pingtime = end_time - start_time
           time = str(round(pingtime.total_seconds(), 2)) + "s"
           if "Invalid" in response.text:
-                reply = f"SK Key : {ok}\n"
+                reply = f"SK Key : sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
                 reply += "Result: Invalid API Key\n"
                 reply += "RESPONSE: ❌Invalid Key❌\n"
                 reply += f"Time: {time}\n"
                 reply += f"Checked By **{fname}**"
           elif "Test" in response.text:
-                reply = f"SK Key : {ok}\n"
+                reply = f"SK Key : sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
                 reply += "Result: Test mode Key\n"
                 reply += "RESPONSE: ❌Test Mode Key❌\n"
                 reply += f"Time: {time}\n"
                 reply += f"Checked By **{fname}**"
+          elif "Valid" in response.text:
+                reply = f"SK Key : sk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n"
+                reply += "Result: LIVE\n"
+                reply += "RESPONSE: ✅Valid Key\n"
+                reply += f"Time: {time}\n"
+                reply += f"Checked By **{fname}**"
           else:
-                reply = "None"
-                print("ok")
+                reply = "Error, Report @LunaBotSupport"
           await event.reply(reply)        
 
 
