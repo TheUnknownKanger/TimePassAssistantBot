@@ -1,4 +1,4 @@
-from Luna import CMD_HELP, BOT_ID
+from Luna import CMD_HELP, BOT_ID, OWNER_ID
 import os
 from Luna import tbot
 from time import time
@@ -36,8 +36,11 @@ async def can_change_info(message):
 @register(pattern="^/addchat$")
 async def _(event):
     if event.is_group:
+      if not sender_id == OWNER_ID:
         if not await can_change_info(message=event):
             return
+      else:
+        pass
     else:
         return
 
