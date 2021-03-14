@@ -37,6 +37,8 @@ async def alive(event):
                 reply += "RESPONSE: ❌Test Mode Key❌/n"
                 reply += f"Time: {time}
                 reply += f"Checked By **{fname}**"
+          else:
+                reply = "None"
           await event.reply(reply)        
 
 
