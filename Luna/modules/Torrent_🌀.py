@@ -80,7 +80,7 @@ async def paginate_news(event):
                 Button.inline(
                     "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Close", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
                     "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
@@ -144,7 +144,7 @@ async def paginate_prevtorrent(event):
                 Button.inline(
                     "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Close", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
                     "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
@@ -208,7 +208,7 @@ async def paginate_nexttorrent(event):
                 Button.inline(
                     "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Close", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
                     "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
@@ -294,7 +294,7 @@ async def paginate_nexttorrent(event):
                 Button.inline(
                     "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Close", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
                     "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
