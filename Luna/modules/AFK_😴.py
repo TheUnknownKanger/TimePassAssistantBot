@@ -35,7 +35,7 @@ async def _(event):
      start_time = fname
      sql.set_afk(sender.id, reason, start_time)
      await event.reply(
-           "**{} is now AFK !**".format(fname),
+           "{} is now AFK !".format(fname),
            parse_mode="markdown")
      return
     if event.text.startswith("Brb"):
@@ -49,7 +49,7 @@ async def _(event):
      start_time = fname
      sql.set_afk(sender.id, reason, start_time)
      await event.reply(
-           "**{} is now AFK !**".format(fname),
+           "{} is now AFK !".format(fname),
            parse_mode="markdown")
      return
     if event.text.startswith("brb"):
@@ -64,7 +64,7 @@ async def _(event):
      start_time = fname
      sql.set_afk(sender.id, reason, start_time)
      await event.reply(
-           "**{} is now AFK !**".format(fname),
+           "{} is now AFK !".format(fname),
            parse_mode="markdown")
      return
 
@@ -73,7 +73,7 @@ async def _(event):
        if res:
           firstname = sender.first_name
           loda = nub.format(firstname)
-          text = f"**{loda}**"
+          text = f"{loda}"
           await event.reply(text, parse_mode="markdown")
         
 
@@ -120,11 +120,11 @@ async def _(event):
         user = sql.check_afk_status(userid)
         if not user.reason:
             final = user.start_time
-            res = "**{} is AFK !**".format(final)
+            res = "{} is AFK !".format(final)
             await event.reply(res, parse_mode="markdown")
         else:
             final = user.start_time
-            res = "**{} is AFK !\nReason: {}**".format(
+            res = "{} is AFK !\nReason: {}".format(
                 final, user.reason
             )
             await event.reply(res, parse_mode="markdown")
