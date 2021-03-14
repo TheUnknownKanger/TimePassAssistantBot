@@ -44,8 +44,22 @@ async def cpunfo(event):
          pass
     else:
          return
+    try:
+    uname = platform.uname()
+    softw = "System Information\n"
+    softw += f"System   : {uname.system}\n"
+    softw += f"Release  : {uname.release}\n"
+    softw += f"Version  : {uname.version}\n"
+    softw += f"Machine  : {uname.machine}\n"
+    # Boot Time
+    boot_time_timestamp = psutil.boot_time()
+    bt = datetime.fromtimestamp(boot_time_timestamp)
+    softw += f"Boot Time: {bt.day}/{bt.month}/{bt.year}  {bt.hour}:{bt.minute}:{bt.second}\n"
+    # CPU Cores
+    cpuu = "CPU Info\n"
     cpuu += "Physical cores   : " + str(psutil.cpu_count(logical=False)) + "\n"
     cpuu += "Total cores      : " + str(psutil.cpu_count(logical=True)) + "\n"
+    # CPU frequencies
     cpufreq = psutil.cpu_freq()
     cpuu += f"Max Frequency    : {cpufreq.max:.2f}Mhz\n"
     cpuu += f"Min Frequency    : {cpufreq.min:.2f}Mhz\n"
@@ -56,6 +70,15 @@ async def cpunfo(event):
         cpuu += f"Core {i}  : {percentage}%\n"
     cpuu += "Total CPU Usage\n"
     cpuu += f"All Core: {psutil.cpu_percent()}%\n"
-    help_string = "**Cpu Info**\n"
-    help_string += f"{str(cpuu)}\n"
-    await event.reply(help_string)
+    # RAM Usage
+    svmem = psutil.virtual_memory()
+    memm = "Memory Usage\n"
+    memm += f"Total     : {get_size(svmem.total)}\n"
+    memm += f"Available : {get_size(svmem.available)}\n"
+    memm += f"Used      : {get_size(svmem.used)}\n"
+    memm += f"Percentage: {svmem.percent}%\n"
+    # Bandwidth Usage
+    bw = "Bandwith Usage\n"
+    bw += f"Upload  : {get_size(psutil.net_io_counters().bytes_sent)}\n"
+    bw += f"Download: {get_size(psutil.net_io_counters().bytes_recv)}\n"
+    await event.reply(uname)
