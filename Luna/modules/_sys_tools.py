@@ -79,4 +79,4 @@ async def loda(event):
     bw += f"Download: {get_size(psutil.net_io_counters().bytes_recv)}\n"
   except Exception:
      pass
-  await event.reply(uname)
+  await event.reply("lel")
