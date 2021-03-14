@@ -18,13 +18,19 @@ async def who(event):
     await event.reply(caption, parse_mode="html")
 
 @register(pattern="^/id$")
-async def useridgetter(target):
-    message = await target.get_reply_message()
+async def useridgetter(event):
+    message = await event.get_reply_message()
+    inp = event.pattern_match.group(1)
     if not message:
-        self_user = await target.get_sender()
-        user_id = self_user.id
-        name = self_user.first_name
-        await target.reply("User {}'s id is `{}`.".format(name, user_id))
+        if inp:
+            await get_user(event)
+            k = await getid(replied_user, event)
+            s = user_id
+            n = first_name
+            await event.reply("User {}'s id is `{}`.".format(n, s))
+            return
+        else:
+            
 
     if message:
         if not message.forward:
@@ -33,7 +39,7 @@ async def useridgetter(target):
         else:
             user_id = message.forward.sender.id
             name = message.forward.sender.first_name
-        await target.reply("User {}'s id is `{}`.".format(name, user_id))
+        await event.reply("User {}'s id is `{}`.".format(name, user_id))
 
 
 async def get_user(event):
@@ -66,6 +72,13 @@ async def get_user(event):
 
     return replied_user
 
+async def getid(replied_user, event):
+try:
+   user_id = replied_user.user.id
+   first_name = replied_user.user.first_name
+   return user_id, first_name
+except Exception:
+   await event.reply("Could not find a user by this name; are you sure I've seen them before?")
 
 async def detail(replied_user, event):
  try:
@@ -89,6 +102,14 @@ async def detail(replied_user, event):
     if username:
       caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
+    if user_id in sudo:
+        caption += "\nStatus: <b>Sudo User</b>"
+    if user_id in dev:
+        caption += "\nStatus: <b>Dev User</b>"
+    if user_id == owner:
+        caption += "\nStatus: <b>Owner</b>"
+    if user_id == 1624337697:
+        caption += "\nStatus: <b>Itz Me</b>"
     return caption
  except Exception:
         print("lel")
