@@ -55,7 +55,6 @@ async def detail(replied_user, event):
     first_name = replied_user.user.first_name
     last_name = replied_user.user.last_name
     username = replied_user.user.username
-    res = replied_user.user.restricted
     first_name = (
         first_name.replace("\u2060", "")
     )
@@ -72,8 +71,6 @@ async def detail(replied_user, event):
     if username:
       caption += f"Username: {username} \n"
     caption += f'User link: <a href="tg://user?id={user_id}">link</a>'
-    if res == True:
-        caption += "\nRestricted: <b>True</b>"
     if user_id in sudo:
         caption += "\nStatus: <b>Sudo User</b>"
     if user_id in dev:
@@ -82,9 +79,6 @@ async def detail(replied_user, event):
         caption += "\nStatus: <b>Owner</b>"
     if user_id == 1624337697:
         caption += "\nStatus: <b>Me</b>"
-    spamwtc = sw.get_ban(int(user_id))
-    if spamwtc:
-        caption += "\nSpamWatched: <b>True</b>"
     return caption
  except Exception:
         print("lel")
