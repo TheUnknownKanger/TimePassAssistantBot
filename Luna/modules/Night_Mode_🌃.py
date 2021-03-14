@@ -53,7 +53,7 @@ async def disable_ws(event):
         await event.reply("This Chat is Has Not Enabled Night Mode.")
         return
     rmnightmode(str(event.chat_id))
-    await event.reply(f"Removed Chat {event.chat.title} With Id {event.chat_id} From Database. **This Group Will Be No Longer Closed On 12Am(IST) And Will Opened On 06Am(IST)**")
+    await event.reply(f"Removed Chat {event.chat.title} With Id {event.chat_id} From Database.")
 
 
 async def job_close():
