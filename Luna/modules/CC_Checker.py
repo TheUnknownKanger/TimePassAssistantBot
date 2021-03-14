@@ -32,7 +32,11 @@ async def alive(event):
                 reply += f"Time: {time}\n"
                 reply += f"Checked By **{fname}**\n"
           else:
-                reply = f"SK Key :{ok}"
+                reply = f"SK Key : {ok}\n"
+                reply += "Result: LIVE\n"
+                reply += "RESPONSE: ✅Valid Key/n"
+                reply += f"Time: {time}
+                reply += f"Checked By **{fname}**"
           await event.reply(reply)        
 
 
