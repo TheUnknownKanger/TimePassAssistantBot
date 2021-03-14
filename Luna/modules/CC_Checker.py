@@ -39,6 +39,7 @@ async def alive(event):
                 reply += f"Checked By **{fname}**"
           else:
                 reply = "None"
+                print("ok")
           await event.reply(reply)        
 
 
