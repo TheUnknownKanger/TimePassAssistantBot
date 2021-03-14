@@ -17,7 +17,7 @@ async def who(event):
         message_id_to_reply = None
     await event.reply(caption, parse_mode="html")
 
-@register(pattern="^/id$")
+@register(pattern="^/id ?(.*)")
 async def useridgetter(event):
     message = await event.get_reply_message()
     inp = event.pattern_match.group(1)
@@ -28,8 +28,8 @@ async def useridgetter(event):
             s = user_id
             n = first_name
             await event.reply("User {}'s id is `{}`.".format(n, s))
-            return
         else:
+            await event.reply("Chat ID: `" + str(event.chat_id) + "`")
             
 
     if message:
