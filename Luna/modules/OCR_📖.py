@@ -160,7 +160,7 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  - /read <lang>: Type in reply to a image to extract the text from it
- - /img2textlang: List all the available languages
+ - /ocrlang: List all the available languages
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
