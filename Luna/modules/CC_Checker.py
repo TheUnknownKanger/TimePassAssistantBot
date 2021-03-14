@@ -30,12 +30,12 @@ async def alive(event):
                 reply += "Result: Invalid API Key\n"
                 reply += "RESPONSE: ❌Invalid Key❌\n"
                 reply += f"Time: {time}\n"
-                reply += f"Checked By **{fname}**\n"
+                reply += f"Checked By **{fname}**"
           elif "Test" in response.text:
                 reply = f"SK Key : {ok}\n"
                 reply += "Result: Test mode Key\n"
-                reply += "RESPONSE: ❌Test Mode Key❌/n"
-                reply += f"Time: {time}
+                reply += "RESPONSE: ❌Test Mode Key❌\n"
+                reply += f"Time: {time}\n"
                 reply += f"Checked By **{fname}**"
           else:
                 reply = "None"
