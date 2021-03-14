@@ -24,10 +24,10 @@ async def alive(event):
           await event.reply(response)
           if "Invalid" in response.text:
                 reply = f"SK Key : {ok}\n"
-                reply += "Result: Invalid API Key"
-                reply += "RESPONSE: ❌Invalid Key❌"
-                reply += f"Time: {time}"
-                reply += f"Checked By **{fname}**"
+                reply += "Result: Invalid API Key\n"
+                reply += "RESPONSE: ❌Invalid Key❌\n"
+                reply += f"Time: {time}\n"
+                reply += f"Checked By **{fname}**\n"
           else:
                 reply = f"SK Key :{ok}"
           await event.reply(reply)        
