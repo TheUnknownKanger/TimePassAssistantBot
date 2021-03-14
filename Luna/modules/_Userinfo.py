@@ -1,4 +1,4 @@
-from Luna import tbot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev, sw, CMD_HELP
+from Luna import tbot, OWNER_ID as owner, SUDO_USERS as sudo, DEV_USERS as dev
 from Luna.events import register
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
@@ -73,11 +73,11 @@ async def get_user(event):
     return replied_user
 
 async def getid(replied_user, event):
-try:
+ try:
    user_id = replied_user.user.id
    first_name = replied_user.user.first_name
    return user_id, first_name
-except Exception:
+ except Exception:
    await event.reply("Could not find a user by this name; are you sure I've seen them before?")
 
 async def detail(replied_user, event):
@@ -113,13 +113,3 @@ async def detail(replied_user, event):
     return caption
  except Exception:
         print("lel")
-
-file_help = os.path.basename(__file__)
-file_help = file_help.replace(".py", "")
-file_helpo = file_help.replace("_", " ")
-
-__help__ = """
- - /info: Gets Userinfo
-"""
-
-CMD_HELP.update({file_helpo: [file_helpo, __help__]})
