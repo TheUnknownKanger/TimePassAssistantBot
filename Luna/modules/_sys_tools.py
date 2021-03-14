@@ -14,8 +14,6 @@ def get_size(inputbytes, suffix="B"):
             return f"{inputbytes:.2f}{unit}{suffix}"
         inputbytes /= factor
 
-sudev = list(SUDO_USERS) + list(DEV_USERS)
-
 @register(pattern="^/echo ?(.*)")
 async def echo(event):
   if event.fwd_from:
@@ -42,8 +40,6 @@ async def echo(event):
 
 @register(pattern="^/cpu")
 async def cpunfo(event):
-    if event.sender_id in sudev:
-         pass
     if event.sender_id == OWNER_ID:
          pass
     else:
