@@ -34,13 +34,13 @@ async def _(event):
         except Exception as e:
             await event.reply(str(e))
             return
-        await s.delete()
-    else:
+        else:
             output_file_name = ReTrieveFile(downloaded_file_name)
             os.remove(downloaded_file_name)
     else:
         await event.reply(HELP_STR)
         return
+    await s.delete()
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
