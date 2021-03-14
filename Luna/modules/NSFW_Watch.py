@@ -2,8 +2,7 @@ from Luna import CMD_HELP, OWNER_ID
 from Luna.events import register
 import os
 
-k = 'News Py Files In Another Repo'
-@register(pattern="^/teg ?(.*)")
+@register(pattern="^/teg")
 async def sleepybot(time):
     if time.fwd_from:
         return
