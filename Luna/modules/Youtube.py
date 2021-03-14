@@ -1,4 +1,6 @@
 import os
+import sys
+from os import execl
 from Luna.events import register
 from Luna import tbot, OWNER_ID, CMD_HELP
 from time import sleep
@@ -24,6 +26,19 @@ async def sleepybot(time):
 
 def convert(speed):
     return round(int(speed)/1048576, 2)
+
+@register(pattern="^/restart$")
+async def _(event):
+    if event.fwd_from:
+        return
+    await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
+    await edit_or_reply(
+        event,
+        "Restarted. `.ping` me or `.help` to check if I am online, actually it takes 1-2 min for restarting",
+    )
+    await tbot.disconnect()
+    execl(sys.executable, sys.executable, *sys.argv)
+
 
 @register(pattern="^/speedtest ?(.*)")
 async def seedtest(event):
