@@ -48,7 +48,7 @@ async def alive(event):
           await asyncio.sleep(18)
           response = await bot_conv.get_response()
           k = await event.reply("**Wait for Result.**")
-          await event.reply(response)
+          await k.edit(response)
 
 @register(pattern="^/bin (.*)")
 async def alive(event):
