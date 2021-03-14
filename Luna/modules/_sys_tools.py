@@ -40,11 +40,11 @@ async def echo(event):
 
 @register(pattern="^/cpu")
 async def cpunfo(event):
-    if event.sender_id == OWNER_ID:
-         pass
-    else:
-         return
-    try:
+  if event.sender_id == OWNER_ID:
+       pass
+  else:
+       return
+  try:
     uname = platform.uname()
     softw = "System Information\n"
     softw += f"System   : {uname.system}\n"
@@ -81,4 +81,6 @@ async def cpunfo(event):
     bw = "Bandwith Usage\n"
     bw += f"Upload  : {get_size(psutil.net_io_counters().bytes_sent)}\n"
     bw += f"Download: {get_size(psutil.net_io_counters().bytes_recv)}\n"
-    await event.reply(uname)
+  except Exception:
+     pass
+  await event.reply(uname)
