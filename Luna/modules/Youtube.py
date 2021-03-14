@@ -29,13 +29,15 @@ def convert(speed):
 
 @register(pattern="^/restart$")
 async def _(event):
+    chat = -1001309757591
+    if event.sender_id == OWNER_ID:
+        pass
+    else:
+       return
     if event.fwd_from:
         return
-    await event.client.send_message(BOTLOG_CHATID, "#RESTART \n" "Bot Restarted")
-    await edit_or_reply(
-        event,
-        "Restarted. `.ping` me or `.help` to check if I am online, actually it takes 1-2 min for restarting",
-    )
+    await event.client.send_message(chat, "#RESTART \n" "Bot Restarted")
+    await event.reply("Restarted. I'll Be back in a Minute.!")
     await tbot.disconnect()
     execl(sys.executable, sys.executable, *sys.argv)
 
