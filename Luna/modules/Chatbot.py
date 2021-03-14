@@ -36,11 +36,11 @@ async def can_change_info(message):
 @register(pattern="^/addchat$")
 async def _(event):
     if event.is_group:
-      if not sender_id == OWNER_ID:
-        if not await can_change_info(message=event):
+        if event.sender_id == OWNER_ID:
+            pass
+        else:
+          if not await can_change_info(message=event):
             return
-      else:
-        pass
     else:
         return
 
