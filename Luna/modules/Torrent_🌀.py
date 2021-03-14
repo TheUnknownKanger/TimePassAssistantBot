@@ -25,10 +25,10 @@ async def _(event):
         buttons=[
             [
                 Button.inline(
-                    "▶️", data=f"torrent-{sender}|{search}|{index}|{chatid}|{msgid}"
+                    "Continue", data=f"torrent-{sender}|{search}|{index}|{chatid}|{msgid}"
                 )
             ],
-            [Button.inline("❌", data=f"torrentstop-{sender}|{chatid}|{msgid}")],
+            [Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}")],
         ],
     )
 
@@ -78,16 +78,16 @@ async def paginate_news(event):
         buttons=[
             [
                 Button.inline(
-                    "◀️", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
+                    "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("❌", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
+                    "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁", data=f"newtorrent-{sender}|{search}|{chatid}|{msgid}"
+                    "Refresh", data=f"newtorrent-{sender}|{search}|{chatid}|{msgid}"
                 )
             ],
         ],
@@ -142,16 +142,16 @@ async def paginate_prevtorrent(event):
         buttons=[
             [
                 Button.inline(
-                    "◀️", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
+                    "Prev", data=f"prevtorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
-                Button.inline("❌", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
+                Button.inline("Back", data=f"torrentstop-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
+                    "Next", data=f"nexttorrent-{sender}|{search}|{num}|{chatid}|{msgid}"
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁", data=f"newtorrent-{sender}|{search}|{chatid}|{msgid}"
+                    "Refresh", data=f"newtorrent-{sender}|{search}|{chatid}|{msgid}"
                 )
             ],
         ],
