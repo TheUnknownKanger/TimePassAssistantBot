@@ -10,9 +10,11 @@ async def alive(event):
           await asyncio.sleep(12)
           response = await bot_conv.get_response()
           await event.reply(response)
-
+time = "69"
 @register(pattern="^/key (.*)")
 async def alive(event):
+      sender = await event.get_sender()
+      fname = sender.first_name
       ok = event.pattern_match.group(1)
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/key {ok}")
@@ -20,6 +22,15 @@ async def alive(event):
           response = await bot_conv.get_response()
           await event.delete()
           await event.reply(response)
+          if "Invalid" in response.text:
+                reply = f"SK Key : {ok}\n"
+                reply += "Result: Invalid API Key"
+                reply += "RESPONSE: ❌Invalid Key❌"
+                reply += f"Time: {time}"
+                reply += f"Checked By **{fname}**"
+          else:
+                reply = f"SK Key :{ok}"
+          await event.reply(reply)        
 
 
 @register(pattern="^/ss (.*)")
