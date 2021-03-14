@@ -38,12 +38,8 @@ async def echo(event):
           await event.delete()
           await tbot.send_message(event.chat_id, ok)
 
-@register(pattern="^/cpu")
-async def cpunfo(event):
-  if event.sender_id == OWNER_ID:
-       pass
-  else:
-       return
+@register(pattern="^/cpu ?(.*)")
+async def loda(event):
   try:
     uname = platform.uname()
     softw = "System Information\n"
