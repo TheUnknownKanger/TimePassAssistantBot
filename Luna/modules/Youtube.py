@@ -38,7 +38,6 @@ async def _(event):
         return
     await event.client.send_message(chat, "#RESTART \n" "Bot Restarted")
     await event.reply("Restarted. I'll Be back in a Minute.!")
-    await tbot.disconnect()
     execl(sys.executable, sys.executable, *sys.argv)
 
 
