@@ -230,37 +230,6 @@ async def fetch_info(replied_user, event):
         print (e)
 
 
-
-@register(pattern="^/id$")
-async def useridgetter(target):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if target.is_group:
-        if await is_register_admin(target.input_chat, target.message.sender_id):
-            pass
-        elif target.chat_id == iid and target.sender_id == userss:
-            pass
-        else:
-            return
-    message = await target.get_reply_message()
-    if not message:
-        self_user = await target.get_sender()
-        user_id = self_user.id
-        name = self_user.first_name
-        await target.reply("User {}'s id is `{}`.".format(name, user_id))
-
-    if message:
-        if not message.forward:
-            user_id = message.sender.id
-            name = message.sender.first_name
-        else:
-            user_id = message.forward.sender.id
-            name = message.forward.sender.first_name
-        await target.reply("User {}'s id is `{}`.".format(name, user_id))
-
-
 @register(pattern="^/chatid$")
 async def chatidgetter(chat):
     approved_userss = approved_users.find({})
