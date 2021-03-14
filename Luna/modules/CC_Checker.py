@@ -45,9 +45,10 @@ async def alive(event):
       ok = event.pattern_match.group(1)
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/ch {ok}")
+          k = await event.reply("**Wait for Result.**")
           await asyncio.sleep(18)
           response = await bot_conv.get_response()
-          k = await event.reply("**Wait for Result.**")
+          
           await k.edit(response)
 
 @register(pattern="^/bin (.*)")
