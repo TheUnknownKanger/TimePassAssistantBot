@@ -31,6 +31,7 @@ async def _(event):
             downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
             )
+        await s.delete()
         except Exception as e:
             await event.reply(str(e))
             return
@@ -54,15 +55,11 @@ async def _(event):
             )
         end = datetime.now()
         ms = (end - start).seconds
-        await s.edit("Background Removed in {} seconds".format(ms))
+        k = await event.reply("Background Removed in {} seconds".format(ms))
         await asyncio.sleep(2)
-        await s.delete()
+        await k.delete()
     else:
-        d = await event.reply(
-            "remove.bg API returned Errors. Please report to @lunabotsupport\n`{}".format(
-                output_file_name.content.decode("UTF-8")
-            )
-        )
+        d = await event.reply("remove.bg API returned Errors. Please report to @lunabotsupport")
         await asyncio.sleep(6)
         await d.delete()
         
