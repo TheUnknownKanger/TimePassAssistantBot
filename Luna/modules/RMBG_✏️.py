@@ -35,7 +35,7 @@ async def _(event):
             await event.reply(str(e))
             return
         await s.delete()
-        else:
+    else:
             output_file_name = ReTrieveFile(downloaded_file_name)
             os.remove(downloaded_file_name)
     else:
