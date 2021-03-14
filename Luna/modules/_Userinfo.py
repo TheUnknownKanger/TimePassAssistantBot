@@ -23,15 +23,9 @@ async def useridgetter(event):
     inp = event.pattern_match.group(1)
     if not message:
         if inp:
-            await get_user(event)
-            k = await getid(replied_user, event)
-            s = user_id
-            n = first_name
-            await event.reply("User {}'s id is `{}`.".format(n, s))
+            pass
         else:
             await event.reply("Chat ID: `" + str(event.chat_id) + "`")
-            
-
     if message:
         if not message.forward:
             user_id = message.sender.id
@@ -71,14 +65,6 @@ async def get_user(event):
             return None
 
     return replied_user
-
-async def getid(replied_user, event):
- try:
-   user_id = replied_user.user.id
-   first_name = replied_user.user.first_name
-   return user_id, first_name
- except Exception:
-   await event.reply("Could not find a user by this name; are you sure I've seen them before?")
 
 async def detail(replied_user, event):
  try:
