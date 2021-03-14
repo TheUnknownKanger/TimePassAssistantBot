@@ -1,8 +1,7 @@
 from Luna import ubot, abot, CMD_HELP
 from Luna.events import register
 import asyncio, os
-from datetime import datetime
-import time
+import datetime
 
 @register(pattern="^/au (.*)")
 async def alive(event):
