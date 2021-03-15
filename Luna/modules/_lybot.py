@@ -1,4 +1,4 @@
-from Luna import ubot, tbot, OWNER_ID
+from Luna import ubot, tbot
 from telethon import events
 from telethon.tl import functions
 from telethon.tl import types
