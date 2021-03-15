@@ -19,7 +19,7 @@ async def inline_query(client, bot, query):
             )
         ),
     )
-@register(pattern="^/music (.*)")
+@register(pattern="^/muzic (.*)")
 async def lybot(event):
    k = event.pattern_match.group(1)
    await (await inline_query(ubot, "@lybot", k))[0].click("@lunasonggrp")
@@ -27,5 +27,5 @@ async def lybot(event):
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users=1309680371)
             )
-      pro = await response
-      await pro.forward_to(event.chat_id)
+      response = await response
+      await response.forward_to(event.chat_id)
