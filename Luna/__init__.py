@@ -51,6 +51,8 @@ if ENV:
     SUDO_USERS = list(SUDO_USERS)
     DEV_USERS = list(DEV_USERS)
     WHITE_LIST = list(WHITE_LIST)
+    HEROKU_API_KEY = os.environ.get("HEROKU_API_KEY", None)
+    HEROKU_APP_NAME = os.environ.get("HEROKU_APP_NAME", None)
     REM_BG_API_KEY = os.environ.get("REM_BG_API_KEY", None)
     IBM_WATSON_CRED_URL = os.environ.get("IBM_WATSON_CRED_URL", None)
     IBM_WATSON_CRED_PASSWORD = os.environ.get("IBM_WATSON_CRED_PASSWORD", None)
