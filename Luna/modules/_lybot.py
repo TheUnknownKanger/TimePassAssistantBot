@@ -1,3 +1,4 @@
+#Made by @RoseLoverX
 from Luna import ubot, tbot
 from telethon import events
 from telethon.tl import functions
@@ -6,7 +7,7 @@ from Luna.events import register
 
 async def inline_query(client, bot, query):
     from telethon import custom
-
+    #RoseLoverX
     return custom.InlineResults(
         client,
         await client(
