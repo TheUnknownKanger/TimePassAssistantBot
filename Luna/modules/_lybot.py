@@ -19,16 +19,12 @@ async def inline_query(client, bot, query):
             )
         ),
     )
-@register(pattern="^/muzic (.*)")
-async def lybot(event):
-   k = event.pattern_match.group(1)
-   await (await inline_query(ubot, "@lybot", k))[0].click("@lunasonggrp")
-   async with tbot.conversation("@lunasonggrp") as bot_conv:
-     try:
-       response = bot_conv.wait_event(
-                events.NewMessage(from_users=1309680371)
+@register(pattern="^/music (*.)")
+
+await (await inline_query(ubot, "@lybot", "Despacito"))[0].click(-1001454532285)
+async with tbot.conversation("@lunasonggrp") as bot_conv:
+    response = bot_conv.wait_event(
+                events.NewMessage(incoming=True)
             )
-       response = await response()
-       await response.forward_to(event.chat_id)
-     except Exception as e:
-       await event.reply(e)
+    response = await response
+    await response.forward_to(event.chat_id)
