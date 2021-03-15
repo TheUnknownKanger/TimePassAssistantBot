@@ -1,4 +1,4 @@
-from Luna import ubot, tbot
+from Luna import ubot, tbot, OWNER_ID
 from telethon import events
 from telethon.tl import functions
 from telethon.tl import types
@@ -25,7 +25,7 @@ async def lybot(event):
    await (await inline_query(ubot, "@lybot", k))[0].click("@lunasonggrp")
    async with tbot.conversation("@lunasonggrp") as bot_conv:
       response = bot_conv.wait_event(
-                events.NewMessage(incoming=True)
+                events.NewMessage(incoming=True, from_users=OWNER_ID)
             )
       response = await response
       await response.forward_to(event.chat_id)
