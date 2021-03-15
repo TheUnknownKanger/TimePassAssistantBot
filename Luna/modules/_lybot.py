@@ -24,11 +24,11 @@ async def lybot(event):
    k = event.pattern_match.group(1)
    await (await inline_query(ubot, "@lybot", k))[0].click("@lunasonggrp")
    async with tbot.conversation("@lunasonggrp") as bot_conv:
-    try:
-      response = bot_conv.wait_event(
+     try:
+       response = bot_conv.wait_event(
                 events.NewMessage(from_users=1309680371)
             )
-      response = await response()
-      await response.forward_to(event.chat_id)
-    except Exception as e:
-      await event.reply(e)
+       response = await response()
+       await response.forward_to(event.chat_id)
+     except Exception as e:
+       await event.reply(e)
