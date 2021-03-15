@@ -27,5 +27,5 @@ async def lybot(event):
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users=1309680371)
             )
-      response = await response
+      response = await response()
       await response.forward_to(event.chat_id)
