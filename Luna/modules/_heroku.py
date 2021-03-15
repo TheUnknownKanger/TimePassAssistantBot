@@ -13,7 +13,7 @@ import os
 import heroku3
 import requests
 
-from Luna import tbot as borg, HEROKU_APP_NAME, HEROKU_API_KEY
+from Luna import tbot as borg, HEROKU_APP_NAME, HEROKU_API_KEY, OWNER_ID
 from Luna.events import register
 
 heroku_api = "https://api.heroku.com"
@@ -22,6 +22,12 @@ Heroku = heroku3.from_key(HEROKU_API_KEY)
 
 @register(pattern="^/(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
 async def variable(var):
+    if event.fwd_from:
+        return
+    if event.sender_id == OWNER_ID:
+        pass
+    else:
+        return
     """
     Manage most of ConfigVars setting, set new var, get current var,
     or delete var...
@@ -105,6 +111,12 @@ async def variable(var):
 
 @register(pattern="^/usage(?: |$)")
 async def dyno_usage(dyno):
+    if event.fwd_from:
+        return
+    if event.sender_id == OWNER_ID:
+        pass
+    else:
+        return
     """
     Get your account Dyno Usage
     """
@@ -166,6 +178,12 @@ async def dyno_usage(dyno):
 
 @register(pattern="^/logs$")
 async def _(dyno):
+    if event.fwd_from:
+        return
+    if event.sender_id == OWNER_ID:
+        pass
+    else:
+        return
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
         app = Heroku.app(HEROKU_APP_NAME)
