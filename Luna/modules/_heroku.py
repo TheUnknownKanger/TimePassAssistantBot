@@ -16,10 +16,11 @@ import requests
 from Luna import tbot as borg, HEROKU_APP_NAME, HEROKU_API_KEY
 from Luna.events import register
 
+heroku_api = "https://api.heroku.com"
 Heroku = heroku3.from_key(HEROKU_API_KEY)
 
 
-@register(pattern="(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
+@register(pattern="^/(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
 async def variable(var):
     """
     Manage most of ConfigVars setting, set new var, get current var,
@@ -58,7 +59,7 @@ async def variable(var):
                         caption="`Output too large, sending it as a file`",
                     )
                 else:
-                    await var.edit(
+                    await k.edit(
                         "`[HEROKU]` ConfigVars:\n\n"
                         "================================"
                         f"\n```{result}```\n"
@@ -67,47 +68,47 @@ async def variable(var):
             os.remove("configs.json")
             return
     elif exe == "set":
-        await var.edit("`Setting information...weit ser`")
+        s = await var.reply("`Setting information...weit ser`")
         variable = var.pattern_match.group(2)
         if not variable:
-            return await var.edit(">`.set var <ConfigVars-name> <value>`")
+            return await s.edit(">`.set var <ConfigVars-name> <value>`")
         value = var.pattern_match.group(3)
         if not value:
             variable = variable.split()[0]
             try:
                 value = var.pattern_match.group(2).split()[1]
             except IndexError:
-                return await var.edit(">`.set var <ConfigVars-name> <value>`")
+                return await s.edit(">`/set var <ConfigVars-name> <value>`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await var.edit(
+            await s.edit(
                 f"**{variable}**  `successfully changed to`  ->  **{value}**"
             )
         else:
-            await var.edit(
+            await s.edit(
                 f"**{variable}**  `successfully added with value`  ->  **{value}**"
             )
         heroku_var[variable] = value
     elif exe == "del":
-        await var.edit("`Getting information to deleting variable...`")
+        m = await var.edit("`Getting information to deleting variable...`")
         try:
             variable = var.pattern_match.group(2).split()[0]
         except IndexError:
-            return await var.edit("`Please specify ConfigVars you want to delete`")
+            return await m.edit("`Please specify ConfigVars you want to delete`")
         await asyncio.sleep(1.5)
         if variable in heroku_var:
-            await var.edit(f"**{variable}**  `successfully deleted`")
+            await m.edit(f"**{variable}**  `successfully deleted`")
             del heroku_var[variable]
         else:
-            return await var.edit(f"**{variable}**  `is not exists`")
+            return await m.edit(f"**{variable}**  `is not exists`")
 
 
-@borg.on(admin_cmd(pattern="usage(?: |$)", outgoing=True))
+@register(pattern="^/usage(?: |$)")
 async def dyno_usage(dyno):
     """
     Get your account Dyno Usage
     """
-    await dyno.edit("`Processing...`")
+    die = await dyno.reply("**Processing...**")
     useragent = (
         "Mozilla/5.0 (Linux; Android 10; SM-G975F) "
         "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -122,7 +123,7 @@ async def dyno_usage(dyno):
     path = "/accounts/" + user_id + "/actions/get-quota"
     r = requests.get(heroku_api + path, headers=headers)
     if r.status_code != 200:
-        return await dyno.edit(
+        return await die.edit(
             "`Error: something bad happened`\n\n" f">.`{r.reason}`\n"
         )
     result = r.json()
@@ -151,9 +152,9 @@ async def dyno_usage(dyno):
 
     await asyncio.sleep(1.5)
 
-    return await dyno.edit(
+    return await die.edit(
         "**Dyno Usage**:\n\n"
-        f" -> `Dyno usage for`  **{Var.HEROKU_APP_NAME}**:\n"
+        f" -> `Dyno usage for`  **{HEROKU_APP_NAME}**:\n"
         f"     •  `{AppHours}`**h**  `{AppMinutes}`**m**  "
         f"**|**  [`{AppPercentage}`**%**]"
         "\n\n"
@@ -163,7 +164,7 @@ async def dyno_usage(dyno):
     )
 
 
-@borg.on(admin_cmd(pattern="logs$", outgoing=True))
+@register(pattern="^/logs$")
 async def _(dyno):
     try:
         Heroku = heroku3.from_key(HEROKU_API_KEY)
@@ -172,19 +173,19 @@ async def _(dyno):
         return await dyno.reply(
             " Please make sure your Heroku API Key, Your App name are configured correctly in the heroku"
         )
-    await dyno.edit("Getting Logs....")
+    v = await dyno.reply("Getting Logs....")
     with open("logs.txt", "w") as log:
         log.write(app.get_log())
-    await dyno.edit("Got the logs wait a sec")
+    await v.edit("Got the logs wait a sec")
     await dyno.client.send_file(
         dyno.chat_id,
         "logs.txt",
         reply_to=dyno.id,
-        caption="your anie bot logs of 100+ lines",
+        caption="Luna Bot Logz.",
     )
 
     await asyncio.sleep(5)
-    await dyno.delete()
+    await v.delete()
     return os.remove("logs.txt")
 
 
