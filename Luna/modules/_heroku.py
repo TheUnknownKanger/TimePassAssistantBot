@@ -22,9 +22,9 @@ Heroku = heroku3.from_key(HEROKU_API_KEY)
 
 @register(pattern="^/(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
 async def variable(var):
-    if event.fwd_from:
+    if var.fwd_from:
         return
-    if event.sender_id == OWNER_ID:
+    if var.sender_id == OWNER_ID:
         pass
     else:
         return
@@ -111,9 +111,9 @@ async def variable(var):
 
 @register(pattern="^/usage(?: |$)")
 async def dyno_usage(dyno):
-    if event.fwd_from:
+    if dyno.fwd_from:
         return
-    if event.sender_id == OWNER_ID:
+    if dyno.sender_id == OWNER_ID:
         pass
     else:
         return
@@ -178,9 +178,9 @@ async def dyno_usage(dyno):
 
 @register(pattern="^/logs$")
 async def _(dyno):
-    if event.fwd_from:
+    if dyno.fwd_from:
         return
-    if event.sender_id == OWNER_ID:
+    if dyno.sender_id == OWNER_ID:
         pass
     else:
         return
