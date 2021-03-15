@@ -25,7 +25,7 @@ async def lybot(event):
    await (await inline_query(ubot, "@lybot", k))[0].click("@aniegrpbot")
    async with tbot.conversation("@roseloverxm") as bot_conv:
       response = bot_conv.wait_event(
-                events.NewMessage(incoming=True)
+                events.NewMessage(incoming=True, from_users="@RoseLoverxm")
             )
       response = await response
       await response.forward_to(event.chat_id)
