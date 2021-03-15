@@ -13,44 +13,35 @@ import os
 import heroku3
 import requests
 
-from Luna import tbot as borg
+from Luna import tbot as borg, HEROKU_APP_NAME, HEROKU_API_KEY
 from Luna.events import register
 
-Heroku = heroku3.from_key(Config.HEROKU_API_KEY)
-Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
-heroku_api = "https://api.heroku.com"
-HEROKU_APP_NAME = Config.HEROKU_APP_NAME
-HEROKU_API_KEY = Config.HEROKU_API_KEY
-
-Heroku = heroku3.from_key(Var.HEROKU_API_KEY)
-heroku_api = "https://api.heroku.com"
+Heroku = heroku3.from_key(HEROKU_API_KEY)
 
 
-@borg.on(
-    admin_cmd(pattern="(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)", outgoing=True)
-)
+@register(pattern="(set|get|del) var(?: |$)(.*)(?: |$)([\s\S]*)")
 async def variable(var):
     """
     Manage most of ConfigVars setting, set new var, get current var,
     or delete var...
     """
-    if Var.HEROKU_APP_NAME is not None:
-        app = Heroku.app(Var.HEROKU_APP_NAME)
+    if HEROKU_APP_NAME is not None:
+        app = Heroku.app(HEROKU_APP_NAME)
     else:
-        return await var.edit("`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**")
+        return await var.reply("`[HEROKU]:" "\nPlease setup your` **HEROKU_APP_NAME**")
     exe = var.pattern_match.group(1)
     heroku_var = app.config()
     if exe == "get":
-        await var.edit("`Getting information...`")
+        k = await var.reply("`Getting information...`")
         await asyncio.sleep(1.5)
         try:
             variable = var.pattern_match.group(2).split()[0]
             if variable in heroku_var:
-                return await var.edit(
+                return await k.edit(
                     "**ConfigVars**:" f"\n\n`{variable} = {heroku_var[variable]}`\n"
                 )
             else:
-                return await var.edit(
+                return await k.edit(
                     "**ConfigVars**:" f"\n\n`Error:\n-> {variable} don't exists`"
                 )
         except IndexError:
