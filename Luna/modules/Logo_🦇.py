@@ -1,12 +1,16 @@
 from Luna import CMD_HELP
 from Luna.events import register
 tmp = './'
-from Luna import tbot
+from Luna import tbot, OWNER_ID
 import os
 from PIL import Image, ImageDraw, ImageFont
 
 @register(pattern="^/logo ?(.*)")
 async def lego(event):
+ if event.sender_id == OWNER_ID:
+     pass
+ else:
+     return
  text = event.pattern_match.group(1)
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
