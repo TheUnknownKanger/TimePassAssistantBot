@@ -61,6 +61,7 @@ if ENV:
     GOOGLE_CHROME_BIN = os.environ.get("GOOGLE_CHROME_BIN", None)
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
+    TEMP_MAIL_KEY = os.environ.get("TEMP_MAIL_KEY", None)
     VIRUS_API_KEY = os.environ.get("VIRUS_API_KEY", None)
     STRING_SESSION = os.environ.get("STRING_SESSION", None)
     STRING_2 = os.environ.get("STRING_2", None)
