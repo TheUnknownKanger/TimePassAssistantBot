@@ -629,7 +629,7 @@ async def _(event):
     if not event.sender_id == sender:
         await event.answer("You haven't send that command !")
         return
-    await tbot.edit_message(chatid, msgid, "Thanks for using Julia ♥️")
+    await tbot.edit_message(chatid, msgid, "Thanks for using Luna ☺️")
 
 
 @tbot.on(events.CallbackQuery(pattern=r"dontremoveoldemail(\-(.*))"))
