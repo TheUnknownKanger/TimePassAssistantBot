@@ -133,7 +133,7 @@ async def aexec(code, smessatatus):
 
 
 
-@lunabot(pattern="!ev")
+@lunabot(pattern="!eval")
 async def _(event):
     check = event.message.sender_id
     checkint = int(check)
@@ -160,7 +160,6 @@ async def _(event):
     stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
     sys.stderr = old_stderr
-    await event.delete()
     evaluation = ""
     if exc:
         evaluation = exc
