@@ -10,7 +10,11 @@ async def lego(event):
  if event.sender_id == OWNER_ID:
      pass
  else:
-     return
+     if event.is_group:
+       await event.reply('Currently This Module Only Works in my PM!')
+       return
+     else:
+       pass
  text = event.pattern_match.group(1)
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
@@ -24,9 +28,9 @@ async def lego(event):
  d = ImageDraw.Draw(txt)
 
 # draw text, half opacity
- d.text((130,550), text, font=fnt, fill=(255,255,255,128))
+ d.text((380,550), text, font=fnt, fill=(255,255,255,128))
 # draw text, full opacity
- d.text((90,500), text, font=fnt, fill=(255,255,255,255))
+ d.text((350,500), text, font=fnt, fill=(255,255,255,255))
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
@@ -41,6 +45,8 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  In Beta!.
+ - /logo <text>
+Module Not Finished.!
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
