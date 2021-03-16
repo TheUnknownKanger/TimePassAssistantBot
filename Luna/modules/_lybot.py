@@ -30,3 +30,43 @@ async def lybot(event):
             )
       response = await response
       await response.forward_to(event.chat_id)
+
+from Luna import tbot, ubot
+from Luna.events import register
+import requests
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+
+@register(pattern="^/shazam$")
+async def _(event):
+ try:
+    if event.fwd_from:
+        return
+    if not event.reply_to_msg_id:
+        await event.reply("Reply to an audio message.")
+        return
+    reply_message = await event.get_reply_message()
+    stt = await event.reply("Identifying the song.")
+    tmp = './'
+    dl = await tbot.download_media(
+            reply_message,
+            tmp)
+    chat = "@auddbot"
+    await stt.edit("Identifying the song...")
+    async with ubot.conversation(chat) as conv:
+        try:
+            await conv.send_file(dl)
+            check = await conv.get_response()
+            if not check.text.startswith("Audio received"):
+                return await stt.edit("An error while identifying the song. Try to use a 5-10s long audio message.")
+            await stt.edit("Wait just a sec...")
+            result = await conv.get_response()
+            await ubot.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await stt.edit("Error Report at @lunasupport")
+            return
+    namem = f"Song Name : {result.text.splitlines()[0]}\
+        \n\nDetails : {result.text.splitlines()[2]}"
+    await stt.edit(namem)
+ except Exception as e:
+      await event.reply(e)
