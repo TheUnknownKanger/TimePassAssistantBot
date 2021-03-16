@@ -19,7 +19,7 @@ async def lego(event):
  txt = Image.new('RGBA', base.size, (255,255,255,0))
 
 # get a font
- fnt = ImageFont.truetype('./Luna/resources/Distort Me.otf', 150)
+ fnt = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
 # get a drawing context
  d = ImageDraw.Draw(txt)
 
