@@ -230,7 +230,7 @@ async def _(event):
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
-            await ubot.send_file(
+            await abot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
@@ -240,4 +240,4 @@ async def _(event):
             )
 
     else:
-        await event.reply(final_output)
+        await abot.send_message(event.chat_id, final_output)
