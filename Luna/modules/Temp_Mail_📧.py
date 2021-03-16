@@ -119,13 +119,13 @@ async def _(event):
                     buttons=[
                         [
                             Button.inline(
-                                "▶️",
+                                "Open Inbox",
                                 data=f"startcheckinbox-{sender}|{index}|{chatid}|{msgid}",
                             )
                         ],
                         [
                             Button.inline(
-                                "❌", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"
+                                "Cancel", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"
                             )
                         ],
                     ],
@@ -154,7 +154,7 @@ async def _(event):
     if not event.sender_id == sender:
         await event.answer("You haven't send that command !")
         return
-    await tbot.edit_message(chatid, msgid, "Thanks for using Julia ♥️")
+    await tbot.edit_message(chatid, msgid, "Thanks for using Luna 😘")
 
 
 @tbot.on(events.CallbackQuery(pattern=r"startcheckinbox(\-(.*))"))
@@ -239,18 +239,18 @@ async def _(event):
             ],
             [
                 Button.inline(
-                    "◀️",
+                    "Prev",
                     data=f"checkinboxprev-{sender}|{num}|{chatid}|{msgid}",
                 ),
-                Button.inline("❌", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
+                Button.inline("Exit", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️",
+                    "Next",
                     data=f"checkinboxnext-{sender}|{num}|{chatid}|{msgid}",
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁",
+                    "Refresh",
                     data=f"refreshinbox-{sender}|{chatid}|{msgid}",
                 )
             ],
@@ -355,18 +355,18 @@ async def _(event):
             ],
             [
                 Button.inline(
-                    "◀️",
+                    "Prev",
                     data=f"checkinboxprev-{sender}|{num}|{chatid}|{msgid}",
                 ),
-                Button.inline("❌", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
+                Button.inline("Exit", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️",
+                    "Next",
                     data=f"checkinboxnext-{sender}|{num}|{chatid}|{msgid}",
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁",
+                    "Refresh",
                     data=f"refreshinbox-{sender}|{chatid}|{msgid}",
                 )
             ],
@@ -471,18 +471,18 @@ async def _(event):
             ],
             [
                 Button.inline(
-                    "◀️",
+                    "Prev",
                     data=f"checkinboxprev-{sender}|{num}|{chatid}|{msgid}",
                 ),
-                Button.inline("❌", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
+                Button.inline("Exit", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️",
+                    "Next",
                     data=f"checkinboxnext-{sender}|{num}|{chatid}|{msgid}",
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁",
+                    "Refresh",
                     data=f"refreshinbox-{sender}|{chatid}|{msgid}",
                 )
             ],
@@ -586,18 +586,18 @@ async def _(event):
             ],
             [
                 Button.inline(
-                    "◀️",
+                    "Prev",
                     data=f"checkinboxprev-{sender}|{num}|{chatid}|{msgid}",
                 ),
-                Button.inline("❌", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
+                Button.inline("Exit", data=f"stopcheckinbox-{sender}|{chatid}|{msgid}"),
                 Button.inline(
-                    "▶️",
+                    "Next",
                     data=f"checkinboxnext-{sender}|{num}|{chatid}|{msgid}",
                 ),
             ],
             [
                 Button.inline(
-                    "Refresh 🔁",
+                    "Refresh",
                     data=f"refreshinbox-{sender}|{chatid}|{msgid}",
                 )
             ],
