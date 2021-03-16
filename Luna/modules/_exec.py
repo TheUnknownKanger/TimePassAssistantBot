@@ -168,14 +168,14 @@ async def _(event):
     elif stdout:
         evaluation = stdout
     else:
-        evaluation = "Success"
-
-    final_output = "**`{}`**".format(evaluation)
+        evaluation = "None"
+    await event.delete()
+    final_output = "• **Eval:**\n`{}`\n\n• **Result:**\n`{}`".format(cmd, evaluation)
     MAX_MESSAGE_SIZE_LIMIT = 4095
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
             out_file.name = "eval.text"
-            await ubot.send_file(
+            await abot.send_file(
                 event.chat_id,
                 out_file,
                 force_document=True,
