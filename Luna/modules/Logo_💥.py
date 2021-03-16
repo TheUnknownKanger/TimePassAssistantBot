@@ -11,7 +11,7 @@ async def lego(event):
      pass
  else:
      if event.is_group:
-       await event.reply('Currently This Module Only Works in my PM!')
+       await event.reply('Currently This Module Only Works in my PM!/n[Pls Click Here](tg://user?id=1624337697)')
        return
      else:
        pass
