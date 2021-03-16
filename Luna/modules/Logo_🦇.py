@@ -7,6 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 @register(pattern="^/logo ?(.*)")
 async def lego(event):
+ text = event.pattern_match.group(1)
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
 
@@ -19,9 +20,9 @@ async def lego(event):
  d = ImageDraw.Draw(txt)
 
 # draw text, half opacity
- d.text((500,400), "This is Rose LoverX", font=fnt, fill=(255,255,255,128))
+ d.text((450,450), text, font=fnt, fill=(255,255,255,128))
 # draw text, full opacity
- d.text((400,500), "Testing for opacity", font=fnt, fill=(255,255,255,255))
+ d.text((450,450), text, font=fnt, fill=(255,255,255,255))
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
