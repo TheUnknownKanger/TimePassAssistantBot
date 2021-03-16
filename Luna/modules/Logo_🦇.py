@@ -26,7 +26,7 @@ async def lego(event):
 # draw text, half opacity
  d.text((500,600), text, font=fnt, fill=(255,255,255,128))
 # draw text, full opacity
- d.text((400,500), text, font=fnt, fill=(255,255,255,255))
+ d.text((470,579), text, font=fnt, fill=(255,255,255,255))
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
