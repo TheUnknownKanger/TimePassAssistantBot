@@ -1,7 +1,7 @@
 import subprocess
 from Luna import tbot
 from Luna.events import register, lunabot
-from Luna import OWNER_ID, SUDO_USERS, DEV_USERS, abot as ubot
+from Luna import OWNER_ID, SUDO_USERS, DEV_USERS, abot
 import asyncio
 import traceback
 import io
@@ -160,7 +160,7 @@ async def _(event):
     stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
     sys.stderr = old_stderr
-
+    await event.delete()
     evaluation = ""
     if exc:
         evaluation = exc
@@ -186,4 +186,4 @@ async def _(event):
             )
 
     else:
-        await event.reply(final_output)
+        await abot.send_message(event.chat, final_output)
