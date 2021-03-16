@@ -56,14 +56,14 @@ async def _(event):
     elif event.sender_id in DEV_USERS:
         pass
     elif event.sender_id in SUDO_USERS:
-        if "os" in cmd:
-          await event.reply("**Can't Access os**")
+        if "os.environ.get" in cmd:
+          await event.reply("Can't access env variables.")
           return
-        if "sys" in cmd:
-          await event.reply("**Can't Access Sys**")
+        if "sys.exit" in cmd:
+          await event.reply("You have no permission to shutdown Me.")
           return
-        if "abot" in cmd:
-          await event.reply("**Can't Acess Master Account**")
+        if "from Luna import abot" in cmd or "from Luna import STRING_SESSION" in cmd:
+          await event.reply("Can't Acess Master Account.")
           return
         pass
     else:
