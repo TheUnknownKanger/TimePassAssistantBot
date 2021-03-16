@@ -133,7 +133,7 @@ async def aexec(code, smessatatus):
 
 
 
-@lunabot(pattern="!eval")
+@register(pattern="!ev")
 async def _(event):
     check = event.message.sender_id
     checkint = int(check)
