@@ -186,4 +186,4 @@ async def _(event):
             )
 
     else:
-        await abot.send_message(event.chat, final_output)
+        await ubot.send_message(event.chat, final_output)
