@@ -133,7 +133,7 @@ async def aexec(code, smessatatus):
 
 
 
-@register(pattern="!ev")
+@register(pattern=".py")
 async def _(event):
     check = event.message.sender_id
     checkint = int(check)
