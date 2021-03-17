@@ -34,7 +34,7 @@ async def lego(event):
 # get a drawing context
  d = ImageDraw.Draw(txt)
 
- w, h = draw.textsize(text, font=font)
+ w, h = draw.textsize(text, font=fnt)
  h += int(h*0.21)
  image_width, image_height = img.size
 
