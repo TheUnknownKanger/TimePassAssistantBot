@@ -3,7 +3,7 @@ from Luna.events import register
 import asyncio, os
 import datetime
 
-@register(pattern="^/au (.*)")
+@register(pattern="^/gen (.*)")
 async def alive(event):
       ok = event.pattern_match.group(1)
       async with abot.conversation("@ccgen_robot") as bot_conv:
@@ -16,7 +16,9 @@ async def alive(event):
           await response.click(text='✅Generate✅')
           await asyncio.sleep(2)
           gen = await bot_conv.get_response()
-          await event.reply(gen.text)
+          text = "**Generated Cards**"
+          text += f"{gen.text}"
+          await tbot.send_message(event.chat_id, text)
 @register(pattern="^/key (.*)")
 async def alive(event):
       sender = await event.get_sender()
