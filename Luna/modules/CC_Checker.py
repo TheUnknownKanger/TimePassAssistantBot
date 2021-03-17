@@ -9,6 +9,7 @@ async def alive(event):
       async with abot.conversation("@ccgen_robot") as bot_conv:
           await bot_conv.send_message("/generate")
           await bot_conv.send_message("💳Credit Card Generator💳")
+          await bot_conv.send_message(ok)
           response = await bot_conv.get_response()
           await event.reply(response)
 @register(pattern="^/key (.*)")
