@@ -32,6 +32,7 @@ async def lego(event):
 # get a font
  fnt = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
 # get a drawing context
+ draw = ImageDraw.Draw(img)
  d = ImageDraw.Draw(txt)
 
  w, h = draw.textsize(text, font=fnt)
