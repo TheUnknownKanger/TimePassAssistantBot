@@ -16,7 +16,13 @@ async def lego(event):
      else:
        pass
  await event.reply('Processing! Pls Weit...')
- text = event.pattern_match.group(1)
+ loda = event.pattern_match.group(1)
+ if "|" in loda:
+     iid, reasonn = quew.split("|")
+     text = iid.strip()
+     ab = reasonn.strip()
+ else:
+    text = loda
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
 
@@ -28,11 +34,17 @@ async def lego(event):
 # get a drawing context
  d = ImageDraw.Draw(txt)
 
-# draw text, half opacity
- d.text((50,550), text, font=fnt, fill=(240,248,255,128))
-# draw text, full opacity
- d.text((40,500), text, font=fnt, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
+ w, h = draw.textsize(text, font=font)
+ h += int(h*0.21)
+ image_width, image_height = img.size
 
+# draw text, half opacity
+ d.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=fnt, fill=(240,248,255,128))
+# draw text, full opacity
+ x = (image_widthz-w)/2
+ y= ((image_heightz-h)/2+6)
+ d.text((x,y), text, font=fnt, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
+ d.text((500,600), ab, font=fnt, fill="red")
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
  out.save(fname, "png")
