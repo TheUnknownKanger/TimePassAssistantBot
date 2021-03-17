@@ -19,7 +19,7 @@ db = client["missjuliarobot"]
 pagenumber = db.pagenumber
 
 pm_caption = "Hi, my name is Luna!\nI'm a powerful group management bot\nAdd me to your groups as admin\nto manage your groups with my\ncommands\nYou can find my list of available\ncommands with /help"
-file1 = "https://telegra.ph/file/1eaa5e7bb5ec4e4de1a23.jpg"
+file1 = "https://telegra.ph/file/a6735cabac75758eea91d.jpg"
 pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\nExplore My Commands🙃"
 @register(pattern="^/start$")
 async def start(event):
