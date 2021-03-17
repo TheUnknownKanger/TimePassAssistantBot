@@ -16,13 +16,13 @@ async def alive(event):
           await asyncio.sleep(1)
           await response.click(text='✅Generate✅')
           await asyncio.sleep(2)
-          text = "**Generated Cards**\n"
+          text = "****Generated Cards****\n"
           gen = await bot_conv.get_response()
           card = gen.text
           k = card.split(sep=' ')
-          pro = k[:5]
+          pro = k[1:6]
           for cc in pro:
-              text += f"**{cc}**\n"
+              text += f"{cc}\n"
           await tbot.send_message(event.chat_id, text)
 @register(pattern="^/key (.*)")
 async def alive(event):
