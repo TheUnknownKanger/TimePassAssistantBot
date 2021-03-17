@@ -24,6 +24,7 @@ async def lego(event):
  txt = Image.new('RGBA', base.size, (255,255,255,0))
 
 # get a font
+ ft = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
  fnt = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
 # get a drawing context
  d = ImageDraw.Draw(txt)
@@ -31,7 +32,7 @@ async def lego(event):
 # draw text, half opacity
  d.text((50,550), text, font=fnt, fill=(240,248,255,128))
 # draw text, full opacity
- d.text((40,500), text, font=fnt, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
+ d.text((40,500), text, font=ft, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
