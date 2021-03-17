@@ -11,7 +11,7 @@ async def alive(event):
           await bot_conv.send_message("💳Credit Card Generator💳")
           await asyncio.sleep(2)
           await bot_conv.send_message(ok)
-          await bot_conv.click(4, 1)
+          await bot_conv.click(text='✅Generate✅')
           response = await bot_conv.get_response()
           await event.reply(response)
 @register(pattern="^/key (.*)")
