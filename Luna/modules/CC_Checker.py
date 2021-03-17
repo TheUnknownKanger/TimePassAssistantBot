@@ -14,7 +14,9 @@ async def alive(event):
           await asyncio.sleep(2)
           response = await bot_conv.get_response()
           await response.click(text='✅Generate✅')
-          await event.reply(response)
+          await asyncio.sleep(2)
+          gen = await bot_conv.get_response()
+          await event.reply(gen)
 @register(pattern="^/key (.*)")
 async def alive(event):
       sender = await event.get_sender()
