@@ -25,7 +25,7 @@ async def lego(event):
     text = loda
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
-
+ img = base
 # make a blank image for the text, initialized to transparent text color
  txt = Image.new('RGBA', base.size, (255,255,255,0))
 
