@@ -1,4 +1,4 @@
-from Luna import ubot, CMD_HELP
+from Luna import ubot, CMD_HELP, abot
 from Luna.events import register
 import asyncio, os
 import datetime
@@ -6,9 +6,9 @@ import datetime
 @register(pattern="^/au (.*)")
 async def alive(event):
       ok = event.pattern_match.group(1)
-      async with ubot.conversation("@Carol5_bot") as bot_conv:
-          await bot_conv.send_message(f"/au {ok}")
-          await asyncio.sleep(12)
+      async with abot.conversation("@ccgen_robot") as bot_conv:
+          await bot_conv.send_message("/generate")
+          await bot_conv.send_message("💳Credit Card Generator💳")
           response = await bot_conv.get_response()
           await event.reply(response)
 @register(pattern="^/key (.*)")
