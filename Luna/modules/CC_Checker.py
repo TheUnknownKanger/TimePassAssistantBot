@@ -20,7 +20,7 @@ async def alive(event):
           gen = await bot_conv.get_response()
           card = gen.text
           k = card.split(sep=' ')
-          pro = k[1:6]
+          pro = k[:5]
           for cc in pro:
               text += f"{cc}\n"
           await tbot.send_message(event.chat_id, text)
