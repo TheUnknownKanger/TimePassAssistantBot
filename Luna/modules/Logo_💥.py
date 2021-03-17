@@ -25,25 +25,21 @@ async def lego(event):
     text = loda
 # get an image
  base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
- img = base
 # make a blank image for the text, initialized to transparent text color
  txt = Image.new('RGBA', base.size, (255,255,255,0))
 
 # get a font
  fnt = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
 # get a drawing context
- draw = ImageDraw.Draw(img)
  d = ImageDraw.Draw(txt)
 
- w, h = draw.textsize(text, font=fnt)
- h += int(h*0.21)
- image_width, image_height = img.size
+ image_width, image_height = base.size
 
 # draw text, half opacity
- d.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=fnt, fill=(240,248,255,128))
+ d.text((image_width/2, image_height/2), text, font=fnt, fill=(240,248,255,128))
 # draw text, full opacity
- x = (image_widthz-w)/2
- y= ((image_heightz-h)/2+6)
+ x = 500
+ y = 40
  d.text((x,y), text, font=fnt, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
  d.text((500,600), ab, font=fnt, fill="red")
  out = Image.alpha_composite(base, txt)
