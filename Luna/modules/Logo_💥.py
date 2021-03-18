@@ -7,7 +7,6 @@ from PIL import Image, ImageDraw, ImageFont
 @register(pattern="^/logo ?(.*)")
 async def lego(event):
  quew = event.pattern_match.group(1)
- text = quew
  if event.sender_id == OWNER_ID:
      pass
  else:
@@ -21,26 +20,30 @@ async def lego(event):
        return
  else:
        pass
- await event.reply('Hnm.')
- 
-# get an image
- base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
- txt = Image.new('RGBA', base.size, (255,255,255,0))
- font = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
-# get a drawing context
- d = ImageDraw.Draw(txt)
-
-# draw text, half opacity
- d.text((80,490), text, font=font, fill=(240,248,255,128))
-# draw text, full opacity
- d.text((70,450), text, font=font, fill=(255,255,255,255), stroke_width=6, stroke_fill="black")
-
- out = Image.alpha_composite(base, txt)
- fname = 'lel.png'
- out.save(fname, "png")
- await tbot.send_file(event.chat_id, fname, caption="Made By Anie")
- if os.path.exists(fname2):
+ await event.reply('Drawing Text On Pic.Weit!')
+ try:
+    text = event.pattern_match.group(1)
+    img = Image.open('./Luna/resources/Blankmeisnub.jpg')
+    draw = ImageDraw.Draw(img)
+    image_widthz, image_heightz = img.size
+    pointsize = 500
+    fillcolor = "gold"
+    shadowcolor = "blue"
+    font = ImageFont.truetype("./Luna/resources/AVENGEANCE HEROIC AVENGER BD.otf", 300)
+    w, h = draw.textsize(text, font=font)
+    h += int(h*0.21)
+    image_width, image_height = img.size
+    draw.text(((image_widthz-w)/2, (image_heightz-h)/2), text, font=font, fill=(255, 255, 255))
+    x = (image_widthz-w)/2
+    y= ((image_heightz-h)/2+6)
+    draw.text((x, y), text, font=font, fill="black", stroke_width=15, stroke_fill="yellow")
+    fname2 = "LogoByAnie.png"
+    img.save(fname2, "png")
+    await tbot.send_file(event.chat_id, fname2, caption="Made By Anie")
+    if os.path.exists(fname2):
             os.remove(fname2)
+ except Exception as e:
+   await event.reply(f'Error Report @lunasupport, {e}')
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
