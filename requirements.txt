@@ -1,7 +1,7 @@
 telethon
 pymongo
 pytz
-sqlalchemy
+sqlalchemy==1.4.1
 psycopg2-binary
 dnspython
 better_profanity
