@@ -224,7 +224,7 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
                 ),
                 custom.Button.inline("◀️", data="reopen_again"),
                 custom.Button.inline(
-                    "⏭️", data="{}_next({})".format(prefix, modulo_page)
+                    "➡", data="{}_next({})".format(prefix, modulo_page)
                 ),
             )
         ]
