@@ -155,8 +155,8 @@ __help__ = """
  - /pp <cc>: Paypal 1$ Guest Charge
  - /ss <cc>: Speedy Stripe Auth
  - /ch <cc>: Check If CC is Live
- - /C3 <bin>: Check If Bin Is 3D Redirect
  - /bin <bin>: Gather's Info About the bin
+ - /gen <bin>: Generates CC with given bin
  - /key <sk>: Checks if Sk_Key is Live
 More Gates Soon...
 
