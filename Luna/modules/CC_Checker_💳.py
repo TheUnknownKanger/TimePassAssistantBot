@@ -157,7 +157,7 @@ __help__ = """
  - /ch <cc>: Check If CC is Live
  - /bin <bin>: Gather's Info About the bin
  - /gen <bin>: Generates CC with given bin
- - /key <sk>: Checks if Sk_Key is Live
+ - /key <sk>: Checks if Stripe key is Live
 More Gates Soon...
 
 **Note:** Format of cc is ccnum|mm|yy|cvv
