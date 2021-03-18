@@ -8,13 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 @register(pattern="^/logo ?(.*)")
 async def lego(event):
  quew = event.pattern_match.group(1)
- if "|" in quew:
-     text, bg, font = quew.split("|")
-     text = text.strip()
-     bg = bg.strip()
-     fnt = font.strip()
- else:
-    text = quew
+ text = quew
  if event.sender_id == OWNER_ID:
      pass
  else:
@@ -26,19 +20,9 @@ async def lego(event):
  await event.reply('Processing! Pls Weit...')
  
 # get an image
- if bg == None or bg == '2':
-       base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
- elif bg == '1':
-       base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
-
-# make a blank image for the text, initialized to transparent text color
+ base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
  txt = Image.new('RGBA', base.size, (255,255,255,0))
-
-# get a font
- if fnt == None or fnt == '2':
-      font = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
- elif fnt == '1':
-      font = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
+ font = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
 # get a drawing context
  d = ImageDraw.Draw(txt)
 
