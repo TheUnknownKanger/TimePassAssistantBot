@@ -62,7 +62,7 @@ async def qt(event):
  j = k.replace(',', '')
  q = j.replace("{", "")
  l = q.replace("}", "")
- n = l.replace('"author"', '')
+ n = l.replace('"author"', ' ')
  o = n.replace('"quote":', '')
  z = o.replace(":", "-")
  y = z.replace('."', '')
