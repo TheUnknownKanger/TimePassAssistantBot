@@ -93,6 +93,16 @@ async def alive(event):
           await asyncio.sleep(18)
           response = await bot_conv.get_response()
           await event.reply(response)
+@register(pattern="^/au (.*)")
+async def alive(event):
+      ok = event.pattern_match.group(1)
+      async with ubot.conversation("@Carol5_bot") as bot_conv:
+          await bot_conv.send_message(f"/au {ok}")
+          k = await event.reply("**Wait for Result.**")
+          await asyncio.sleep(18)
+          response = await bot_conv.get_response()
+          await event.reply(response)
+
 
 @register(pattern="^/bin (.*)")
 async def alive(event):
