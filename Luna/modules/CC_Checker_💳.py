@@ -119,8 +119,14 @@ async def alive(event):
                text += f'Checked By **{fname}**'
                await event.reply(text)
           else:
-               m = res.splitlines()[0]
-               await event.reply(m)
+               text = f'{res.splitlines()[0]}\n'
+               text += f'{res.splitlines()[1]}\n'
+               text += f'{res.splitlines()[2]}\n'
+               text += f'{res.splitlines()[3]}\n'
+               text += f'{res.splitlines()[4]}\n'
+               text += f'{res.splitlines()[5]}\n'
+               text += f'{res.splitlines()[6]}\n'
+               await event.reply(text)
 
 
 file_help = os.path.basename(__file__)
