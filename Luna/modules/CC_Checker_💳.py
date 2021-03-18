@@ -126,6 +126,7 @@ async def alive(event):
                text += f'{res.splitlines()[4]}\n'
                text += f'{res.splitlines()[5]}\n'
                text += f'{res.splitlines()[6]}\n'
+               text += f'Checked By **{fname}**'
                await event.reply(text)
 
 
