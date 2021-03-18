@@ -29,7 +29,6 @@ async def hmm(event):
    pro = "I am fairly yound and I was made by RoseloverX."
    try:
       async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(2)
            await event.reply(pro)
    except CFError as e:
            print(e)
@@ -37,17 +36,45 @@ async def hmm(event):
    pro = "My name is Luna"
    try:
       async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(2)
            await event.reply(pro)
    except CFError as e:
            print(e)
   else:
     try:
       async with tbot.action(event.chat_id, 'typing'):
-           await asyncio.sleep(2)
            await event.reply(result)
     except CFError as e:
            print(e)
+
+@register(pattern="^/quote")
+async def qt(event):
+ url = "https://andruxnet-random-famous-quotes.p.rapidapi.com/"
+
+ querystring = {"cat":"famous","count":"1"}
+
+ headers = {
+    'x-rapidapi-key': "cf9e67ea99mshecc7e1ddb8e93d1p1b9e04jsn3f1bb9103c3f",
+    'x-rapidapi-host': "andruxnet-random-famous-quotes.p.rapidapi.com"
+    }
+
+ response = requests.request("GET", url, headers=headers, params=querystring)
+ k = response.text
+ j = k.replace(',', '')
+ q = j.replace("{", "")
+ l = q.replace("}", "")
+ n = l.replace('"author"', '')
+ o = n.replace('"quote":', '')
+ z = o.replace(":", "-")
+ y = z.replace('."', '')
+ X = y.replace('"', '')
+ m = X.replace('category-Famous', '')
+ Com = m.replace(']', '')
+ text = Com.replace('[', '')
+ try:
+      async with tbot.action(event.chat_id, 'typing'):
+           await event.reply(text)
+ except CFError as e:
+           await event.reply('Error Pls Report @lunabotsupport')
 
 
 file_help = os.path.basename(__file__)
