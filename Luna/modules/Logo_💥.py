@@ -28,7 +28,7 @@ async def lego(event):
 # get an image
  if bg == None or bg == '2':
        base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
- elif if bg == '1':
+ elif bg == '1':
        base = Image.open('./Luna/resources/IMG_20210316_204512_022.jpg').convert('RGBA')
 
 # make a blank image for the text, initialized to transparent text color
