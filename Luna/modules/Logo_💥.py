@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageFont
 async def lego(event):
  quew = event.pattern_match.group(1)
  if "|" in quew:
-        text, bg, font = quew.split("|")
+     text, bg, font = quew.split("|")
      text = text.strip()
      bg = bg.strip()
      fnt = font.strip()
