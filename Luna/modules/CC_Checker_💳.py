@@ -7,7 +7,7 @@ import datetime
 async def alive(event):
       sender = await event.get_sender()
       fname = sender.first_name
-      m = await event.reply('**Generating CC...**')
+      m = await event.reply('**Generating CC...Pls Weit**')
       ok = event.pattern_match.group(1)
       async with abot.conversation("@ccgen_robot") as bot_conv:
           await bot_conv.send_message("/generate")
@@ -19,7 +19,7 @@ async def alive(event):
           await asyncio.sleep(1)
           await response.click(text='✅Generate✅')
           await asyncio.sleep(2)
-          text = "****Generated Cards****\n"
+          text = "****Generated Cards:****\n"
           gen = await bot_conv.get_response()
           card = gen.text
           k = card.split(sep=' ')
