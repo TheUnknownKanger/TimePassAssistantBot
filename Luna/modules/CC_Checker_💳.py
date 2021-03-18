@@ -68,11 +68,16 @@ async def alive(event):
 
 @register(pattern="^/ss (.*)")
 async def alive(event):
+      sender = await event.get_sender()
+      fname = sender.first_name
       ok = event.pattern_match.group(1)
       async with ubot.conversation("@Carol5_bot") as bot_conv:
           await bot_conv.send_message(f"/ss {ok}")
-          await asyncio.sleep(12)
+          await asyncio.sleep(9)
           response = await bot_conv.get_response()
+          if "Try again after" in response.text:
+                 await event.reply(response)
+                 return
           res = response.text
           text = f'{res.splitlines()[0]}\n'
           text += f'{res.splitlines()[1]}\n'
