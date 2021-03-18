@@ -29,7 +29,7 @@ async def lego(event):
     pointsize = 500
     fillcolor = "gold"
     shadowcolor = "blue"
-    font = ImageFont.truetype("./Luna/resources/AVENGEANCE HEROIC AVENGER BD.otf", 300)
+    font = ImageFont.truetype("./Luna/resources/Thicxer-8MerB.ttf", 300)
     w, h = draw.textsize(text, font=font)
     h += int(h*0.21)
     image_width, image_height = img.size
