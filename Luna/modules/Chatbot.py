@@ -86,8 +86,6 @@ async def hmm(event):
         return
   msg = event.pattern_match.group(1)
   if msg:
-        if not await check_message(event):
-            return
         sesh, exp = sql.get_ses(chat.id)
         query = msg
         try:
@@ -155,7 +153,6 @@ async def _(event):
         try:          
                 rep = api_client.think_thought(sesh, query)
                 async with tbot.action(event.chat_id, 'typing'):
-                                              await asyncio.sleep(1)
                                               await event.reply(rep)
         except CFError as e:
             print(e)
