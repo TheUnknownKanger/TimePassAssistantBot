@@ -22,14 +22,14 @@ async def lego(event):
 # get an image
  base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
  txt = Image.new('RGBA', base.size, (255,255,255,0))
- font = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
+ font = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
 # get a drawing context
  d = ImageDraw.Draw(txt)
 
 # draw text, half opacity
- d.text((50,550), text, font=font, fill=(240,248,255,128))
+ d.text((80,500), text, font=font, fill=(240,248,255,128))
 # draw text, full opacity
- d.text((40,500), text, font=font, fill=(250,250,210,255), stroke_width=6, stroke_fill="black")
+ d.text((50,400), text, font=font, fill=(255,255,255,255), stroke_width=6, stroke_fill="black")
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
