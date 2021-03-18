@@ -73,7 +73,16 @@ async def alive(event):
           await bot_conv.send_message(f"/ss {ok}")
           await asyncio.sleep(12)
           response = await bot_conv.get_response()
-          await event.reply(response)
+          res = response.text
+          text = f'{res.splitlines()[0]}\n'
+          text += f'{res.splitlines()[1]}\n'
+          text += f'{res.splitlines()[2]}\n'
+          text += f'{res.splitlines()[3]}\n'
+          text += f'{res.splitlines()[4]}\n'
+          text += f'{res.splitlines()[5]}\n'
+          text += f'{res.splitlines()[6]}\n'
+          text += f'Checked By **{fname}**'
+          await event.reply(text)
 
 @register(pattern="^/pp (.*)")
 async def alive(event):
