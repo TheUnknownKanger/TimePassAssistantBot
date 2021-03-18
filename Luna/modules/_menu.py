@@ -178,7 +178,7 @@ def get_page(id):
 
 def paginate_help(event, page_number, loaded_plugins, prefix):
     number_of_rows = 6
-    number_of_cols = 4
+    number_of_cols = 3
 
     to_check = get_page(id=event.sender_id)
 
