@@ -114,8 +114,12 @@ async def alive(event):
           await asyncio.sleep(5)
           response = await bot_conv.get_response()
           res = response.text
-          await event.reply(res)
-          await event.reply(response)
+          if "❌" in res:
+               text = '🤬❌ INVALID BIN ❌🤬\n'
+               text = f'Checked By {fname}'
+               await event.reply(text)
+          else:
+               await event.reply(response.text)
 
 
 file_help = os.path.basename(__file__)
