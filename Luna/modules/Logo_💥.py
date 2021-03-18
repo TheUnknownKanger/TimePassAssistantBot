@@ -18,7 +18,7 @@ async def lego(event):
      else:
        pass
  if not quew:
-       await event.reply('Pls Provide Some Text To Draw')
+       await event.reply('Provide Some Text To Draw!')
        return
  await event.reply('Processing! Pls Weit...')
  
