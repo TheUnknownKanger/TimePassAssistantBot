@@ -116,7 +116,7 @@ async def alive(event):
           res = response.text
           if "❌" in res:
                text = '🤬❌ INVALID BIN ❌🤬\n'
-               text = f'Checked By {fname}'
+               text += f'Checked By {fname}'
                await event.reply(text)
           else:
                await event.reply(response.text)
