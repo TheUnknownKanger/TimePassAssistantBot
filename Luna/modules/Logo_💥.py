@@ -1,6 +1,5 @@
 from Luna import CMD_HELP
 from Luna.events import register
-tmp = './'
 from Luna import tbot, OWNER_ID
 import os
 from PIL import Image, ImageDraw, ImageFont
@@ -20,7 +19,9 @@ async def lego(event):
  if not quew:
        await event.reply('Provide Some Text To Draw!')
        return
- await event.reply('Processing! Pls Weit...')
+ else:
+       pass
+ await event.reply('Hnm.')
  
 # get an image
  base = Image.open('./Luna/resources/photo_2021-03-18_10-37-51.jpg').convert('RGBA')
@@ -30,9 +31,9 @@ async def lego(event):
  d = ImageDraw.Draw(txt)
 
 # draw text, half opacity
- d.text((80,500), text, font=font, fill=(240,248,255,128))
+ d.text((80,490), text, font=font, fill=(240,248,255,128))
 # draw text, full opacity
- d.text((50,400), text, font=font, fill=(255,255,255,255), stroke_width=6, stroke_fill="black")
+ d.text((70,450), text, font=font, fill=(255,255,255,255), stroke_width=6, stroke_fill="black")
 
  out = Image.alpha_composite(base, txt)
  fname = 'lel.png'
@@ -49,6 +50,7 @@ __help__ = """
  In Beta!.
  - /logo <text>
 Module Not Finished.!
+Send Logo Bgs and Fonts to Bot DM! will add to module.
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
