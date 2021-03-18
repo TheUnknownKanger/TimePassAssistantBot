@@ -37,7 +37,7 @@ async def lego(event):
 # get a font
  if fnt == None or fnt == '2':
       font = ImageFont.truetype('./Luna/resources/Distort Me.otf', 160)
- elif fnt == '1'
+ elif fnt == '1':
       font = ImageFont.truetype('./Luna/resources/Vermin Vibes V.otf', 160)
 # get a drawing context
  d = ImageDraw.Draw(txt)
