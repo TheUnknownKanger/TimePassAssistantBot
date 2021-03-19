@@ -97,7 +97,7 @@ async def _(event):
         evaluation = stdout
     else:
         evaluation = "Success"
-    eva = evaluation.replace('Traceback', '')
+    eva = evaluation.replace('Traceback (most recent call last):', '')
     final_output = "`{}`{}".format(evaluation, eva)
     MAX_MESSAGE_SIZE_LIMIT = 4095
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
