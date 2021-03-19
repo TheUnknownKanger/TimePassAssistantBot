@@ -60,7 +60,7 @@ def user_full_name(user):
     return full_name
 
 
-@register(pattern"^/kid ?(.*)")
+@register(pattern="^/kid ?(.*)")
 async def get_users(event):
     sender = await event.get_sender()
     me = await event.client.get_me()
