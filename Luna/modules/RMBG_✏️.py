@@ -1,7 +1,6 @@
 from Luna import CMD_HELP
 from Luna import tbot
 import io
-import asyncio
 import os
 from datetime import datetime
 
@@ -11,7 +10,6 @@ from telethon.tl import functions
 from Luna import REM_BG_API_KEY
 from Luna import TEMP_DOWNLOAD_DIRECTORY
 from Luna.events import register
-
 
 @register(pattern="^/rmbg")
 async def _(event):
@@ -26,7 +24,7 @@ async def _(event):
     if event.reply_to_msg_id:
         message_id = event.reply_to_msg_id
         reply_message = await event.get_reply_message()
-        s = await event.reply("Processing...")
+        await event.reply("Processing...")
         try:
             downloaded_file_name = await tbot.download_media(
                 reply_message, TEMP_DOWNLOAD_DIRECTORY
@@ -40,7 +38,6 @@ async def _(event):
     else:
         await event.reply(HELP_STR)
         return
-    await s.delete()
     contentType = output_file_name.headers.get("content-type")
     if "image" in contentType:
         with io.BytesIO(output_file_name.content) as remove_bg_image:
@@ -55,14 +52,13 @@ async def _(event):
             )
         end = datetime.now()
         ms = (end - start).seconds
-        k = await event.reply("Background Removed in {} seconds".format(ms))
-        await asyncio.sleep(2)
-        await k.delete()
+        await event.reply("Background Removed in {} seconds".format(ms))
     else:
-        d = await event.reply("remove.bg API returned Errors. Please report to @lunabotsupport")
-        await asyncio.sleep(6)
-        await d.delete()
-        
+        await event.reply(
+            "remove.bg API returned Errors. Please report to @lunabkotsupport\n`{}".format(
+                output_file_name.content.decode("UTF-8")
+            )
+        )
 
 
 def ReTrieveFile(input_file_name):
@@ -80,15 +76,8 @@ def ReTrieveFile(input_file_name):
         stream=True,
     )
     return r
-@register(pattern="^/superfban")
-async def _(event):
-    if event.reply_to_msg_id:
-        k = await event.reply("Initiating SuperFedban..")
-        await asyncio.sleep(4)
-        await k.edit("Banned User Successfully In 322 Feds")
-    else:
-        await event.reply("Abe Kisko Krna He Bsd")
-        return
+
+
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
@@ -97,9 +86,4 @@ __help__ = """
  - /rmbg: Type in reply to a media to remove it's background
 """
 
-CMD_HELP.update({
-    file_helpo: [
-        file_helpo,
-        __help__
-    ]
-})
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
