@@ -88,7 +88,9 @@ async def _(event):
     stderr = redirected_error.getvalue()
     sys.stdout = old_stdout
     sys.stderr = old_stderr
-
+    if stderr:
+        k = stderr.text
+        await event.reply(k)
     evaluation = ""
     if exc:
         evaluation = exc
