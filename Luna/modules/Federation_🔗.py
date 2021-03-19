@@ -1,3 +1,19 @@
+#    MissJuliaRobot (A Telegram Bot Project)
+#    Copyright (C) 2019-2021 Julia (https://t.me/MissJulia_Robot)
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as published by
+#    the Free Software Foundation, in version 3 of the License.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see < https://www.gnu.org/licenses/agpl-3.0.en.html/ >.
+
+
 import csv
 import json
 import os
@@ -13,6 +29,17 @@ from Luna import *
 from telethon.tl.types import MessageMediaDocument, DocumentAttributeFilename
 from Luna.events import register
 
+# Hello bot owner, I spended for feds many hours of my life, Please don't remove this if you still respect MrYacha and peaktogoo and AyraHikari too
+# Federation by MrYacha 2018-2019
+# Federation rework by Mizukito Akito 2019
+# Federation update v2 by Ayra Hikari 2019
+# Time spended on feds = 10h by #MrYacha
+# Time spended on reworking on the whole feds = 22+ hours by @peaktogoo
+# Time spended on updating version to v2 = 26+ hours by @AyraHikari
+# Total spended for making this features is 68+ hours
+# LOGGER.info("Original federation module by MrYacha, reworked by Mizukito Akito (@peaktogoo) on Telegram.")
+# ME @MissJulia_Robot has also done a lot of hard work to rewrite this in telethon so add this line as a credit. Please don't remove this if you somewhat respect me.
+# RoseLoverX
 
 async def is_register_admin(chat, user):
     if isinstance(chat, (types.InputPeerChannel, types.InputChannel)):
@@ -55,7 +82,6 @@ async def get_user_from_event(event):
             return None
 
     return user_obj
-
 
 def is_user_fed_owner(fed_id, user_id):
     getsql = sql.get_fed_info(fed_id)
@@ -698,7 +724,7 @@ async def _(event):
             # Will send to current chat
             await tbot.send_message(
                 chat,
-                "<b>New FedBan</b>"
+                "<b>New Federation Ban</b>"
                 "\n<b>Federation:</b> {}"
                 "\n<b>Federation Admin:</b> {}"
                 "\n<b>User:</b> {}"
@@ -717,7 +743,7 @@ async def _(event):
                 try:
                     await tbot.send_message(
                         int(info["owner"]),
-                        "<b>New FedBan</b>"
+                        "<b>FedBan reason updated</b>"
                         "\n<b>Federation:</b> {}"
                         "\n<b>Federation Admin:</b> {}"
                         "\n<b>User:</b> {}"
