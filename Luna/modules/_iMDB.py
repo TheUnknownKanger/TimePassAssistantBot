@@ -118,7 +118,7 @@ from Luna.events import register
 @register(pattern="^/movie (.*)")
 async def yts(event):
  name = event.pattern_match.group(1)
- for result in range(1)
+ for result in range(1, 2)
   url = "https://yts.mx/browse-movies/" + name + "/all/all/0/seeds/0/all"
   r = requests.get(url).text
   soup = BeautifulSoup(r, "html.parser")
