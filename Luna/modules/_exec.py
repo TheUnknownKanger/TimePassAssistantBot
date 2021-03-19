@@ -92,14 +92,13 @@ async def _(event):
     if exc:
         evaluation = exc
     elif stderr:
-        joi = stderr.replace('Traceback (most recent call last):', '')
         evaluation = stderr
     elif stdout:
         evaluation = stdout
     else:
         evaluation = "Success"
-
-    final_output = "`{}`{}".format(evaluation, joi)
+    eva = evaluation.replace('Traceback', '')
+    final_output = "`{}`{}".format(evaluation, eva)
     MAX_MESSAGE_SIZE_LIMIT = 4095
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
