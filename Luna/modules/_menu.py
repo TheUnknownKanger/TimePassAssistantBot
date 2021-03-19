@@ -155,15 +155,7 @@ async def on_plug_in_callback_query_handler(event):
                 [Button.inline("Back", data="go_back")]]
         )
     except BaseException:
-        with io.BytesIO(str.encode(reply_pop_up_alert)) as out_file:
-            out_file.name = "{}.txt".format(plugin_name)
-            await tbot.send_file(
-                event.chat_id,
-                out_file,
-                force_document=True,
-                allow_cache=False,
-                caption=plugin_name,
-            )
+        pass
 
 
 @tbot.on(events.CallbackQuery(pattern=r"go_back"))
