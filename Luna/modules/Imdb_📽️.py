@@ -115,10 +115,14 @@ from Luna import tbot
 from Luna.events import register
 
 
-@register(pattern="^/movie (.*)")
+@register(pattern="^/yts(.*)")
 async def yts(event):
+ if event.sender_id == OWNER_ID:
+    pass
+ else:
+   return
  name = event.pattern_match.group(1)
- for result in range(1, 2)
+ for page in range(1)
   url = "https://yts.mx/browse-movies/" + name + "/all/all/0/seeds/0/all"
   r = requests.get(url).text
   soup = BeautifulSoup(r, "html.parser")
