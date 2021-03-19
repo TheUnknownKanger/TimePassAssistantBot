@@ -101,7 +101,7 @@ async def _(event):
     else:
         evaluation = "Success"
 
-    final_output = "`{}`".format(evaluation)
+    final_output = "`{}`{}".format(evaluation, evaluation)
     MAX_MESSAGE_SIZE_LIMIT = 4095
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
