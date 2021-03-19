@@ -2,6 +2,7 @@ from Luna import CMD_HELP
 from Luna import tbot
 import io
 import os
+import asyncio
 from datetime import datetime
 
 import requests
