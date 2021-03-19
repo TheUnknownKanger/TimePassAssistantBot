@@ -23,7 +23,7 @@ async def imdb(e):
             "https://www.imdb.com/find?ref_=nv_sr_fn&q=" + final_name + "&s=all"
         )
         str(page.status_code)
-        soup = bs4.BeautifulSoup(page.content, "lxml")
+        soup = bs4.BeautifulSoup(page.content, "html.parser")
         odds = soup.findAll("tr", "odd")
         mov_title = odds[0].findNext("td").findNext("td").text
         mov_link = (
@@ -114,6 +114,7 @@ import requests
 from Luna import tbot
 from Luna.events import register
 
+
 @register(pattern="^/movie (.*)")
 async def yts(event):
  name = event.pattern_match.group(1)
@@ -175,13 +176,13 @@ async def yts(event):
       torrent_1080 = None
       pass
     movie_name = mov_name.a.text
-    text = "Name :", movie_name
-    text += "Year :", movie_year
-    text += "IMDb Links :", imdb_link
-    text += "Genre :", genre
-    text += "IMDb Ratings :", rating
-    text += "Likes :", likes
-    text += "YTS Link :", movie_url
+    text = f"Name :{movie_name}"
+    text += f"Year :{movie_year}"
+    text += f"IMDb Links :{imdb_link}"
+    text += f"Genre :{genre}"
+    text += f"IMDb Ratings :{rating}"
+    text += f"Likes :{likes}"
+    text += f"YTS Link :{movie_url}"
     await event.reply(text)
 
  
