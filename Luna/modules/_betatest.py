@@ -13,7 +13,7 @@ from telethon.errors import (
 from telethon.tl import functions
 from telethon.tl.functions.channels import GetFullChannelRequest
 from telethon.tl.functions.messages import GetFullChatRequest
-from Luna import abot, tbot
+from Luna import abot, tbot, ubot
 from Luna.events import register
 client = abot
 async def get_chatinfo(event):
@@ -32,10 +32,10 @@ async def get_chatinfo(event):
         else:
             chat = event.chat_id
     try:
-        chat_info = await event.client(GetFullChatRequest(chat))
+        chat_info = await event.abot(GetFullChatRequest(chat))
     except:
         try:
-            chat_info = await event.client(GetFullChannelRequest(chat))
+            chat_info = await event.abot(GetFullChannelRequest(chat))
         except ChannelInvalidError:
             await event.reply("`Invalid channel/group`")
             return None
@@ -62,8 +62,6 @@ def user_full_name(user):
 
 @register(pattern="^/kid ?(.*)")
 async def get_users(event):
-    sender = await event.get_sender()
-    me = await event.client.get_me()
     hell = await event.reply("`processing to kidnapp...`")
     kraken = await get_chatinfo(event)
     chat = await event.get_chat()
@@ -74,13 +72,13 @@ async def get_users(event):
     error = "None"
 
     await hell.edit("♤KidnappedStatus♤\n\n`Kidnaping Users.......`")
-    async for user in event.client.iter_participants(kraken.full_chat.id):
+    async for user in event.abot.iter_participants(kraken.full_chat.id):
         try:
             if error.startswith("Too"):
                 return await hell.edit(
                     f"**Kidnapping Finished With Error**\n(`May Got Limit Error from kidnaper lol, Please try again Later`)\n**Error** : \n`{error}`\n\n• Kidnapped `{s}` people \n• Failed to Kidnapp `{f}` people"
                 )
-            await event.client(
+            await event.abot(
                 functions.channels.InviteToChannelRequest(channel=chat, users=[user.id])
             )
             s = s + 1
