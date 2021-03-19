@@ -698,7 +698,7 @@ async def _(event):
             # Will send to current chat
             await tbot.send_message(
                 chat,
-                "<b>FedBan reason updated</b>"
+                "<b>New FedBan</b>"
                 "\n<b>Federation:</b> {}"
                 "\n<b>Federation Admin:</b> {}"
                 "\n<b>User:</b> {}"
@@ -717,7 +717,7 @@ async def _(event):
                 try:
                     await tbot.send_message(
                         int(info["owner"]),
-                        "<b>FedBan reason updated</b>"
+                        "<b>New FedBan</b>"
                         "\n<b>Federation:</b> {}"
                         "\n<b>Federation Admin:</b> {}"
                         "\n<b>User:</b> {}"
