@@ -118,7 +118,7 @@ from Luna.events import register
 @register(pattern="^/movie (.*)")
 async def yts(event):
  name = event.pattern_match.group(1)
- try:
+ for result in range(1)
   url = "https://yts.mx/browse-movies/" + name + "/all/all/0/seeds/0/all"
   r = requests.get(url).text
   soup = BeautifulSoup(r, "html.parser")
@@ -184,9 +184,6 @@ async def yts(event):
     text += f"Likes :{likes}"
     text += f"YTS Link :{movie_url}"
     await event.reply(text)
- except Exception as e:
-    await event.reply(e)
-
  
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
