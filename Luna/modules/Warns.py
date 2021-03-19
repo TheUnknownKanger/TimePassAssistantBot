@@ -359,7 +359,10 @@ async def _(event):
      if "|" in quew:
         iid, reasonn = quew.split("|")
      cid = iid.strip()
-     reason = reasonn.strip()   
+     reason = reasonn.strip()
+     else:
+       cid = quew
+       reason = 'None'   
      if cid.isnumeric():
         cid = int(cid)
      entity = await tbot.get_entity(cid)
