@@ -98,7 +98,10 @@ async def _(event):
     else:
         evaluation = "Success"
     eva = evaluation.replace('Traceback (most recent call last):', '')
-    final_output = "`{}`{}".format(evaluation, eva)
+    evi = eva.replace('File "Luna/modules/_exec.py", line 83, in _', '')
+    evi = evi.replace('await aexec(cmd, event)
+  File "Luna/modules/_exec.py", line 131, in aexec','')
+    final_output = "`{}`{}".format(evaluation, evu)
     MAX_MESSAGE_SIZE_LIMIT = 4095
     if len(final_output) > MAX_MESSAGE_SIZE_LIMIT:
         with io.BytesIO(str.encode(final_output)) as out_file:
