@@ -1277,5 +1277,5 @@ __help__ = """
 
 **Note**: __You can't set new welcome/goodbye message before deleting the previous one.__
 """ 
-
+ 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
