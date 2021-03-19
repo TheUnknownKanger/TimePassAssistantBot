@@ -358,8 +358,8 @@ async def _(event):
    if not event.reply_to_msg_id and quew:
      if "|" in quew:
         iid, reasonn = quew.split("|")
-     cid = iid.strip()
-     reason = reasonn.strip()
+        cid = iid.strip()
+        reason = reasonn.strip()
      else:
        cid = quew
        reason = 'None'   
