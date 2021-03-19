@@ -89,7 +89,7 @@ async def _(event):
     sys.stdout = old_stdout
     sys.stderr = old_stderr
     if stderr:
-        k = stderr.text
+        k = stderr
         await event.reply(k)
     evaluation = ""
     if exc:
