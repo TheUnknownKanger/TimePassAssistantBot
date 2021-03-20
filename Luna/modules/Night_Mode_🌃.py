@@ -5,6 +5,7 @@ from telethon import functions
 from Luna.events import register
 from Luna import tbot, CMD_HELP
 import os
+from telethon import *
 from telethon import Button, custom, events
 hehes = ChatBannedRights(
     until_date=None,
