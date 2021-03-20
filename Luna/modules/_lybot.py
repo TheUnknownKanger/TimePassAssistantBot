@@ -35,13 +35,16 @@ async def lybot(event):
 
 @register(pattern="^/gey ?(.*)")
 async def lybot(event):
+   m = event.pattern_match.group(1)
    from telethon.tl.functions.users import GetFullUserRequest
    if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         replied_user = await tbot(GetFullUserRequest(previous_message.sender_id))
         k = replied_user.user.first_name
+   elif m:
+        k = m
    else:
-        k = event.pattern_match.group(1)
+      
    async with tbot.conversation("@roseloverxm") as bot_conv:
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users="@RoseLoverxm")
