@@ -215,7 +215,7 @@ def find_instance(items, class_or_tuple):
     return None
 
 
-@register(pattern="^/promote(?: |$)(.*)")
+@register(pattern="^/promote ?(.*)")
 async def promote(promt):
     if promt.is_group:
         if promt.sender_id == OWNER_ID:
@@ -248,10 +248,14 @@ async def promote(promt):
         pass
     else:
         return
-
+    quew = promt.pattern_match.group(1)
+    if quew:
+        title = quew
+    else:
+        title = Admin
     # Try to promote if current user is admin or creator
     try:
-        await tbot(EditAdminRequest(promt.chat_id, user.id, new_rights, "Admin"))
+        await tbot(EditAdminRequest(promt.chat_id, user.id, new_rights, title))
         await promt.reply("Promoted Successfully!")
 
     # If Telethon spit BadRequestError, assume
@@ -819,7 +823,7 @@ async def banme(bon):
         await bon.reply("Ok Banned !")
 
     except Exception as e:
-        await bon.reply("Failed to ban !")
+        await bon.reply("I don't think so!")
         return
 
 
@@ -829,7 +833,7 @@ async def kickme(bon):
         return
     try:
         await tbot.kick_participant(bon.chat_id, bon.sender_id)
-        await bon.reply("Ok Kicked !")
+        await bon.reply("Sure!")
     except Exception as e:
         await bon.reply("Failed to kick !")
         return
@@ -1118,7 +1122,7 @@ async def ltypes(event):
     )
 
 
-@register(pattern="^/chatlocks$")
+@register(pattern="^/locks$")
 async def clocks(event):
     if not event.is_group:
         return
