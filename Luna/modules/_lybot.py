@@ -50,7 +50,6 @@ async def lybot(event):
       response = await response
       await asyncio.sleep(1)
       await tbot.send_message(event.chat_id, response.text)
-      await response.forward_to(event.chat_id)
 
 
 from Luna import tbot, ubot
