@@ -33,13 +33,15 @@ async def lybot(event):
       await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
 
-@register(pattern="^/rather")
+@register(pattern="^/music ?(.*)")
 async def lybot(event):
    from telethon.tl.functions.users import GetFullUserRequest
    if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        
-        first_name = replied_user.user.first_name
+        replied_user = await tbot(GetFullUserRequest(previous_message.sender_id))
+        k = replied_user.user.first_name
+   else:
+        k = event.pattern_match.group(1)
    async with tbot.conversation("@roseloverxm") as bot_conv:
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users="@RoseLoverxm")
