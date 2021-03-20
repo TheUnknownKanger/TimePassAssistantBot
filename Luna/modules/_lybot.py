@@ -49,6 +49,7 @@ async def lybot(event):
       await (await inline_query(ubot, "@HowGayBot", k))[0].click("@aniegrpbot")
       response = await response
       await asyncio.sleep(1)
+      await tbot.send_message(event.chat_id, response.text)
       await response.forward_to(event.chat_id)
 
 
