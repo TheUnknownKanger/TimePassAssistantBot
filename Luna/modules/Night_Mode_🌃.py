@@ -35,7 +35,6 @@ openhehe = ChatBannedRights(
 from telethon.tl.types import (
     ChannelParticipantsAdmins,
     ChatAdminRights,
-    ChatBannedRights,
     MessageEntityMentionName,
     MessageMediaPhoto,
 )
@@ -61,7 +60,7 @@ async def close_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Enable Night Mode in Groups.")
         return
-    if event.is_group:
+    else:
         if not await can_change_info(message=event):
             await event.reply('You need to me an admin to do this.')
             return
