@@ -67,7 +67,7 @@ async def tele(event):
                 ),
                 link_preview=False,
             )
-    else:
+   else:
         await event.reply(
             "Reply to a message to get a permanent telegra.ph link."
         )
