@@ -33,6 +33,18 @@ async def lybot(event):
       await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
 
+@register(pattern="^/rather")
+async def lybot(event):
+   async with tbot.conversation("@roseloverxm") as bot_conv:
+      response = bot_conv.wait_event(
+                events.NewMessage(incoming=True, from_users="@RoseLoverxm")
+            )
+      await (await inline_query(ubot, "@RatherGameBot", None))[0].click("@aniegrpbot")
+      response = await response
+      await asyncio.sleep(1)
+      await response.forward_to(event.chat_id)
+
+
 from Luna import tbot, ubot
 from Luna.events import register
 import requests
