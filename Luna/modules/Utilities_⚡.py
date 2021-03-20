@@ -317,6 +317,19 @@ async def ping(event):
         parse_mode="html",
     )
 
+@register(pattern="^/alive")
+async def _(event):
+    import datetime
+    uptime = get_readable_time((time.time() - StartTime))
+    ok = event.chat.title
+    reply = "**I'm Up And Alive**\n\n"
+    reply += f"**Awake Since:** {uptime}\n"
+    reply += "**Telethon Ver:** 1.21.1\n"
+    reply += "**Bot_Ver:** 2.0.1\n"
+    reply += f"**Chat:** **-{ok}**"
+    await tbot.send_message(event.chat_id, reply)
+
+
 @register(pattern="^/phone (.*)")
 async def _(event):
     import requests, json
@@ -356,8 +369,7 @@ async def _(event):
          reply += "\n**Device:** " + str(line_type)
     await event.reply(reply)
 
-
-@register(pattern="^/staffs")
+@register(pattern="^/sudolist")
 async def _(event):
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
