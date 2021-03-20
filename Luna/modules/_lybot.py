@@ -39,7 +39,7 @@ async def lybot(event):
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users="@RoseLoverxm")
             )
-      await (await inline_query(ubot, "@RatherGameBot", ''))[0].click("@aniegrpbot")
+      await (await inline_query(ubot, "@HowGayBot", k))[0].click("@aniegrpbot")
       response = await response
       await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
