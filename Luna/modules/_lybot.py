@@ -44,7 +44,9 @@ async def lybot(event):
    elif m:
         k = m
    else:
-      
+      sender = await event.get_sender()
+      fname = sender.first_name
+      k = fname
    async with tbot.conversation("@roseloverxm") as bot_conv:
       response = bot_conv.wait_event(
                 events.NewMessage(incoming=True, from_users="@RoseLoverxm")
