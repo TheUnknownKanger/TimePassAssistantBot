@@ -75,3 +75,14 @@ async def tele(event):
 def resize_image(image):
     im = Image.open(image)
     im.save(image, "PNG")
+
+
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+__help__ = """
+ - /t(m|t): Reply to a message to get a permanent telegra.ph link.
+"""
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
