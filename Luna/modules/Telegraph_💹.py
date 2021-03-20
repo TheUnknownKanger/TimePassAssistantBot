@@ -38,7 +38,7 @@ async def tele(event):
                     "Uploaded to [Telegraph](https://telegra.ph{})".format(
                         media_urls[0]
                     ),
-                    link_preview=False,
+                    link_preview=True,
                 )
         elif input_str == "t":
             user_object = await tbot.get_entity(r_message.sender_id)
@@ -65,7 +65,7 @@ async def tele(event):
                 "Pasted to [Telegraph](https://telegra.ph/{})".format(
                     response["path"]
                 ),
-                link_preview=False,
+                link_preview=True,
             )
    else:
         await event.reply(
