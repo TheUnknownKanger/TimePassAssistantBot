@@ -33,7 +33,7 @@ async def lybot(event):
       await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
 
-@register(pattern="^/music ?(.*)")
+@register(pattern="^/gey ?(.*)")
 async def lybot(event):
    from telethon.tl.functions.users import GetFullUserRequest
    if event.reply_to_msg_id:
