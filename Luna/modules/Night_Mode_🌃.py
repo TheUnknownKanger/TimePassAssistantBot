@@ -5,7 +5,7 @@ from telethon import functions
 from Luna.events import register
 from Luna import tbot, CMD_HELP
 import os
-
+from telethon import Button, custom, events
 hehes = ChatBannedRights(
     until_date=None,
     send_messages=True,
@@ -32,12 +32,41 @@ openhehe = ChatBannedRights(
     pin_messages=True,
     change_info=True,
 )
+from telethon.tl.types import (
+    ChannelParticipantsAdmins,
+    ChatAdminRights,
+    ChatBannedRights,
+    MessageEntityMentionName,
+    MessageMediaPhoto,
+)
+from telethon.tl.functions.channels import (
+    EditAdminRequest,
+    EditBannedRequest,
+    EditPhotoRequest,
+)
+async def can_change_info(message):
+    result = await tbot(
+        functions.channels.GetParticipantRequest(
+            channel=message.chat_id,
+            user_id=message.sender_id,
+        )
+    )
+    p = result.participant
+    return isinstance(p, types.ChannelParticipantCreator) or (
+        isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.change_info
+    )
 
 @register(pattern="^/addnt")
 async def close_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Enable Night Mode in Groups.")
         return
+    if event.is_group:
+        if not await can_change_info(message=event):
+            await event.reply('You need to me an admin to do this.')
+            return
+        else:
+            pass
     if is_nightmode_indb(str(event.chat_id)):
         await event.reply("This Chat is Has Already Enabled Night Mode.")
         return
@@ -49,6 +78,12 @@ async def disable_ws(event):
     if not event.is_group:
         await event.reply("You Can Only Disable Night Mode in Groups.")
         return
+    if event.is_group:
+        if not await can_change_info(message=event):
+            await event.reply('You need to me an admin to do this.')
+            return
+        else:
+            pass
     if not is_nightmode_indb(str(event.chat_id)):
         await event.reply("This Chat is Has Not Enabled Night Mode.")
         return
