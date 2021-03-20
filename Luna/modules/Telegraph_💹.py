@@ -8,7 +8,7 @@ from PIL import Image
 from telegraph import Telegraph, exceptions, upload_file
 
 telegraph = Telegraph()
-r = telegraph.create_account(Luna)
+r = telegraph.create_account('Luna')
 auth_url = r["auth_url"]
 
 
