@@ -4,6 +4,7 @@ from telethon import events
 from telethon.tl import functions
 from telethon.tl import types
 from Luna.events import register
+import asyncio
 
 async def inline_query(client, bot, query):
     from telethon import custom
@@ -29,6 +30,7 @@ async def lybot(event):
                 events.NewMessage(incoming=True, from_users="@RoseLoverxm")
             )
       response = await response
+      await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
 
 from Luna import tbot, ubot
