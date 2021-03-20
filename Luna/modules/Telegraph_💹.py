@@ -71,3 +71,7 @@ async def tele(event):
         await event.reply(
             "Reply to a message to get a permanent telegra.ph link."
         )
+
+def resize_image(image):
+    im = Image.open(image)
+    im.save(image, "PNG")
