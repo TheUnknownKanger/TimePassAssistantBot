@@ -63,7 +63,7 @@ async def close_ws(event):
         return
     else:
         if not await can_change_info(message=event):
-            await event.reply('You need to me an admin to do this.')
+            await event.reply('You need to me an admin with change_info rights to do this.')
             return
         else:
             pass
@@ -80,7 +80,7 @@ async def disable_ws(event):
         return
     if event.is_group:
         if not await can_change_info(message=event):
-            await event.reply('You need to me an admin to do this.')
+            await event.reply('You need to me an admin with change_info rights to do this.')
             return
         else:
             pass
