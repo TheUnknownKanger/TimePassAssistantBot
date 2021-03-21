@@ -52,14 +52,19 @@ async def post(event):
          pass
     else:
          return
+    quew = event.pattern_match.group(1)
+    if quew = None:
+        chat = -1001309757591
+    else:
+        chat = quew
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        text = previous_message.message
+        text = previous_message
     else:
         await event.reply('Master, Give some text to Post!')
         return
     try:
-        await tbot.send_message(-1001309757591, text)
+        await tbot.send_message(chat, text)
         await event.reply('Done!')
     except Exception:
         await event.reply('Failed to Post')
