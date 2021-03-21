@@ -45,6 +45,14 @@ async def frwder(event):
     except Exception as e:
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
+e = event
+@tbot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+async def countit(event):
+    if event.text.startswith('/ftest'):
+        return
+    x = await event.forward_to(FRWD_CHANNEL)
+    await x.forward_to(event.chat_id)
+
 
 file_help = os.path.basename(__file__)
 file_help = file_help.replace(".py", "")
