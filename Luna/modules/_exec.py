@@ -186,5 +186,5 @@ async def _(event):
             )
 
     else:
-        await abot.send_message(event.chat_id, final_output)
-
+        k = await abot.send_message(event.chat_id, 'Processing...')
+        await k.edit(final_output)
