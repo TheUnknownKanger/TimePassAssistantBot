@@ -46,10 +46,13 @@ async def frwder(event):
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
 
-@tbot.on(events.NewMessage(incoming=True, func=lambda event: event.is_private))
+@register(pattern="^/post")
 async def countit(event):
-    if event.text.startswith('/ftest'):
-        return
+    if event.sender_id == OWNER_ID:
+        pass
+    else:
+      return
+    if
     x = await event.forward_to(-1001309757591)
     await x.forward_to(event.chat_id)
 
