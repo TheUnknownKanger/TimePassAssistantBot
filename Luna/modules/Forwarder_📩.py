@@ -49,6 +49,7 @@ async def frwder(event):
 @register(pattern="^/post")
 async def post(event):
     if event.sender_id == OWNER_ID:
+        await event.reply('test')
         pass
     else:
       return
@@ -59,7 +60,7 @@ async def post(event):
         await event.reply('Give some text to Post!')
         return
     try:
-        x = await previous_message.forward_to(-1001309757591)
+        await tbot.send_message(-1001309757591, text)
         await event.reply('Done!')
     except Exception:
         await event.reply('Failed to Post')
