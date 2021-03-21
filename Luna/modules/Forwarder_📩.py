@@ -1,5 +1,5 @@
 import logging
-from Luna import tbot, CMD_HELP
+from Luna import tbot, CMD_HELP, OWNER_ID
 from Luna.events import register
 import asyncio, os
 from telethon import *
