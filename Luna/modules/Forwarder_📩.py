@@ -46,18 +46,17 @@ async def frwder(event):
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
 
-@register(pattern="^/post")
+@register(pattern="^/post ?(.*)")
 async def post(event):
     if event.sender_id == OWNER_ID:
-        await event.reply('test')
-        pass
+         pass
     else:
-      return
+         return
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         text = previous_message.message
     else:
-        await event.reply('Give some text to Post!')
+        await event.reply('Master, Give some text to Post!')
         return
     try:
         await tbot.send_message(-1001309757591, text)
