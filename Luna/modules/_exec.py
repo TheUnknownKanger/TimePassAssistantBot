@@ -65,6 +65,9 @@ async def _(event):
         if "from Luna import abot" in cmd or "from Luna import STRING_SESSION" in cmd:
           await event.reply("Can't Acess Master Account.")
           return
+        if "await tbot.send_message" in cmd or "from Luna import STRING_SESSION" in cmd:
+          await event.reply("Baagja Maradchod!")
+          return
         pass
     else:
         return
