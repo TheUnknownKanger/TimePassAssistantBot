@@ -53,7 +53,7 @@ async def post(event):
     else:
          return
     quew = event.pattern_match.group(1)
-    if quew = None:
+    if not quew:
         chat = -1001309757591
     else:
         chat = quew
