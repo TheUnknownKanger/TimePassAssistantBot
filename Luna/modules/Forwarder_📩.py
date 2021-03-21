@@ -47,14 +47,23 @@ async def frwder(event):
         return
 
 @register(pattern="^/post")
-async def countit(event):
+async def post(event):
     if event.sender_id == OWNER_ID:
         pass
     else:
       return
-    if
-    x = await event.forward_to(-1001309757591)
-    await x.forward_to(event.chat_id)
+    if event.reply_to_msg_id:
+        previous_message = await event.get_reply_message()
+        text = previous_message.message
+    else:
+        await event.reply('Give some text to Post!')
+        return
+    try:
+        x = await previous_message.forward_to(-1001309757591)
+        await event.reply('Done!')
+    except Exception:
+        await event.reply('Failed to Post')
+    
 
 
 file_help = os.path.basename(__file__)
