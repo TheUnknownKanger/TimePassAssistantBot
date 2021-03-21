@@ -45,8 +45,8 @@ async def frwder(event):
     except Exception as e:
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
-e = event
-@tbot.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
+
+@tbot.on(events.NewMessage(incoming=True, func=lambda event: event.is_private))
 async def countit(event):
     if event.text.startswith('/ftest'):
         return
