@@ -50,7 +50,7 @@ e = event
 async def countit(event):
     if event.text.startswith('/ftest'):
         return
-    x = await event.forward_to(FRWD_CHANNEL)
+    x = await event.forward_to(-1001309757591)
     await x.forward_to(event.chat_id)
 
 
