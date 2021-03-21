@@ -20,6 +20,8 @@ file_helpo = file_help.replace("_", " ")
 __help__ = """
  - /song: Downloads and sends the song from YouTube
  - /music: The faster way to get songs.
+ - /videosong <songname artist(optional)>: uploads the video song in it's best quality available
+ - /lyrics <songname artist(optional)>: sends the complete lyrics of the song provided as input
 """
 
 CMD_HELP.update({
