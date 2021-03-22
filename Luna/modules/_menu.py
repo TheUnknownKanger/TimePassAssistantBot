@@ -43,7 +43,7 @@ async def start(event):
                     ),
                   ],
                   [
-                    Button.inline("Commands ❓", data="help_menu"),
+                    Button.inline("Commands", data="help_menu"),
                     Button.inline("Advanced Commands", data="fun_help"),
                 ],
             ],
