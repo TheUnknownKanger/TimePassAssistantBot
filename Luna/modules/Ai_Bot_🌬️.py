@@ -1,13 +1,13 @@
 import requests
 url = "https://iamai.p.rapidapi.com/ask"
 from Luna import tbot, OWNER_ID, CMD_FUN
-from Luna.events import register
+from Luna.events import bot
 from telethon import events
 from telethon import types
 from telethon.tl import functions
 import asyncio, os
 
-@register(pattern="q (.*)")
+@bot(pattern="q (.*)")
 async def hmm(event):
   test = event.pattern_match.group(1)
   r = ('\n    \"consent\": true,\n    \"ip\": \"::1\",\n    \"question\": \"{}\"\n').format(test)
@@ -46,7 +46,7 @@ async def hmm(event):
     except CFError as e:
            print(e)
 
-@register(pattern="^/quote")
+@bot(pattern="^/quote")
 async def qt(event):
  url = "https://andruxnet-random-famous-quotes.p.rapidapi.com/"
 
