@@ -54,8 +54,6 @@ async def _(event):
     if event.sender_id == OWNER_ID:
         pass
     elif event.sender_id in DEV_USERS:
-        pass
-    elif event.sender_id in SUDO_USERS:
         if "os.environ.get" in cmd:
           await event.reply("Can't access env variables.")
           return
@@ -66,7 +64,7 @@ async def _(event):
           await event.reply("Can't Acess Master Account.")
           return
         if "await tbot.send_message" in cmd or "from Luna import STRING_SESSION" in cmd:
-          await event.reply("Baagja Maradchod!")
+          await event.reply("Ni Hoskta!")
           return
         pass
     else:
