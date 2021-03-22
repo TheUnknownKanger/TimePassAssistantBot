@@ -40,7 +40,6 @@ Example syntax: `/crypto inr btc`
  - /google: Performs A Google Search With given Query
  - /img: Search Google for images and returns them\nFor greater no. of results specify lim, For eg: `/img hello lim=10`
  - /reverse: Does a reverse image search of the media which it was replied to
- - @AniegrpBot yt <query>: Inline YouTube Search
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
