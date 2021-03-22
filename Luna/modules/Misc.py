@@ -379,9 +379,12 @@ async def _(event):
    reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
-           reply += f"•🔰`{m}`\n"
+           user_object = await tbot.get_entity(m)
+           replied_user = await tbot(GetFullUserRequest(user_object.id))
+           first_name = replied_user.user.first_name
+           reply += f"•{first_name}"
         except Exception:
-           print("lel")
+           reply += f"•`{m}`"
    d = DEV_USERS
    reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
