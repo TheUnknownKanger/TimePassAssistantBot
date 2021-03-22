@@ -12,7 +12,7 @@ from telethon.tl.types import *
 
 from Luna import *
 
-from Luna.events import register
+from Luna.events import bot as register
 
 configuration = cloudmersive_ocr_api_client.Configuration()
 configuration.api_key["Apikey"] = VIRUS_API_KEY
