@@ -146,4 +146,4 @@ __help__ = """
 Please turn on notifications(PM/Group Chat) otherwise you will not get notification for the alarm !
 """
 
-CMD_FUN.update({file_helpo: [file_helpo, __help__]})
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
