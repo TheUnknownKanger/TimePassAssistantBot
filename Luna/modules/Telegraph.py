@@ -1,5 +1,5 @@
 from Luna import tbot, CMD_HELP
-from Luna.events import bot as register
+from Luna.events import register
 import os
 from datetime import datetime
 
