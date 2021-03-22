@@ -3,7 +3,7 @@ from Luna import *
 from wikipedia.exceptions import DisambiguationError, PageError
 from telethon import *
 from telethon.tl import *
-from Luna.events import register
+from Luna.events import bot as register
 
 @register(pattern="^/wiki ?(.*)")
 async def _(event):
