@@ -85,4 +85,4 @@ __help__ = """
  - q <query>: Ai api Answers the query
 """
 
-CMD_HELP.update({file_helpo: [file_helpo, __help__]})
+CMD_FUN.update({file_helpo: [file_helpo, __help__]})
