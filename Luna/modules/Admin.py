@@ -1374,10 +1374,8 @@ __help__ = """
  - /setgrouptitle <text>: set group title
  - /setgpic: reply to an image to set as group photo
  - /setsticker: reply to a sticker pack to set as group stickers
- - /delgpic: deletes the current group photo
- - /purge: deletes all messages from the message you replied to
- - /del: deletes the message replied to
- - /lock <item(s)>: lock the usage of "item" for non-admins
+ - /delgpic: deletes the current group pic
+ - /lock <item)>: lock the usage of "item" for non-admins
  - /unlock <item(s)>: unlock "item". Everyone can use them again
  - /chatlocks: gives the lock status of the chat
  - /chatlocktypes: gets a list of all things that can be locked
