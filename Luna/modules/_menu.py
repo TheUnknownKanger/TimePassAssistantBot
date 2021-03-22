@@ -17,6 +17,7 @@ client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 pagenumber = db.pagenumber
+about = "**About Me**\n\nMy name is Luna, A group management bot who can take care of your groups with automated regular admin actions!\n\n**My Software Version:** 2.0.1\n\n**My Developers:**\n• @roseloverx\n• @legendx22\n• @proboyxok\n\nUpdates Channel: [Click Here](@lunabotnews)\nSupport Chat: [Click Here](@lunabotsupport)\n\nAnd finally thanks for Supporting me😘"
 ad_caption = "Hey! I am Luna, here to help you manage your groups! I perform most of the admin functions and make your group automated!\n\nJoin @Lunabotnews for updates.\n@Lunabotsupport for help and support\n\nYou can checkout more about me via following buttons."
 pm_caption = "Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\nHit `/help` to find out more about me and unleash my full potential."
 file1 = "https://telegra.ph/file/a6735cabac75758eea91d.jpg"
@@ -112,7 +113,7 @@ async def help_menu(event):
 
 @tbot.on(events.CallbackQuery(pattern=r"soon"))
 async def soon(event):
-    buttons=[Button.inline("Go Back", data="reopen_again"),]
+    buttons=[[Button.inline("About Me", data="about_me"), Button.inline("Commands", data="help_menu"),],[Button.inline("Go Back", data="reopen_again"),],]
     await event.edit(ad_caption, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
