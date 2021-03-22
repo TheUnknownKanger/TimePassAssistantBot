@@ -1,8 +1,10 @@
-from Luna.events import bot
+from Luna.events import register
 from Luna import CMD_HELP
 import os
 
-
+@register(pattern="^/teg")
+async def warn(event):
+   print('ok')
 
 
 file_help = os.path.basename(__file__)
