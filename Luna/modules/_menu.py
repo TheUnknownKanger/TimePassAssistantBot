@@ -303,4 +303,13 @@ def nood_page(event, page_number, loaded_plugins, prefix):
         pairs.append((modules[-1],))
     max_num_pages = ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
+    pairs = pairs[
+            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
+        ] + [
+            (
+                custom.Button.inline(
+                    "Go Back", data="help_smenu"
+                ),
+            )
+        ]
     return pairs
