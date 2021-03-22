@@ -133,6 +133,7 @@ __help__ = """
  - /forbesify: Correct your punctuations better use the advanged spell module
  - /tr <language code> or /tr <language code> | <text>: Type in reply to a message or (`/tr <language code> | <text>`) to get it's translation in the destination language
  - /define <text>: Type the word or expression you want to search\nFor example /define Gay
+ - /ud <text>: Get definition from urban dictionary
  - /synonyms <word>: Find the synonyms of a word
  - /antonyms <word>: Find the antonyms of a word
 """
