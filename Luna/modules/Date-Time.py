@@ -6,7 +6,7 @@ from typing import List
 
 import requests
 TIME_API_KEY = 'HW6LQCYX43HS'
-from Luna.events import register
+from Luna.events import bot as register
 from telethon import types
 from telethon.tl import functions
 
