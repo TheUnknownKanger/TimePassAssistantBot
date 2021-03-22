@@ -1,7 +1,7 @@
 from Luna.events import register
 from Luna import CMD_HELP
 from Luna import tbot as bot
-from Luna import tbot, abot
+from Luna import tbot, abot, ubot
 import io
 import sys
 import traceback
