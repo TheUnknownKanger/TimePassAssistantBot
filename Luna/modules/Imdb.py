@@ -116,7 +116,6 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  - /imdb - Get full info about a movie with imdb.com
- - /rt - Get Full Details including Cast of a movie from RottenTomatoes
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
