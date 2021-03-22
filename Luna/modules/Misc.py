@@ -379,12 +379,12 @@ async def _(event):
    reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
-           user_object = await ubot.get_entity(m)
-           replied_user = await ubot(GetFullUserRequest(user_object.id))
+           user_object = await abot.get_entity(m)
+           replied_user = await abot(GetFullUserRequest(user_object.id))
            first_name = replied_user.user.first_name
            reply += f"•{first_name}\n"
         except Exception:
-           reply += f"•`{m}`"
+           reply += f"•`{m}`\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
