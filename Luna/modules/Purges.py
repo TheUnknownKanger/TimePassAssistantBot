@@ -1,6 +1,20 @@
 from Luna import tbot
 from Luna.events import register
-
+from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
+from Luna import CMD_HELP
+from telethon.tl import functions
+import os
+async def can_del(message):
+    result = await tbot(
+        functions.channels.GetParticipantRequest(
+            channel=message.chat_id,
+            user_id=message.sender_id,
+        )
+    )
+    p = result.participant
+    return isinstance(p, types.ChannelParticipantCreator) or (
+        isinstance(p, types.ChannelParticipantAdmin) and p.admin_rights.delete_messages
+    )
 
 @register(pattern="^/purge$")
 async def purge_messages(event):
@@ -57,3 +71,13 @@ async def delete_messages(event):
     except MessageDeleteForbiddenError:
         await event.reply("I can't delete messages that are too old")
         return
+
+__help__ = """
+ - /purge: deletes all messages from the message you replied to
+ - /del: deletes the message replied to
+"""
+file_help = os.path.basename(__file__)
+file_help = file_help.replace(".py", "")
+file_helpo = file_help.replace("_", " ")
+
+CMD_HELP.update({file_helpo: [file_helpo, __help__]})
