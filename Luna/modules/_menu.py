@@ -43,8 +43,7 @@ async def start(event):
                     ),
                   ],
                   [
-                    Button.inline("Commands", data="help_menu"),
-                    Button.inline("Advanced Commands", data="fun_help"),
+                    Button.inline("Commands", data="help_smenu"),
                 ],
             ],
         )
@@ -112,7 +111,14 @@ async def help(event):
             "Contact me in PM to get the help menu",
             buttons=[[Button.url("Help", "t.me/lunaevobot?start=help")]],
         )
-
+@tbot.on(events.CallbackQuery(pattern=r"help_smenu"))
+async def help_smenu(event):
+    buttons=[
+       [ Button.inline("Commands", data="help_menu"),
+         Button.inline("Advanced", data="fun_menu"),
+        ],
+        ]
+    await event.edit(help_caption, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"help_menu"))
 async def help_menu(event):
