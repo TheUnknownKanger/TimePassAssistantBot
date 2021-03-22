@@ -18,7 +18,7 @@ client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 pagenumber = db.pagenumber
 help_caption = 'Testing'
-pm_caption = "Hi, my name is Luna!\nI'm a powerful group management bot\nAdd me to your groups as admin\nto manage your groups with my\ncommands\nYou can find my list of available\ncommands with /help"
+pm_caption = 'Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\n Hit `/help` to find out more about me and unleash my full potential.'
 file1 = "https://telegra.ph/file/a6735cabac75758eea91d.jpg"
 pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\nExplore My Commands🙃"
 @register(pattern="^/start$")
@@ -120,7 +120,7 @@ async def help_smenu(event):
         [ Button.inline("Go Back", data="reopen_again"),
         ],
         ]
-    await event.edit(help_caption, buttons=buttons)
+    await event.edit(pm_caption, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"help_menu"))
 async def help_menu(event):
