@@ -1,5 +1,5 @@
 from Luna import ubot, CMD_HELP, abot
-from Luna.events import register
+from Luna.events import bot as register
 import asyncio, os
 import datetime
 
