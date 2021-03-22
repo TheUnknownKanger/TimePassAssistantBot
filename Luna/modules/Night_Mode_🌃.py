@@ -2,7 +2,7 @@ from Luna.modules.sql.night_mode_sql import add_nightmode, rmnightmode, get_all_
 from telethon.tl.types import ChatBannedRights
 from apscheduler.schedulers.asyncio import AsyncIOScheduler 
 from telethon import functions
-from Luna.events import register
+from Luna.events import bot as register
 from Luna import tbot, CMD_HELP
 import os
 from telethon import *
