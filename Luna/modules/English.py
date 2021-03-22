@@ -14,7 +14,7 @@ from PyDictionary import PyDictionary
 from telethon.tl import types
 from telethon.tl.types import *
 
-@register(pattern="^/tl ?(.*)")
+@register(pattern="^/tr ?(.*)")
 async def _(event):
     input_str = event.pattern_match.group(1)
     if event.reply_to_msg_id:
