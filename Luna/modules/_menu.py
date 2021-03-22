@@ -17,6 +17,7 @@ client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 pagenumber = db.pagenumber
+ad_caption = "Hey! I am Luna, here to help you manage your groups! I perform most of the admin functions and make your group automated!\n\nJoin @Lunabotnews for updates.\n@Lunabotsupport for help and support\n\nYou can checkout more about me via following buttons."
 pm_caption = "Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\nHit `/help` to find out more about me and unleash my full potential."
 file1 = "https://telegra.ph/file/a6735cabac75758eea91d.jpg"
 pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\nExplore My Commands🙃"
@@ -29,19 +30,13 @@ async def start(event):
             pm_caption,
             buttons=[
                 [
-                    Button.url(
-                        "🤖Add Me To Your Group", "t.me/aniegrpbot?startgroup=true"
-                    ),
+                    Button.inline("Advanced", data="soon"),
+                    Button.inline("Commands", data="help_menu"),
                 ],
-                [
-                    Button.url(
-                        "🔔Support Group", "https://t.me/lunabotsupport"
-                    ),
-                    Button.url("🔊Updates Channel", "https://t.me/lunagbanlogs"
-                    ),
-                  ],
                   [
-                    Button.inline("Commands ❓", data="help_menu"),
+                    Button.url(
+                        "Add Me To Your Group!", "t.me/aniegrpbot?startgroup=true"
+                    ),
                 ],
             ],
         )
@@ -115,6 +110,11 @@ async def help_menu(event):
     buttons = paginate_help(event, 0, CMD_LIST, "helpme")
     await event.edit(pm_caption, buttons=buttons)
 
+@tbot.on(events.CallbackQuery(pattern=r"soon"))
+async def help_menu(event):
+    buttons=[
+            Button.inline("Commands ❓", data="reopen_again"),
+    await event.edit(ad_caption, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
 async def help_menu(event):
