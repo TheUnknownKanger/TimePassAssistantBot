@@ -30,7 +30,6 @@ async def lybot(event):
             )
       await (await inline_query(ubot, "@lybot", k))[0].click("@aniegrpbot")
       response = await response
-      await asyncio.sleep(1)
       await response.forward_to(event.chat_id)
 
 @register(pattern="^/gey ?(.*)")
