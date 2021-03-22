@@ -116,6 +116,12 @@ async def soon(event):
     buttons=[[Button.inline("About Me", data="about_me"), Button.inline("Commands", data="help_menu"),],[Button.inline("Go Back", data="reopen_again"),],]
     await event.edit(ad_caption, buttons=buttons)
 
+@tbot.on(events.CallbackQuery(pattern=r"about_me"))
+async def soon(event):
+    buttons=[Button.inline("Go Back", data="soon"),]
+    await event.edit(about, buttons=buttons)
+
+
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
 async def fun_help(event):
     buttons = nood_page(event, 0, FUN_LIST, "helpme")
