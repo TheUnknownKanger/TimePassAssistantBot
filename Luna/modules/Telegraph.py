@@ -12,7 +12,7 @@ r = telegraph.create_account('Luna')
 auth_url = r["auth_url"]
 
 
-@register(pattern="^/t(m|t) ?(.*)")
+@register(pattern="^/tele(m|t) ?(.*)")
 async def tele(event):
    if event.fwd_from:
         return
@@ -82,7 +82,7 @@ file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
- - /t(m|t): Reply to a message to get a permanent telegra.ph link.
+ - /tele(m|t): Reply to a message to get a permanent telegra.ph link.
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
