@@ -1,4 +1,4 @@
-from Luna import CMD_LIST, CMD_HELP, tbot
+from Luna import CMD_LIST, CMD_HELP, tbot, FUN_LIST
 import io
 import re
 from math import ceil
