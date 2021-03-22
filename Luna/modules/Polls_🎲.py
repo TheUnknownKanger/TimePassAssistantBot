@@ -3,7 +3,7 @@ import os
 from Luna import tbot
 from telethon import *
 from telethon.tl import *
-from Luna.events import register
+from Luna.events import bot as register
 from pymongo import MongoClient
 from Luna import MONGO_DB_URI
 
