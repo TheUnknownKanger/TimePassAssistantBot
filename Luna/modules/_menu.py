@@ -122,7 +122,7 @@ async def help_menu(event):
 
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
 async def help_menu(event):
-    buttons = page(event, 0, FUN_LIST, "helpme")
+    buttons = nood_page(event, 0, FUN_LIST, "helpme")
     await event.edit(pm_caption, buttons=buttons)
 
 
@@ -176,7 +176,7 @@ async def on_plug_in_callback_query_handler(event):
     buttons = paginate_help(event, current_page_number - 1, FUN_LIST, "helpme")
     await event.edit(buttons=buttons)
 
-@tbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"dat_plugin_(.*)")))
+@tbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"help_plugin_(.*)")))
 async def on_plug_in_callback_query_handler(event):
     plugin_name = event.data_match.group(1).decode("UTF-8")
     help_string = ""
@@ -194,9 +194,7 @@ async def on_plug_in_callback_query_handler(event):
         reply_pop_up_alert = help_string
     try:
         await event.edit(
-            reply_pop_up_alert, buttons=[
-                [Button.inline("Back", data="go_back")]]
-        )
+            reply_pop_up_alert)
     except BaseException:
         pass
 
@@ -264,9 +262,9 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
         ]
     return pairs
 
-def page(event, page_number, loaded_plugins, prefix):
-    number_of_rows = 8
-    number_of_cols = 3
+def nood_page(event, page_number, loaded_plugins, prefix):
+    number_of_rows = 6
+    number_of_cols = 2
 
     to_check = get_page(id=event.sender_id)
 
@@ -290,27 +288,13 @@ def page(event, page_number, loaded_plugins, prefix):
     helpable_plugins = sorted(helpable_plugins)
     modules = [
         custom.Button.inline(
-            "{}".format(x.replace("_", " ")), data="dat_plugin_{}".format(x)
+            "{}".format(x.replace("_", " ")), data="help_plugin_{}".format(x)
         )
         for x in helpable_plugins
     ]
-    pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols], modules[2::number_of_cols]))
+    pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols]))
     if len(modules) % number_of_cols == 1:
         pairs.append((modules[-1],))
     max_num_pages = ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
-    if len(pairs) > number_of_rows:
-        pairs = pairs[
-            modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
-        ] + [
-            (
-                custom.Button.inline(
-                    "⏮️", data="{}_lel({})".format(prefix, modulo_page)
-                ),
-                custom.Button.inline("◀️", data="reopen_again"),
-                custom.Button.inline(
-                    "➡", data="{}_ull({})".format(prefix, modulo_page)
-                ),
-            )
-        ]
     return pairs
