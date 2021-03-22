@@ -259,6 +259,9 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
                 custom.Button.inline(
                     "Go Back", data="help_smenu"
                 ),
+                custom.Button.inline(
+                    "Advanced Cmds", date="fun_help"
+                ),
             )
         ]
     return pairs
