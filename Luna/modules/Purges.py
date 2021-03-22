@@ -1,7 +1,10 @@
 from Luna import tbot
 from Luna.events import register
+from telethon.tl.types import ChannelParticipantsAdmins
 from telethon.errors.rpcerrorlist import MessageDeleteForbiddenError
 from Luna import CMD_HELP
+from telethon.tl import types
+from telethon.tl.types import *
 from telethon.tl import functions
 import os
 async def can_del(message):
