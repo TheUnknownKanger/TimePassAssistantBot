@@ -12,7 +12,7 @@ from telethon.tl import types
 from telethon.tl.types import *
 
 from Luna import *
-from Luna.events import register
+from Luna.events import bot as register
 
 
 # ------ THANKS TO LONAMI ------#
