@@ -117,7 +117,7 @@ async def soon(event):
     await event.edit(ad_caption, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
-async def help_menu(event):
+async def fun_help(event):
     buttons = nood_page(event, 0, FUN_LIST, "helpme")
     await event.edit(pm_caption, buttons=buttons)
 
