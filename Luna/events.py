@@ -6,7 +6,7 @@ from pathlib import Path
 
 from telethon import events
 
-from Luna import CMD_LIST, LOAD_PLUG, tbot
+from Luna import CMD_LIST, LOAD_PLUG, tbot, FUN_LIST
 import glob
 import sys
 from Luna import ubot
