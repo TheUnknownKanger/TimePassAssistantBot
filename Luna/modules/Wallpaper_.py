@@ -7,7 +7,7 @@ import requests as r
 
 from Luna import WALL_API
 
-from Luna.events import register
+from Luna.events import bot as register
 from telethon import types
 from telethon.tl import functions
 
