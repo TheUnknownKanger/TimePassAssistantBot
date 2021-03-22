@@ -1,4 +1,4 @@
-from Luna import CMD_LIST, CMD_HELP, tbot, FUN_LIST
+from Luna import CMD_LIST, CMD_HELP, tbot, FUN_LIST, CMD_FUN
 import io
 import re
 from math import ceil
@@ -179,8 +179,8 @@ def get_page(id):
 
 
 def paginate_help(event, page_number, loaded_plugins, prefix):
-    number_of_rows = 8
-    number_of_cols = 3
+    number_of_rows = 9
+    number_of_cols = 4
 
     to_check = get_page(id=event.sender_id)
 
@@ -208,7 +208,7 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
         )
         for x in helpable_plugins
     ]
-    pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols], modules[2::number_of_cols]))
+    pairs = list(zip(modules[::number_of_cols], modules[1::number_of_cols], modules[2::number_of_cols], modules[3::number_of_cols]))
     if len(modules) % number_of_cols == 1:
         pairs.append((modules[-1],))
     max_num_pages = ceil(len(pairs) / number_of_rows)
