@@ -2,7 +2,7 @@ from tempmail import TempMail
 import time, markdown, base64, os
 from datetime import datetime
 from Luna import *
-from Luna.events import bot as register
+from Luna.events import register
 from pymongo import MongoClient
 from telethon import *
 from telethon.tl import *
