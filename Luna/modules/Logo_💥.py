@@ -1,5 +1,5 @@
 from Luna import CMD_HELP
-from Luna.events import register
+from Luna.events import bot as register
 from Luna import tbot, OWNER_ID
 import os
 from PIL import Image, ImageDraw, ImageFont
