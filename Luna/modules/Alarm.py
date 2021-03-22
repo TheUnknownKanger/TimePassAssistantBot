@@ -2,7 +2,7 @@ from Luna import tbot
 from telethon import *
 from pymongo import MongoClient
 from Luna import MONGO_DB_URI, CMD_HELP, CMD_FUN
-from Luna.events import register
+from Luna.events import bot
 import dateparser
 import os, asyncio
 
@@ -29,7 +29,7 @@ def get_reason(id, time, user):
     return alarms.find_one({"chat": id, "time": time, "user": user})
 
 
-@register(pattern="^/setalarm (.*)")
+@bot(pattern="^/setalarm (.*)")
 async def _(event):
     if event.fwd_from:
         return    
