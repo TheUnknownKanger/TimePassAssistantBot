@@ -371,6 +371,12 @@ async def _(event):
 
 @register(pattern="^/sudolist")
 async def _(event):
+   if event.sender_id == OWNER_ID:
+        pass
+   elif event.sender_id in SUDO_USERS or event.sender_id in DEV_USERS:
+        pass
+   else:
+        return
    reply = "**Owner 💞:**\n"
    replied_user = await tbot(GetFullUserRequest(OWNER_ID))
    h = replied_user.user.first_name
@@ -379,19 +385,16 @@ async def _(event):
    reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
-           user_object = await tbot.get_entity(m)
-           replied_user = await tbot(GetFullUserRequest(user_object.id))
-           first_name = replied_user.user.first_name
-           reply += f"•{first_name}\n"
-        except Exception:
            reply += f"•`{m}`\n"
+        except Exception:
+           pass
    d = DEV_USERS
    reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
         try:
-           reply += f"•🔰`{v}`\n"
+           reply += f"•`{v}`\n"
         except Exception:
-           print("lel")
+           pass
    await event.client.send_message(
                 event.chat_id, reply)
 
