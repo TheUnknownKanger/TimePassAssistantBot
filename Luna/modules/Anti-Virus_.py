@@ -5,7 +5,7 @@ from telethon import events
 from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.types import MessageMediaDocument, DocumentAttributeFilename
-from Luna.events import register
+from Luna.events import bot as register
 import cloudmersive_virus_api_client
 
 
