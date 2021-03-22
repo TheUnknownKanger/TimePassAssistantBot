@@ -1,7 +1,7 @@
 from Luna import tbot
 from telethon import *
 from pymongo import MongoClient
-from Luna import MONGO_DB_URI, CMD_HELP
+from Luna import MONGO_DB_URI, CMD_HELP, CMD_FUN
 from Luna.events import register
 import dateparser
 import os, asyncio
@@ -146,4 +146,4 @@ __help__ = """
 Please turn on notifications(PM/Group Chat) otherwise you will not get notification for the alarm !
 """
 
-CMD_HELP.update({file_helpo: [file_helpo, __help__]})
+CMD_FUN.update({file_helpo: [file_helpo, __help__]})
