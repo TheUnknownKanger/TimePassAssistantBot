@@ -19,9 +19,9 @@ db = client["missjuliarobot"]
 pagenumber = db.pagenumber
 about = "**About Me**\n\nMy name is Luna, A group management bot who can take care of your groups with automated regular admin actions!\n\n**My Software Version:** 2.0.1\n**Telethon Version:** 1.21.1\n\n**My Developers:**\n• @RoseLoverX\n• @LegendX22\n• @Proboyx\n\nUpdates Channel: [Click Here](t.me/lunabotnews, link_preview=False)\nSupport Chat: [Click Here](t.me/lunabotsupport, link_preview=False)\n\nAnd finally thanks for Supporting me😘"
 ad_caption = "Hey! I am Luna, here to help you manage your groups! I perform most of the admin functions and make your group automated!\n\nJoin @Lunabotnews for updates.\n@Lunabotsupport for help and support\n\nYou can checkout more about me via following buttons."
-pm_caption = "Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\nHit `/help` to find out more about me and unleash my full potential."
+pm_caption = "Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\nHit /help to find out more about me and unleash my full potential.\n\n"
 file1 = "https://telegra.ph/file/a6735cabac75758eea91d.jpg"
-pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\nExplore My Commands🙃"
+pmt = "Hello there! I'm Luna\nI'm a Telethon Based group management bot\n with a Much More! Have a look\nat the following for an idea of some of \nthe things I can help you with.\n\nMain commands available:\n/start : Starts me, can be used to check i'm alive or not.\n/help : PM's you this message.\nExplore My Commands🙃."
 @register(pattern="^/start$")
 async def start(event):
 
@@ -63,24 +63,18 @@ async def reopen_again(event):
             pm_caption,
             buttons=[
                 [
-                    Button.url(
-                        "🤖Add Me To Your Group", "t.me/aniegrpbot?startgroup=true"
-                    ),
+                    Button.inline("Advanced", data="soon"),
+                    Button.inline("Commands", data="help_menu"),
                 ],
-                [
-                    Button.url(
-                        "🔔Support Group", "https://t.me/lunabotsupport"
-                    ),
-                    Button.url("🔊Updates Channel", "https://t.me/lunagbanlogs"
-                    ),
-                  ],
                   [
-                    Button.inline("Commands ❓", data="help_menu"),
+                    Button.url(
+                        "Add Me To Your Group!", "t.me/aniegrpbot?startgroup=true"
+                    ),
                 ],
             ],
         )
     else:
-        await event.reply("I am Alive 😌")
+        await event.reply("I'm Awake☺️")
 
 
 @register(pattern="^/help$")
@@ -90,7 +84,7 @@ async def help(event):
         await event.reply(pmt, buttons=buttons)
     else:
         await event.reply(
-            "Contact me in PM to get the help menu",
+            "Contact me in PM for help!",
             buttons=[[Button.url("Help ❓", "t.me/aniegrpbot?start=help")]],
         )
 
