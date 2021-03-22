@@ -118,6 +118,7 @@ async def help_smenu(event):
          Button.inline("Advanced", data="fun_help"),
         ],
         [ Button.inline("Go Back", data="reopen_again"),
+        ],
         ]
     await event.edit(help_caption, buttons=buttons)
 
