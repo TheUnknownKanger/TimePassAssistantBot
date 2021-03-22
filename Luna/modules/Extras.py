@@ -43,6 +43,7 @@ Example syntax: `/crypto inr btc`
  - @AniegrpBot yt <query>: Inline YouTube Search
  - q <query>: Answers meaning full questions
  - /quote: Sends quotes of famous personalities
+ - /t(m|text): Reply to a message to get a permanent telegra.ph link.
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
