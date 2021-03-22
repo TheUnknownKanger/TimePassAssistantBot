@@ -112,8 +112,8 @@ async def help(event):
 @tbot.on(events.CallbackQuery(pattern=r"help_smenu"))
 async def help_smenu(event):
     buttons=[
-       [ Button.inline("Commands", data="help_menu"),
-         Button.inline("Advanced", data="fun_help"),
+       [ Button.inline("Basic Commands", data="help_menu"),
+         Button.inline("Advanced Commands", data="fun_help"),
         ],
         [ Button.inline("Go Back", data="reopen_again"),
         ],
@@ -252,17 +252,12 @@ def paginate_help(event, page_number, loaded_plugins, prefix):
         pairs.append((modules[-1],))
     max_num_pages = ceil(len(pairs) / number_of_rows)
     modulo_page = page_number % max_num_pages
-    if len(pairs) > number_of_rows:
-        pairs = pairs[
+    pairs = pairs[
             modulo_page * number_of_rows: number_of_rows * (modulo_page + 1)
         ] + [
             (
                 custom.Button.inline(
-                    "⏮️", data="{}_prev({})".format(prefix, modulo_page)
-                ),
-                custom.Button.inline("◀️", data="reopen_again"),
-                custom.Button.inline(
-                    "➡", data="{}_next({})".format(prefix, modulo_page)
+                    "Go Back", data="help_smenu"
                 ),
             )
         ]
