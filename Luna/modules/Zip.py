@@ -10,7 +10,7 @@ import zipfile
 from telethon import types
 from telethon.tl import functions
 from Luna import TEMP_DOWNLOAD_DIRECTORY
-from Luna.events import register
+from Luna.events import bot as register
 
 
 @register(pattern="^/zip")
