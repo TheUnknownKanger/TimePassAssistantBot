@@ -1,5 +1,5 @@
 from Luna import CMD_HELP, OWNER_ID
-from Luna.events import register
+from Luna.events import bot as register
 import os
 
 k = 'News Py Files In Another Repo'
