@@ -8,7 +8,7 @@ from telethon.tl import functions
 from telethon.tl import types
 from telethon.tl.types import *
 from Luna import *
-from Luna.events import register
+from Luna.events import bot as register
 
 @register(pattern="^/tts (.*)")
 async def _(event):
