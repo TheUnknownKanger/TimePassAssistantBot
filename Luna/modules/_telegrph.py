@@ -12,7 +12,7 @@ r = telegraph.create_account('Luna')
 auth_url = r["auth_url"]
 
 
-@register(pattern="^/tele(m|t) ?(.*)")
+@register(pattern="^/t(m|text) ?(.*)")
 async def tele(event):
    if event.fwd_from:
         return
@@ -40,7 +40,7 @@ async def tele(event):
                     ),
                     link_preview=True,
                 )
-        elif input_str == "t":
+        elif input_str == "text":
             user_object = await tbot.get_entity(r_message.sender_id)
             title_of_page = user_object.first_name  # + " " + user_object.last_name
             # apparently, all Users do not have last_name field
@@ -82,7 +82,7 @@ file_help = file_help.replace(".py", "")
 file_helpo = file_help.replace("_", " ")
 
 __help__ = """
- - /tele(m|t): Reply to a message to get a permanent telegra.ph link.
+ - /t(m|text): Reply to a message to get a permanent telegra.ph link.
 """
 
 CMD_HELP.update({file_helpo: [file_helpo, __help__]})
