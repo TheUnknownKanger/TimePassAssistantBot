@@ -44,6 +44,7 @@ async def start(event):
                   ],
                   [
                     Button.inline("Commands ❓", data="help_menu"),
+                    Button.inline("Advanced Commands", data="fun_help"),
                 ],
             ],
         )
@@ -116,6 +117,12 @@ async def help(event):
 @tbot.on(events.CallbackQuery(pattern=r"help_menu"))
 async def help_menu(event):
     buttons = paginate_help(event, 0, CMD_LIST, "helpme")
+    await event.edit(pm_caption, buttons=buttons)
+
+
+@tbot.on(events.CallbackQuery(pattern=r"fun_help"))
+async def help_menu(event):
+    buttons = paginate_help(event, 0, FUN_LIST, "helpme")
     await event.edit(pm_caption, buttons=buttons)
 
 
