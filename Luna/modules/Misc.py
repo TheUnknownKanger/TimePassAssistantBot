@@ -398,6 +398,8 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
  - /id: If replied to user's message gets that user's id otherwise get sender's id.
+ - /info: Get userinfo
+ - /who: Get full userinfo
  - /chatid: Get the current chat id.
  - /runs: Reply a random string from an array of replies.
  - /info: Get information about a user.
