@@ -17,6 +17,8 @@ import spamwatch
 StartTime = time.time()
 CMD_LIST = {}
 CMD_HELP = {}
+CMD_FUN = {}
+FUN_LIST = {}
 LOAD_PLUG = {}
 LUNA_VERSION = "1.8.1"
 Telethon_Version = "1.20.0"
