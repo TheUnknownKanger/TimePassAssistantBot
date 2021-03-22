@@ -1,6 +1,6 @@
 import logging
 from Luna import tbot, CMD_HELP, OWNER_ID
-from Luna.events import register
+from Luna.events import bot
 import asyncio, os
 from telethon import *
 from telethon.tl import functions
@@ -10,7 +10,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from telethon import TelegramClient, events
-@register(pattern="^/frwd")
+@bot(pattern="^/frwd")
 async def frwder(event):
     if event.is_private:
         await event.reply("I work in groups!")
@@ -46,7 +46,7 @@ async def frwder(event):
         await event.reply(f"Format - `/frwd <chat id/username> <message/reply to message>`\n\n{str(e)}")
         return
 
-@register(pattern="^/post ?(.*)")
+@bot(pattern="^/post ?(.*)")
 async def post(event):
     if event.sender_id == OWNER_ID:
          pass
