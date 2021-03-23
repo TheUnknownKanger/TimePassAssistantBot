@@ -213,8 +213,8 @@ async def go_back(event):
     c = pagenumber.find_one({"id": event.sender_id})
     number = c["page"]
     # print (number)
-    buttons = paginate_help(event, number, CMD_LIST, "helpme")
-    await event.edit(pm_caption, buttons=buttons)
+    buttons = page(event, number, FUN_LIST, "helpme")
+    await event.edit(pmt, buttons=buttons)
 
 def get_page(id):
     return pagenumber.find_one({"id": id})
