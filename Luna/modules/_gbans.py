@@ -278,3 +278,26 @@ async def type_ban(event):
                 )
             except Exception:
                 return
+@tbot.on(events.ChatAction())
+async def join_ban(event):
+    if event.is_private:
+        return
+    chat = event.chat_id
+    chats = gbanned.find({})
+    for c in chats:
+       if event.sender_id == c["user"]:
+              try:
+                to_check = get_reason(id=event.sender_id)
+                reason = to_check["reason"]
+                bannerid = to_check["bannerid"]
+                await tbot(
+                    EditBannedRequest(event.chat_id, event.sender_id, BANNED_RIGHTS)
+                )
+                await event.reply(
+                    "This user is gbanned and has been removed !\n\n**Gbanned By**: `{}`\n**Reason**: `{}`".format(
+                        bannerid, reason
+                    )
+                )
+              except Exception:
+                return
+
