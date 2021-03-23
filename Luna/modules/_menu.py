@@ -32,7 +32,7 @@ async def start(event):
         await tbot.send_message(
             event.chat_id,
             pm_caption,
-            file=file1
+            file=file1,
             buttons=[
                 [
                     Button.inline("Advanced", data="soon"),
