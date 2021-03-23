@@ -308,3 +308,84 @@ async def join_ban(event):
               except Exception:
                 return
 
+from Luna.modules.sql.mute_sql import is_muted, mute, unmute
+from telethon import events
+
+@register(pattern="^/gmute ?(.*)")
+async def gmute(event):
+    if event.sender_id == OWNER_ID:
+       pass
+    elif event.sender_id in DEV_USERS:
+       pass
+    elif event.sender_id in SUDO_USERS:
+       pass
+    else:
+      return
+    reply = await event.get_reply_message()
+    userid = reply.sender_id
+    if userid == OWNER_ID:
+         await event.reply('I can Act on my master')
+         return
+    elif userid == BOT_ID:
+         await event.reply('Ya I'm not gonna mute myself;')
+         return
+    elif userid in SUDO_USERS:
+         await event.reply("I Won't mute my Sudo User!")
+         return
+    elif userid in DEV_USERS:
+         await event.reply("Nope Can't mute my Dev")
+         return
+    else:
+         pass
+    if is_muted(userid, "gmute"):
+        return await event.reply("This user is already gmuted")
+    try:
+        mute(userid, "gmute")
+    except Exception as e:
+        await event.reply("Error occured!\nError is " + str(e))
+    else:
+        await event.reply("Successfully gmuted that person")
+
+@register(pattern="^/ungmute ?(.*)")
+async def ungmute(event):
+    if event.sender_id == OWNER_ID:
+       pass
+    elif event.sender_id in DEV_USERS:
+       pass
+    elif event.sender_id in SUDO_USERS:
+       pass
+    else:
+      return
+    reply = await event.get_reply_message()
+    userid = reply.sender_id
+    if userid == OWNER_ID:
+         await event.reply('I can Act on my master'(
+         return
+    elif userid == BOT_ID:
+         await event.reply('Ya I'm not gonna ungmute myself;')
+         return
+    elif userid in SUDO_USERS:
+         await event.reply("I Won't. my Sudo User!")
+         return
+    elif userid in DEV_USERS:
+         await event.reply("Nope Can't. my Dev!")
+         return
+    else:
+         pass
+    if not is_muted(userid, "gmute"):
+        return await event.reply("This user is not gmuted")
+    try:
+        unmute(userid, "gmute")
+    except Exception as e:
+        await event.reply("Error occured!\nError is " + str(e))
+    else:
+        await event.reply("Successfully ungmuted that person")
+
+
+@tbot.on(events.NewMessage(pattern=None))
+async def lel(event):
+    if is_muted(event.sender_id, "gmute"):
+        await event.delete()
+
+
+
