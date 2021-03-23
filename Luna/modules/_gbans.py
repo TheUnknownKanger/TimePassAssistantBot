@@ -86,7 +86,7 @@ async def _(event):
         await event.reply("This Person is a Dev, Sorry!")
         return
     elif r_sender_id == BOT_ID:
-        await event.reply("Yeah, I don't think so!")
+        await event.reply("Another one bits the dust! banned a betichod!")
         return
     k=event.sender
     fname=k.first_name
