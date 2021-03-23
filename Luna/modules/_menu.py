@@ -17,6 +17,9 @@ client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
 db = client["missjuliarobot"]
 pagenumber = db.pagenumber
+
+
+
 about = "**About Me**\n\nMy name is Luna, A group management bot who can take care of your groups with automated regular admin actions!\n\n**My Software Version:** 2.0.1\n**Telethon Version:** 1.21.1\n\n**My Developers:**\n• @RoseLoverX\n• @LegendX22\n• @Proboyx\n\nUpdates Channel: [Click Here](t.me/lunabotnews, link_preview=False)\nSupport Chat: [Click Here](t.me/lunabotsupport, link_preview=False)\n\nAnd finally thanks for Supporting me😘"
 ad_caption = "Hey! I am Luna, here to help you manage your groups! I perform most of the admin functions and make your group automated!\n\nJoin @Lunabotnews for updates.\n@Lunabotsupport for help and support\n\nYou can checkout more about me via following buttons."
 pm_caption = "Hey there! My name is Luna - I'm a Telethon based Bot Made to help you manage your groups!\n\nHit /help to find out more about me and unleash my full potential.\n\n"
@@ -29,6 +32,7 @@ async def start(event):
         await tbot.send_message(
             event.chat_id,
             pm_caption,
+            file=file1
             buttons=[
                 [
                     Button.inline("Advanced", data="soon"),
@@ -93,7 +97,7 @@ async def help(event):
 async def help(event):
     if not event.is_group:
         buttons = paginate_help(event, 0, CMD_LIST, "helpme")
-        await event.reply(pm_caption, buttons=buttons)
+        await event.reply(pmt, buttons=buttons)
     else:
         await event.reply(
             "Contact me in PM to get the help menu",
@@ -103,7 +107,7 @@ async def help(event):
 @tbot.on(events.CallbackQuery(pattern=r"help_menu"))
 async def help_menu(event):
     buttons = paginate_help(event, 0, CMD_LIST, "helpme")
-    await event.edit(pm_caption, buttons=buttons)
+    await event.edit(pmt, buttons=buttons)
 
 @tbot.on(events.CallbackQuery(pattern=r"soon"))
 async def soon(event):
@@ -119,7 +123,7 @@ async def soon(event):
 @tbot.on(events.CallbackQuery(pattern=r"fun_help"))
 async def fun_help(event):
     buttons = nood_page(event, 0, FUN_LIST, "helpme")
-    await event.edit(pm_caption, buttons=buttons)
+    await event.edit(pmt, buttons=buttons)
 
 
 @tbot.on(events.callbackquery.CallbackQuery(data=re.compile(rb"helpme_next\((.+?)\)")))
@@ -190,7 +194,9 @@ async def on_plug_in_callback_query_handler(event):
         reply_pop_up_alert = help_string
     try:
         await event.edit(
-            reply_pop_up_alert)
+            reply_pop_up_alert, buttons=[
+                [Button.inline("Back", data="fun_back")]]
+        )
     except BaseException:
         pass
 
@@ -202,6 +208,13 @@ async def go_back(event):
     buttons = paginate_help(event, number, CMD_LIST, "helpme")
     await event.edit(pm_caption, buttons=buttons)
 
+@tbot.on(events.CallbackQuery(pattern=r"fun_back"))
+async def go_back(event):
+    c = pagenumber.find_one({"id": event.sender_id})
+    number = c["page"]
+    # print (number)
+    buttons = paginate_help(event, number, CMD_LIST, "helpme")
+    await event.edit(pm_caption, buttons=buttons)
 
 def get_page(id):
     return pagenumber.find_one({"id": id})
