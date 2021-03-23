@@ -72,13 +72,6 @@ async def _(event):
             mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
             first = a_user.first_name
             last = a_user.last_name
-            if last:
-                fullname = f"{first} {last}"
-            else:
-                fullname = first
-            username = (
-                f"@{me.username}" if me.username else f"[Me](tg://user?id={me.id})"
-            )
             userid = a_user.id
             current_saved_welcome_message = cws.custom_welcome_message
             mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
@@ -91,8 +84,6 @@ async def _(event):
                         count=count,
                         first=first,
                         last=last,
-                        fullname=fullname,
-                        username=username,
                         userid=userid,
                     ),
                     file=cws.media_file_id,
@@ -109,8 +100,6 @@ async def _(event):
                         count=count,
                         first=first,
                         last=last,
-                        fullname=fullname,
-                        username=username,
                         userid=userid,
                     ),
                     file=cws.media_file_id,
@@ -150,13 +139,6 @@ async def _(event):
             mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
             first = a_user.first_name
             last = a_user.last_name
-            if last:
-                fullname = f"{first} {last}"
-            else:
-                fullname = first
-            username = (
-                f"@{me.username}" if me.username else f"[Me](tg://user?id={me.id})"
-            )
             userid = a_user.id
             current_saved_goodbye_message = cws.custom_goodbye_message
             mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
@@ -168,8 +150,6 @@ async def _(event):
                     count=count,
                     first=first,
                     last=last,
-                    fullname=fullname,
-                    username=username,
                     userid=userid,
                 ),
                 file=cws.media_file_id,
