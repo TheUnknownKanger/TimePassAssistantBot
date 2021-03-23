@@ -260,10 +260,7 @@ async def join_ban(event):
 @tbot.on(events.NewMessage(pattern=None))
 async def type_ban(event):
     if event.is_private: 
-        return 
-    if event.chat_id == int(-1001486931338):
         return
-    pass
     chats = gbanned.find({})
     for c in chats:
         if event.sender_id == c["user"]:
