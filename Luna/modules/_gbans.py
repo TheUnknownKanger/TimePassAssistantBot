@@ -284,8 +284,9 @@ async def join_ban(event):
         return
     chat = event.chat_id
     chats = gbanned.find({})
+    gey = event.user_id
     for c in chats:
-       if event.sender_id == c["user"]:
+       if gey == c["user"]:
               try:
                 to_check = get_reason(id=event.sender_id)
                 reason = to_check["reason"]
