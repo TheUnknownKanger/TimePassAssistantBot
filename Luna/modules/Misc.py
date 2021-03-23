@@ -300,7 +300,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-@register(pattern="^/ping$")
+@register(pattern="^/(ping|ping@Aniegrpbot)")
 async def ping(event):
     import datetime
 
