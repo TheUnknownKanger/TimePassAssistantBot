@@ -324,10 +324,10 @@ async def gmute(event):
     reply = await event.get_reply_message()
     userid = reply.sender_id
     if userid == OWNER_ID:
-         await event.reply('I can Act on my master')
+         await event.reply("I can Act on my master")
          return
     elif userid == BOT_ID:
-         await event.reply('Ya I'm not gonna mute myself;')
+         await event.reply("Ya I'm not gonna mute myself;")
          return
     elif userid in SUDO_USERS:
          await event.reply("I Won't mute my Sudo User!")
@@ -359,10 +359,10 @@ async def ungmute(event):
     reply = await event.get_reply_message()
     userid = reply.sender_id
     if userid == OWNER_ID:
-         await event.reply('I can Act on my master'(
+         await event.reply("I can Act on my master")
          return
     elif userid == BOT_ID:
-         await event.reply('Ya I'm not gonna ungmute myself;')
+         await event.reply("Ya I'm not gonna ungmute myself;")
          return
     elif userid in SUDO_USERS:
          await event.reply("I Won't. my Sudo User!")
