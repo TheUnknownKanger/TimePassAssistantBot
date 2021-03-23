@@ -63,49 +63,15 @@ async def _(event):
                     )
                 except Exception as e:  # pylint:disable=C0103,W0703
                     print(e)  # pylint:disable=E0602
-            a_user = await event.get_user()
-            chat = await event.get_chat()
-            me = await tbot.get_me()
-            title = chat.title if chat.title else "this chat"
-            participants = await event.client.get_participants(chat)
-            count = len(participants)
-            mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
-            first = a_user.first_name
-            last = a_user.last_name
-            userid = a_user.id
             current_saved_welcome_message = cws.custom_welcome_message
-            mention = "[{}](tg://user?id={})".format(a_user.first_name, a_user.id)
-            rules = sql.get_rules(event.chat_id)
-            if rules:
-                current_message = await event.reply(
-                    current_saved_welcome_message.format(
-                        mention=mention,
-                        title=title,
-                        count=count,
-                        first=first,
-                        last=last,
-                        userid=userid,
-                    ),
-                    file=cws.media_file_id,
-                    buttons=[
-                        [Button.inline("Rules ✝️", data=f"start-ruless-{userid}")]
-                    ],
-                )
-                update_previous_welcome(event.chat_id, current_message.id)
-            else:
-                current_message = await event.reply(
-                    current_saved_welcome_message.format(
-                        mention=mention,
-                        title=title,
-                        count=count,
-                        first=first,
-                        last=last,
-                        userid=userid,
-                    ),
+            current_message = await event.reply(
+                    current_saved_welcome_message,
                     file=cws.media_file_id,
                 )
                 update_previous_welcome(event.chat_id, current_message.id)
 
+            
+                
 
 @tbot.on(events.ChatAction())  # pylint:disable=E0602
 async def _(event):
