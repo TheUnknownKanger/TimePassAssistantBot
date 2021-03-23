@@ -213,7 +213,7 @@ async def go_back(event):
     c = pagenumber.find_one({"id": event.sender_id})
     number = c["page"]
     # print (number)
-    buttons = page(event, number, FUN_LIST, "helpme")
+    buttons = nood_page(event, number, FUN_LIST, "helpme")
     await event.edit(pmt, buttons=buttons)
 
 def get_page(id):
