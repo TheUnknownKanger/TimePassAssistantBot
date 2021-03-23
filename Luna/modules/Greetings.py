@@ -315,7 +315,7 @@ async def cbot(event):
     num = random.randint(1, 9)
     img = Image.new("RGB", (300, 200), color="white")
     fnt = ImageFont.truetype(
-        "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+        "./Luna/resources/Chopsic.otf", 120
     )
     d = ImageDraw.Draw(img)
     d.text((110, 50), str(num), font=fnt, fill="black")
@@ -408,7 +408,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -482,7 +482,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -556,7 +556,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -630,7 +630,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -704,7 +704,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -778,7 +778,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -852,7 +852,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -926,7 +926,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
@@ -1000,7 +1000,7 @@ async def checkbot(event):
         num = random.randint(1, 9)
         img = Image.new("RGB", (300, 200), color="white")
         fnt = ImageFont.truetype(
-            "./.apt/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf", 100
+            "./Luna/resources/Chopsic.otf", 100
         )
         d = ImageDraw.Draw(img)
         d.text((110, 50), str(num), font=fnt, fill="black")
