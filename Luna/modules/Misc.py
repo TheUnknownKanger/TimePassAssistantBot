@@ -385,14 +385,18 @@ async def _(event):
    reply += "**Sudo_Users 💫:**\n"
    for m in k:
         try:
-           reply += f"•`{m}`\n"
+           replied_user = await tbot(GetFullUserRequest(m))
+           h = replied_user.user.first_name
+           reply += f"{h}\n"
         except Exception:
-           pass
+           reply += f"`{m}`\n"
    d = DEV_USERS
    reply += "\n**DEV_USERS ⚔️:**\n"
    for v in d:
         try:
-           reply += f"•`{v}`\n"
+           replied_user = await tbot(GetFullUserRequest(v))
+           g = replied_user.user.first_name
+           reply += f"{g}\n"
         except Exception:
            pass
    await event.client.send_message(
