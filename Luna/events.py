@@ -15,7 +15,7 @@ from Luna import MONGO_DB_URI
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
-db = client["lunabot"]
+db = client["missjuliarobot"]
 gbanned = db.gban
 
 
