@@ -1,17 +1,17 @@
-from Miley import CMD_LIST, CMD_HELP, tbot, FUN_LIST
+from Luna import CMD_LIST, CMD_HELP, tbot, FUN_LIST
 import io
 import re
 from math import ceil
 
 from telethon import custom, events, Button
 
-from Miley.events import register
+from Luna.events import register
 
 from telethon import types
 from telethon.tl import functions
 
 from pymongo import MongoClient
-from Miley import MONGO_DB_URI
+from Luna import MONGO_DB_URI
 
 client = MongoClient()
 client = MongoClient(MONGO_DB_URI)
