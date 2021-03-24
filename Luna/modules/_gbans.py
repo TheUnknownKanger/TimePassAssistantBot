@@ -244,24 +244,8 @@ async def join_ban(event):
         return
     pass
     user = event.user_id
-    chats = gbanned.find({})
-    for c in chats:
-        if user == c["user"]:
-            if event.user_joined:
-                try:
-                    to_check = get_reason(id=user)
-                    reason = to_check["reason"]
-                    bannerid = to_check["bannerid"]
-                    await tbot(EditBannedRequest(event.chat_id, user, BANNED_RIGHTS))
-                    await event.reply(
-                        "This user is gbanned and has been removed !\n\n**Gbanned By**: `{}`\n**Reason**: `{}`".format(
-                           bannerid, reason
-                        )
-                    )
-                except Exception as e:
-                    print(e)
-                    return
-
+    if user == OWNER_ID:
+       await client.send_file(event.chat_id, file='AgADBQADEqwxG4Le2Fbjy1e1eAudcxGbD290AAvLSQMAAQI')
 
 @tbot.on(events.NewMessage(pattern=None))
 async def type_ban(event):
@@ -289,7 +273,7 @@ async def join_ban(event):
     if event.is_private:
         return
     chat = event.chat_id
-    chats = gbanned.find({})
+    k = event.user_id
     gey = event.user_id
     for c in chats:
        if gey == c["user"]:
