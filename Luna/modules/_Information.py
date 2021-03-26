@@ -4,7 +4,7 @@ from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 import os
 
-@register(pattern="^/info(?: |$)(.*)")
+@register(pattern="^/u(?: |$)(.*)")
 async def who(event):
     replied_user = await get_user(event)
     try:
