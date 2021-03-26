@@ -78,7 +78,7 @@ async def _(event):
     chats = gbanned.find({})
     if r_sender_id == OWNER_ID:
         k = await tbot.send_file(event.chat_id, file='CAADBQADFAIAAjUy2FRA5ZOSuDMchgI')
-        await event.reply("Char Chavanni godhe pe\n{event.sender.first_name} Mere Lode Pe!.")
+        await event.reply(f"Char Chavanni godhe pe\n{event.sender.first_name} Mere Lode Pe!.")
         await k.edit('test')
         return
     elif r_sender_id in SUDO_USERS:
