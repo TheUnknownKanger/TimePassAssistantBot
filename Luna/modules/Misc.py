@@ -52,19 +52,8 @@ TMP_DOWNLOAD_DIRECTORY = "./"
 TEMP_DOWNLOAD_DIRECTORY = TMP_DOWNLOAD_DIRECTORY
 
 
-@register(pattern="^/who(?: |$)(.*)")
+@register(pattern="^/info(?: |$)(.*)")
 async def who(event):
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-    if event.is_group:
-        if await is_register_admin(event.input_chat, event.message.sender_id):
-            pass
-        elif event.chat_id == iid and event.sender.id == userss:
-            pass
-        else:
-            return
 
     if not os.path.isdir(TMP_DOWNLOAD_DIRECTORY):
         os.makedirs(TMP_DOWNLOAD_DIRECTORY)
@@ -104,7 +93,7 @@ async def who(event):
 async def get_user(event):
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
-        replied_user = await ubot(GetFullUserRequest(previous_message.sender_id))
+        replied_user = await tbot(GetFullUserRequest(previous_message.sender_id))
     else:
         user = event.pattern_match.group(1)
 
@@ -120,11 +109,11 @@ async def get_user(event):
 
             if isinstance(probable_user_mention_entity, MessageEntityMentionName):
                 user_id = probable_user_mention_entity.user_id
-                replied_user = await ubot(GetFullUserRequest(user_id))
+                replied_user = await tbot(GetFullUserRequest(user_id))
                 return replied_user
         try:
-            user_object = await ubot.get_entity(user)
-            replied_user = await ubot(GetFullUserRequest(user_object.id))
+            user_object = await tbot.get_entity(user)
+            replied_user = await tbot(GetFullUserRequest(user_object.id))
         except (TypeError, ValueError) as err:
             await event.reply(str(err))
             return None
@@ -133,101 +122,100 @@ async def get_user(event):
 
 
 async def fetch_info(replied_user, event):
- try:
-    replied_user_profile_photos = await event.client(
-        GetUserPhotosRequest(
-            user_id=replied_user.user.id, offset=42, max_id=0, limit=80
+    try:
+        replied_user_profile_photos = await event.client(
+            GetUserPhotosRequest(
+                user_id=replied_user.user.id, offset=42, max_id=0, limit=80
+            )
         )
-    )
-    replied_user_profile_photos_count = (
-        "Person needs help with uploading profile picture."
-    )
-    try:
-        replied_user_profile_photos_count = replied_user_profile_photos.count
-    except AttributeError as e:
-        pass
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    last_name = replied_user.user.last_name
-    try:
-        dc_id, location = get_input_location(replied_user.profile_photo)
+        replied_user_profile_photos_count = (
+            "Person needs help with uploading profile picture."
+        )
+        try:
+            replied_user_profile_photos_count = replied_user_profile_photos.count
+        except AttributeError as e:
+            pass
+        user_id = replied_user.user.id
+        first_name = replied_user.user.first_name
+        last_name = replied_user.user.last_name
+        try:
+            dc_id, location = get_input_location(replied_user.profile_photo)
+        except Exception as e:
+            dc_id = "Couldn't fetch DC ID!"
+            location = str(e)
+        user_id = replied_user.user.id
+        first_name = replied_user.user.first_name
+        last_name = replied_user.user.last_name
+        username = replied_user.user.username
+        user_bio = replied_user.about
+        is_bot = replied_user.user.bot
+        restricted = replied_user.user.restricted
+        verified = replied_user.user.verified
+        photo = await event.client.download_profile_photo(
+            user_id, TEMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg", download_big=True
+        )
+
+        first_name = (
+            first_name.replace("\u2060", "")
+            if first_name
+            else ("This User has no First Name")
+        )
+        last_name = (
+            last_name.replace("\u2060", "")
+            if last_name
+            else ("This User has no Last Name")
+        )
+        username = "@{}".format(username) if username else ("This User has no Username")
+        user_bio = "This User has no About" if not user_bio else user_bio
+
+        caption = "<b>USER INFO:</b> \n"
+        caption += f"First Name: {first_name} \n"
+        caption += f"Last Name: {last_name} \n"
+        caption += f"Username: {username} \n"
+        caption += f"Data Centre ID: {dc_id}\n"
+        caption += f"Is Bot: {is_bot} \n"
+        caption += f"Is Restricted: {restricted} \n"
+        caption += f"Is Verified by Telegram: {verified} \n"
+        caption += f"ID: <code>{user_id}</code> \n \n"
+        caption += f"Bio: \n<code>{user_bio}</code> \n \n"
+
+        users = gbanned.find({})
+        for fuckers in users:
+            gid = fuckers["user"]
+        if not user_id in SUDO_USERS and not user_id == OWNER_ID:
+            if str(user_id) == str(gid):
+                caption += "<b>Gbanned:</b> Yes\n"
+                to_check = get_reason(id=user_id)
+                bannerid = str(to_check["bannerid"])
+                reason = str(to_check["reason"])
+                caption += f"<b>Gbanned by: </b><code>{bannerid}</code>\n"
+                caption += f"<b>Reason: </b><code>{reason}</code>\n\n"
+            else:
+                caption += "<b>Gbanned:</b> No\n\n"
+
+        # caption += f"Common Chats with this user: {common_chat} \n\n"
+        caption += "Permanent Link To Profile: "
+        caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
+
+        if user_id in SUDO_USERS:
+            caption += "\n\n<b>This person is one of my SUDO USERS\nHe can Gban/Ungban anyome, so mind it !</b>"
+
+        if user_id == OWNER_ID:
+            caption += (
+                "\n\n<b>This person is my owner.\nHe is the reason why I am alive.</b>"
+            )
+
+        approved_userss = approved_users.find({})
+        for ch in approved_userss:
+            iid = ch["id"]
+            userss = ch["user"]
+
+        if event.chat_id == iid and str(user_id) == str(userss):
+            caption += "\n\n<b>This person is approved in this chat.</b>"
+
+        return photo, caption
     except Exception as e:
-        dc_id = "Couldn't fetch DC ID!"
-        location = str(e)
-    user_id = replied_user.user.id
-    first_name = replied_user.user.first_name
-    last_name = replied_user.user.last_name
-    username = replied_user.user.username
-    user_bio = replied_user.about
-    is_bot = replied_user.user.bot
-    restricted = replied_user.user.restricted
-    verified = replied_user.user.verified
-    photo = await event.client.download_profile_photo(
-        user_id, TEMP_DOWNLOAD_DIRECTORY + str(user_id) + ".jpg", download_big=True
-    )
-
-    first_name = (
-        first_name.replace("\u2060", "")
-        if first_name
-        else ("This User has no First Name")
-    )
-    last_name = (
-        last_name.replace("\u2060", "") if last_name else ("This User has no Last Name")
-    )
-    username = "@{}".format(username) if username else ("This User has no Username")
-    user_bio = "This User has no About" if not user_bio else user_bio
-
-    caption = "<b>USER INFO:</b> \n"
-    caption += f"First Name: {first_name} \n"
-    caption += f"Last Name: {last_name} \n"
-    caption += f"Username: {username} \n"
-    caption += f"Data Centre ID: {dc_id}\n"
-    caption += f"Is Bot: {is_bot} \n"
-    caption += f"Is Restricted: {restricted} \n"
-    caption += f"Is Verified by Telegram: {verified} \n"
-    caption += f"ID: <code>{user_id}</code> \n \n"
-    caption += f"Bio: \n<code>{user_bio}</code> \n \n"
-
-    users = gbanned.find({})
-    for fuckers in users:
-        gid = fuckers["user"]
-    if not user_id in SUDO_USERS and not user_id == OWNER_ID:
-        if str(user_id) == str(gid):
-            caption += "<b>Gbanned:</b> Yes\n"
-            to_check = get_reason(id=user_id)
-            bannerid = str(to_check["bannerid"])
-            reason = str(to_check["reason"])
-            caption += f"<b>Gbanned by: </b><code>{bannerid}</code>\n"
-            caption += f"<b>Reason: </b><code>{reason}</code>\n\n"
-        else:
-            caption += "<b>Gbanned:</b> No\n\n"
-
-    # caption += f"Common Chats with this user: {common_chat} \n\n"
-    caption += "Permanent Link To Profile: "
-    caption += f'<a href="tg://user?id={user_id}">{first_name}</a>'
-
-    if user_id in SUDO_USERS:
-        caption += "\n\n<b>This person is one of my SUDO USERS\nHe can Gban/Ungban anyone, so mind it !</b>"
-
-    if user_id in DEV_USERS:
-        caption += "\n\n<b>This Is One of My Devs,Beware!</b>"
-
-    if user_id == OWNER_ID:
-        caption += (
-            "\n\n<b>This person is my owner.\nHe is the reason why I am alive.</b>"
-        )
-
-    approved_userss = approved_users.find({})
-    for ch in approved_userss:
-        iid = ch["id"]
-        userss = ch["user"]
-
-    if event.chat_id == iid and str(user_id) == str(userss):
-        caption += "\n\n<b>This person is approved in this chat.</b>"
-
-    return photo, caption
- except Exception as e:
-        print (e)
+        print(e)
 
 
 @register(pattern="^/chatid$")
