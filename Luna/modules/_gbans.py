@@ -82,7 +82,7 @@ async def _(event):
         await k.edit('test')
         return
     elif r_sender_id in SUDO_USERS:
-        await client.send_message(event.chat_id, file='CAADAQAD2wEAAkVfBy8Mh2GQNhOIIAI')
+        await tbot.send_message(event.chat_id, file='CAADAQAD2wEAAkVfBy8Mh2GQNhOIIAI')
         return
     elif r_sender_id in DEV_USERS:
         await event.reply("This Person is a Dev, Sorry!")
