@@ -77,7 +77,7 @@ async def _(event):
         return
     chats = gbanned.find({})
     if r_sender_id == OWNER_ID:
-        await client.send_file(event.chat_id, file='AgADBQADEqwxG4Le2Fbjy1e1eAudcxGbD290AAvLSQMAAQI')
+        await tbot.send_file(event.chat_id, file='AgADBQADEqwxG4Le2Fbjy1e1eAudcxGbD290AAvLSQMAAQI')
         return
     elif r_sender_id in SUDO_USERS:
         await event.reply("Don't Do Sudo War Mc!")
