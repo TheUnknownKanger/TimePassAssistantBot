@@ -77,7 +77,7 @@ async def _(event):
         return
     chats = gbanned.find({})
     if r_sender_id == OWNER_ID:
-        await event.reply(f"Char Chavanni godhe pe {event.sender.first_name}.")
+        await event.reply(f"Char Chavanni godhe pe {event.sender.first_name} Mere Lode Pe!.")
         return
     elif r_sender_id in SUDO_USERS:
         await event.reply("Don't Do Sudo War Mc!")
