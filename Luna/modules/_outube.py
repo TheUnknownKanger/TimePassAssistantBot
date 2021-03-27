@@ -7,7 +7,7 @@ from time import sleep
 import speedtest
 client = tbot
 chat = -1001309757591
-@register(pattern="^/sleep ?(.*)")
+@register(pattern="^soja ?(.*)")
 async def sleepybot(time):
     if time.fwd_from:
         return
@@ -21,7 +21,7 @@ async def sleepybot(time):
        await time.reply(f"I am sulking and snoozing....for {counter}'secs")
        sleep(counter)
     else:
-       await time.reply(f"I am sulking and snoozing....for 10'secs")
+       await time.reply(f"Ok Boss GoodNight!")
        sleep(10)
 
 def convert(speed):
