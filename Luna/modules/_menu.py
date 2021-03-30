@@ -43,6 +43,10 @@ async def start(event):
                         "Add Me To Your Group!", "t.me/TimepAssAssistantBot?startgroup=true"
                     ),
                 ],
+                 [
+                    Button.url(
+                        "σωηєя", "t.me/Lucifeermorningstar"
+                    ),
             ],
         )
     else:
