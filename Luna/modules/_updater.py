@@ -8,7 +8,7 @@ import heroku3
 from Luna import OWNER_ID, tbot
 
 
-UPSTREAM_REPO_URL = "https://github.com/Amarnathcdj/force-subscribe-telegram-bot.git"
+UPSTREAM_REPO_URL = "https://github.com/TheUnknownKanger/TimePassAssistantBot"
 HEROKU_APP_NAME = None
 HEROKU_API_KEY = None
 
