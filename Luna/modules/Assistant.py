@@ -16,7 +16,7 @@ from Luna import *
 
 from Luna.events import register
 
-@register(pattern=r"^/luna(?: |$)([\s\S]*)")
+@register(pattern=r"^/lund(?: |$)([\s\S]*)")
 async def _(event):
     if event.fwd_from:
         return
@@ -130,9 +130,9 @@ file_helpo = file_help.replace("_", " ")
 
 __help__ = """
 **For text assistant**
- - /luna <question>: Ask luna any question and it will give accurate reply. For eg: `/luna where is Taj Mahal`, `/luna what is the age of Virat Kohli` etc..
+ - /lund <question>: Ask luna any question and it will give accurate reply. For eg: `/luna where is Taj Mahal`, `/luna what is the age of Virat Kohli` etc..
 **For voice assistant**
- - /luna: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
+ - /lund: Reply to a voice query and get the results in voice output (ENGLISH ONLY)
 
 **Terminal Assistant**
  - /howdoi <question>: Get all coding related answers from Luna. Syntax: `/howdoi print hello world in python`
